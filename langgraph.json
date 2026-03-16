@@ -1,0 +1,8 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "memory_agent": "./agents/memory_agent.py:create_memory_agent",
+    "planning_agent": "./agents/planning_agent.py:create_planning_agent"
+  },
+  "env": ".env"
+}

@@ -1,0 +1,43 @@
+[project]
+name = "onto-market"
+version = "0.1.0"
+description = "Swarm Intelligence × Polymarket Agents × multi-LLM (Grok/Gemini/Claude/OpenAI)"
+requires-python = ">=3.11"
+dependencies = [
+    "litellm>=1.60.0",
+    "langgraph>=0.2.0",
+    "langchain-core>=0.3.0",
+    "langchain-openai>=0.2.0",
+    "openai>=1.0.0",
+    "python-dotenv",
+    "py-clob-client",
+    "web3",
+    "rich",
+    "pandas",
+    "charset-normalizer",
+    "tenacity>=8.0.0",
+    "requests",
+    "httpx",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "mypy",
+]
+
+[project.scripts]
+onto-market = "main:main"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src", "."]
+include = ["polymarket_agents*", "agents*", "core*", "config*", "utils*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

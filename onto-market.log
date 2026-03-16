@@ -1,0 +1,2 @@
+2026-03-16 17:46:14  INFO      __main__  memory_node: querying local DB for 'Find crypto markets'
+2026-03-16 17:46:14  INFO      __main__  enrichment_node: fetching live data from Gamma

@@ -1,0 +1,7 @@
+litellm>=1.60.0
+python-dotenv
+py-clob-client
+web3
+requests
+pandas
+rich
