@@ -46,21 +46,17 @@ def research_node(state: PlanningState) -> dict:
 
     db_markets = memory.search_markets(query)
 
-    live_markets = []
-    if len(db_markets) < 3:
-        try:
-            live_markets = [
-                {
-                    "id": m.id,
-                    "question": m.question,
-                    "implied_prob": m.implied_probability,
-                    "volume": m.volume,
-                    "category": m.category,
-                }
-                for m in gamma.iter_markets(max_markets=10)
-            ]
-        except Exception as exc:
-            logger.warning("research_node: Gamma error: %s", exc)
+    live_markets = [
+            {
+                "id": m.id,
+                "question": m.question,
+                "implied_prob": m.implied_probability,
+                "volume": m.volume,
+                "category": m.category,
+                "clob_token_ids": m.clob_token_ids, # ← THIS LINE WAS MISSING
+            }
+            for m in gamma.iter_markets(max_markets=10)
+        ]
 
     research_context = ""
     try:

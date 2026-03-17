@@ -20,6 +20,7 @@ class Database:
                     description TEXT,
                     category TEXT,
                     outcome_prices TEXT,
+                    clob_token_ids TEXT,          -- ← ADD THIS LINE
                     volume REAL,
                     liquidity REAL,
                     active INTEGER,
