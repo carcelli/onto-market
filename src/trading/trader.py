@@ -127,7 +127,8 @@ class Trader:
             kelly_fraction=scorecard["kelly_fraction"],
         )
 
-        token_ids = market.get("clob_token_ids", "[]")
+        # Raw Gamma dicts use camelCase; parsed Market objects use snake_case
+        token_ids = market.get("clob_token_ids") or market.get("clobTokenIds", "[]")
         if isinstance(token_ids, str):
             import ast
             try:

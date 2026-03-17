@@ -6,7 +6,12 @@
       "Bash(conda run:*)",
       "Bash(source:*)",
       "Bash(kill:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(conda activate:*)",
+      "Bash(python -m pytest tests/ -x -q)",
+      "Bash(conda info:*)",
+      "Read(//home/orson-dev/anaconda3/envs/**)",
+      "Read(//home/orson-dev/.conda/**)"
     ]
   }
 }

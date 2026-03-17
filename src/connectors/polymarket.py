@@ -92,6 +92,18 @@ class PolymarketConnector:
 
     def _init_web3(self) -> None:
         self.w3 = Web3(Web3.HTTPProvider(self.polygon_rpc))
+
+        # Inject POA middleware required for Polygon RPC compatibility
+        try:
+            from web3.middleware import ExtraDataToPOAMiddleware
+            self.w3.middleware_onion.inject(ExtraDataToPOAMiddleware, layer=0)
+        except ImportError:
+            try:
+                from web3.middleware import geth_poa_middleware
+                self.w3.middleware_onion.inject(geth_poa_middleware, layer=0)
+            except ImportError:
+                logger.debug("POA middleware unavailable, skipping")
+
         if not self.w3.is_connected():
             logger.warning("Failed to connect to Polygon RPC: %s", self.polygon_rpc)
             return
@@ -128,6 +140,42 @@ class PolymarketConnector:
         except Exception as exc:
             logger.warning("CLOB client init failed (trading disabled): %s", exc)
             self.client = None
+
+    def _init_approvals(self) -> None:
+        """Approve CLOB exchange to spend USDC and CTF contract for conditional tokens.
+
+        Required once per wallet before any live trade can settle on-chain.
+        Safe to call on an already-approved wallet (no-op if allowance is max).
+        """
+        if not self.w3 or not self.account or self.safe_mode:
+            return
+        max_uint = 2**256 - 1
+        try:
+            # USDC approval for CLOB exchange
+            tx = self.usdc_contract.functions.approve(
+                Web3.to_checksum_address(EXCHANGE_ADDRESS), max_uint
+            ).build_transaction({
+                "from": self.account.address,
+                "nonce": self.w3.eth.get_transaction_count(self.account.address),
+            })
+            signed = self.w3.eth.account.sign_transaction(tx, self.private_key)
+            txh = self.w3.eth.send_raw_transaction(signed.raw_transaction)
+            self.w3.eth.wait_for_transaction_receipt(txh)
+            logger.info("USDC approval confirmed: %s", txh.hex())
+
+            # CTF setApprovalForAll for the neg-risk exchange
+            tx2 = self.ctf_contract.functions.setApprovalForAll(
+                Web3.to_checksum_address(NEG_RISK_EXCHANGE), True
+            ).build_transaction({
+                "from": self.account.address,
+                "nonce": self.w3.eth.get_transaction_count(self.account.address),
+            })
+            signed2 = self.w3.eth.account.sign_transaction(tx2, self.private_key)
+            txh2 = self.w3.eth.send_raw_transaction(signed2.raw_transaction)
+            self.w3.eth.wait_for_transaction_receipt(txh2)
+            logger.info("CTF approval confirmed: %s", txh2.hex())
+        except Exception as exc:
+            logger.error("Approval transaction failed: %s", exc)
 
     @property
     def wallet_address(self) -> str | None:
@@ -226,11 +274,12 @@ class PolymarketConnector:
         logger.info("LIVE order posted: %s", resp)
         return order_spec
 
-    def execute_market_order(self, token_id: str, amount: float) -> dict:
+    def execute_market_order(self, token_id: str, amount: float, side: str = "BUY") -> dict:
         """Execute a market (FOK) order. Gated by safe_mode."""
         order_spec = {
             "token_id": token_id,
             "amount": amount,
+            "side": side,
             "order_type": "MARKET",
             "timestamp": time.time(),
         }
@@ -238,8 +287,8 @@ class PolymarketConnector:
         if self.safe_mode:
             order_spec["dry_run"] = True
             logger.info(
-                "DRY RUN market order: token=%s amount=%.2f",
-                token_id[:16] + "...", amount,
+                "DRY RUN market order: %s token=%s amount=%.2f",
+                side, token_id[:16] + "...", amount,
             )
             return order_spec
 
@@ -248,7 +297,7 @@ class PolymarketConnector:
 
         from py_clob_client.clob_types import MarketOrderArgs, OrderType
         signed = self.client.create_market_order(
-            MarketOrderArgs(token_id=token_id, amount=amount)
+            MarketOrderArgs(token_id=token_id, amount=amount, side=side)
         )
         resp = self.client.post_order(signed, orderType=OrderType.FOK)
         order_spec["response"] = resp

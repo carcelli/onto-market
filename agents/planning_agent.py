@@ -247,7 +247,7 @@ def decision_node(state: PlanningState) -> dict:
 
 
 def trade_node(state: PlanningState) -> dict:
-    """Build a (dry-run) order when the decision is BET."""
+    """Build a LIVE order when the decision is BET."""
     rec = state.get("recommendation", {})
     if rec.get("action") != "BET":
         logger.info("trade_node: skipping (action=%s)", rec.get("action", "NONE"))
@@ -276,13 +276,16 @@ def trade_node(state: PlanningState) -> dict:
 
     try:
         from src.connectors.polymarket import PolymarketConnector
+        from dotenv import load_dotenv
+        import os
+        load_dotenv("config/.env")
 
         kelly = state.get("kelly_fraction", 0)
         implied = state.get("implied_probability", 0.5)
         half_kelly = kelly / 2.0
         size = max(1.0, half_kelly * 100)
 
-        connector = PolymarketConnector()
+        connector = PolymarketConnector()   # now auto-loads your .env creds
         result = connector.build_order(
             token_id=token_id,
             price=implied,
@@ -290,7 +293,8 @@ def trade_node(state: PlanningState) -> dict:
             side="BUY",
         )
 
-        logger.info("trade_node: order built (dry_run=%s)", result.get("dry_run"))
+        dry = "LIVE" if not result.get("dry_run") else "DRY RUN"
+        logger.info("trade_node: %s order placed!", dry)
         return {"trade_result": result}
 
     except Exception as exc:

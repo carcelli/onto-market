@@ -1,6 +1,6 @@
 """Core domain models."""
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
 
 
 @dataclass
@@ -19,7 +19,7 @@ class Market:
     clob_token_ids: list[str] = field(default_factory=list)
     event_id: str = ""
     tags: list[str] = field(default_factory=list)
-    last_updated: datetime = field(default_factory=datetime.utcnow)
+    last_updated: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
 
     @property
     def implied_probability(self) -> float:
@@ -40,4 +40,4 @@ class ResearchNote:
     market_id: str
     content: str
     source: str = ""
-    timestamp: datetime = field(default_factory=datetime.utcnow)
+    timestamp: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
