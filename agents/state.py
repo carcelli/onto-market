@@ -27,6 +27,7 @@ class PlanningState(TypedDict):
     messages: Annotated[list[BaseMessage], add_messages]
     query: str
     market_data: list[dict]
+    selected_market: dict
     research_context: str
     ontology_context: str
     implied_probability: float

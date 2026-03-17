@@ -12,6 +12,7 @@ Flow:
 
 Decision thresholds: MIN_EDGE=3%, MIN_VOLUME=$5k, MIN_KELLY=1%
 """
+import json
 import sys
 
 from langchain_core.messages import HumanMessage
@@ -37,6 +38,56 @@ search = SearchConnector()
 news = NewsConnector()
 llm = LLMClient()
 
+_STOPWORDS = frozenset({
+    "a", "an", "the", "is", "it", "be", "of", "in", "at", "to", "by",
+    "will", "end", "for", "on", "or", "and", "not", "has", "have", "had",
+    "this", "that", "with", "from", "are", "was", "were", "been", "does",
+})
+
+
+# ── helpers ────────────────────────────────────────────────────────────────
+
+def _normalize_market(m: dict) -> dict:
+    """Ensure consistent keys whether m came from DB or Gamma Market objects."""
+    prices = m.get("outcome_prices")
+    if isinstance(prices, str):
+        try:
+            prices = json.loads(prices)
+        except (json.JSONDecodeError, ValueError):
+            prices = None
+    implied = float(prices[0]) if prices else m.get("implied_prob", 0.5)
+
+    token_ids = m.get("clob_token_ids", [])
+    if isinstance(token_ids, str):
+        try:
+            token_ids = json.loads(token_ids) if token_ids else []
+        except (json.JSONDecodeError, ValueError):
+            token_ids = []
+
+    return {**m, "implied_prob": implied, "clob_token_ids": token_ids}
+
+
+def _market_from_obj(m) -> dict:
+    """Convert a Gamma Market object to a normalized dict."""
+    return {
+        "id": m.id,
+        "question": m.question,
+        "implied_prob": m.implied_probability,
+        "volume": m.volume,
+        "category": m.category,
+        "clob_token_ids": m.clob_token_ids,
+    }
+
+
+def _score_market_match(query_tokens: set[str], question: str, volume: float) -> float:
+    """Score how well a market question matches the query tokens.
+
+    Overlap dominates; volume is a tiebreaker only.
+    """
+    q_lower = question.lower()
+    overlap = sum(1 for t in query_tokens if t in q_lower)
+    return overlap * 10_000 + volume / 1e6
+
 
 # ── nodes ──────────────────────────────────────────────────────────────────
 
@@ -44,19 +95,18 @@ def research_node(state: PlanningState) -> dict:
     query = state["query"]
     logger.info("research_node: '%s'", query)
 
-    db_markets = memory.search_markets(query)
+    db_markets = [_normalize_market(m) for m in memory.search_markets(query)]
 
-    live_markets = [
-            {
-                "id": m.id,
-                "question": m.question,
-                "implied_prob": m.implied_probability,
-                "volume": m.volume,
-                "category": m.category,
-                "clob_token_ids": m.clob_token_ids, # ← THIS LINE WAS MISSING
-            }
-            for m in gamma.iter_markets(max_markets=10)
-        ]
+    live_markets: list[dict] = []
+    try:
+        searched = gamma.search_markets(query, limit=10)
+        live_markets = [_market_from_obj(m) for m in searched]
+        logger.info("research_node: Gamma search returned %d markets", len(live_markets))
+    except Exception as exc:
+        logger.warning("research_node: Gamma search failed (%s), falling back to top-volume", exc)
+
+    if not live_markets:
+        live_markets = [_market_from_obj(m) for m in gamma.iter_markets(max_markets=10)]
 
     research_context = ""
     try:
@@ -85,27 +135,35 @@ def stats_node(state: PlanningState) -> dict:
     markets = state["market_data"]
     if not markets:
         logger.info("stats_node: no market data")
-        return {"implied_probability": 0.5}
+        return {"implied_probability": 0.5, "selected_market": {}}
 
-    query_tokens = {t.lower() for t in state["query"].split() if len(t) > 3}
+    query_tokens = {
+        t.lower() for t in state["query"].split()
+        if len(t) > 2 and t.lower() not in _STOPWORDS
+    }
 
     best_market = markets[0]
-    best_score = -1
+    best_score = -1.0
     for m in markets:
-        question = m.get("question", "").lower()
-        overlap = sum(1 for t in query_tokens if t in question)
+        question = m.get("question", "")
         volume = float(m.get("volume", 0) or 0)
-        score = overlap * 1000 + volume / 1e6
+        score = _score_market_match(query_tokens, question, volume)
         if score > best_score:
             best_score = score
             best_market = m
 
-    implied = best_market.get("implied_prob", 0.5)
+    implied = float(best_market.get("implied_prob", 0.5))
+    if implied < 0.005 or implied > 0.995:
+        logger.warning(
+            "stats_node: implied_prob=%.4f is extreme — likely wrong market match",
+            implied,
+        )
+
     logger.info(
-        "stats_node: implied_prob=%.3f from '%s' (best of %d markets)",
-        implied, best_market.get("question", "?")[:50], len(markets),
+        "stats_node: implied_prob=%.3f from '%s' (score=%.0f, best of %d markets)",
+        implied, best_market.get("question", "?")[:50], best_score, len(markets),
     )
-    return {"implied_probability": implied}
+    return {"implied_probability": implied, "selected_market": best_market}
 
 
 def probability_node(state: PlanningState) -> dict:
@@ -113,6 +171,8 @@ def probability_node(state: PlanningState) -> dict:
     query = state["query"]
     context = state.get("research_context", "")[:1500]
     ontology_context = state.get("ontology_context", "")
+    selected = state.get("selected_market", {})
+    selected_q = selected.get("question", query)
 
     markets_summary = "\n".join(
         f"- {m.get('question', '?')} -> {m.get('implied_prob', 0.5):.1%} "
@@ -129,14 +189,17 @@ def probability_node(state: PlanningState) -> dict:
 
     messages = [
         llm.system(
-            "You are a quantitative Polymarket analyst. Given the query, market data, "
-            "research context, and any structured ontology facts, estimate the TRUE "
-            "probability of the event. The ontology facts are curated from prior "
-            "research runs — treat high-confidence ones as reliable signals.\n\n"
-            'Respond ONLY with valid JSON: {"estimated_prob": <float 0-1>, "rationale": <str>}'
+            "You are a quantitative Polymarket analyst. Given the query, the selected "
+            "market question, market data, research context, and any structured ontology "
+            "facts, estimate the TRUE probability of the event resolving YES.\n\n"
+            "IMPORTANT: Your estimate must be between 0.01 and 0.99 — never return "
+            "exactly 0 or 1. The ontology facts are curated from prior research runs — "
+            "treat high-confidence ones as reliable signals.\n\n"
+            'Respond ONLY with valid JSON: {"estimated_prob": <float 0.01-0.99>, "rationale": <str>}'
         ),
         llm.user(
             f"Query: {query}\n\n"
+            f"Selected market: {selected_q}\n"
             f"Implied market probability: {implied:.1%}\n\n"
             f"Markets:\n{markets_summary}\n\n"
             f"Research context:\n{context}"
@@ -146,7 +209,10 @@ def probability_node(state: PlanningState) -> dict:
 
     logger.info("probability_node: calling LLM (%s)", config.GROK_MODEL)
     result = llm.chat_json(messages, temperature=0.2)
-    estimated = float(result.get("estimated_prob", implied))
+    raw = float(result.get("estimated_prob", implied))
+    estimated = max(0.01, min(0.99, raw))
+    if raw != estimated:
+        logger.warning("probability_node: clamped %.3f -> %.3f", raw, estimated)
     logger.info("probability_node: estimated=%.3f  implied=%.3f", estimated, implied)
     return {"estimated_probability": estimated}
 
@@ -192,9 +258,9 @@ def decision_node(state: PlanningState) -> dict:
     estimated = state["estimated_probability"]
     swarm_consensus = state.get("swarm_consensus", estimated)
     swarm_confidence = state.get("swarm_confidence", 0.0)
-    volume = state["market_data"][0].get("volume", 0) if state["market_data"] else 0
+    selected = state.get("selected_market", {})
+    volume = float(selected.get("volume", 0) or 0)
 
-    # Blend LLM estimate with swarm consensus, weighted by swarm confidence
     blend_weight = min(0.5, swarm_confidence * 0.6)
     final_prob = (1 - blend_weight) * estimated + blend_weight * swarm_consensus
 
@@ -207,12 +273,13 @@ def decision_node(state: PlanningState) -> dict:
         min_kelly=config.MIN_KELLY,
     )
 
-    market_id = state["market_data"][0].get("id", "") if state["market_data"] else ""
+    market_id = selected.get("id", "")
     side = "YES" if final_prob > 0.5 else "NO"
 
     recommendation = {
         "action": scorecard["action"],
         "market_id": market_id,
+        "market_question": selected.get("question", ""),
         "side": side,
         "swarm_consensus": swarm_consensus,
         "swarm_confidence": swarm_confidence,
@@ -221,13 +288,14 @@ def decision_node(state: PlanningState) -> dict:
 
     logger.info(
         "decision_node: %s | edge=%.1f%% | EV=%.3f | kelly=%.1f%% | "
-        "swarm=%.3f (conf=%.2f)",
+        "swarm=%.3f (conf=%.2f) | market='%s'",
         scorecard["action"],
         scorecard["edge"] * 100,
         scorecard["expected_value"],
         scorecard["kelly_fraction"] * 100,
         swarm_consensus,
         swarm_confidence,
+        selected.get("question", "?")[:40],
     )
 
     if market_id:
@@ -253,17 +321,15 @@ def trade_node(state: PlanningState) -> dict:
         logger.info("trade_node: skipping (action=%s)", rec.get("action", "NONE"))
         return {"trade_result": {"skipped": True, "reason": rec.get("action", "NO_REC")}}
 
-    market_data = state["market_data"]
-    if not market_data:
-        return {"trade_result": {"skipped": True, "reason": "no_market_data"}}
+    selected = state.get("selected_market", {})
+    if not selected:
+        return {"trade_result": {"skipped": True, "reason": "no_selected_market"}}
 
-    market = market_data[0]
-    token_ids = market.get("clob_token_ids", [])
+    token_ids = selected.get("clob_token_ids", [])
     if isinstance(token_ids, str):
-        import ast
         try:
-            token_ids = ast.literal_eval(token_ids)
-        except Exception:
+            token_ids = json.loads(token_ids) if token_ids else []
+        except (json.JSONDecodeError, ValueError):
             token_ids = []
 
     side = rec.get("side", "YES")
@@ -277,7 +343,6 @@ def trade_node(state: PlanningState) -> dict:
     try:
         from src.connectors.polymarket import PolymarketConnector
         from dotenv import load_dotenv
-        import os
         load_dotenv("config/.env")
 
         kelly = state.get("kelly_fraction", 0)
@@ -285,7 +350,7 @@ def trade_node(state: PlanningState) -> dict:
         half_kelly = kelly / 2.0
         size = max(1.0, half_kelly * 100)
 
-        connector = PolymarketConnector()   # now auto-loads your .env creds
+        connector = PolymarketConnector()
         result = connector.build_order(
             token_id=token_id,
             price=implied,
@@ -294,7 +359,7 @@ def trade_node(state: PlanningState) -> dict:
         )
 
         dry = "LIVE" if not result.get("dry_run") else "DRY RUN"
-        logger.info("trade_node: %s order placed!", dry)
+        logger.info("trade_node: %s order built for '%s'", dry, selected.get("question", "?")[:40])
         return {"trade_result": result}
 
     except Exception as exc:

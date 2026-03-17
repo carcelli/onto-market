@@ -103,6 +103,26 @@ class GammaConnector:
         logger.info("Fetched %d markets from Gamma", len(markets))
         return markets[:max_markets]
 
+    @retry_with_backoff(attempts=3, min_wait=2, max_wait=30)
+    def search_markets(self, query: str, limit: int = 10) -> list[Market]:
+        """Full-text search via Gamma /public-search endpoint."""
+        resp = self.session.get(
+            f"{GAMMA_BASE}/public-search",
+            params={"q": query, "limit_per_type": limit},
+            timeout=_TIMEOUT,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        markets: list[Market] = []
+        for evt in data.get("events", []):
+            for raw in evt.get("markets", []):
+                try:
+                    markets.append(_parse_market(raw))
+                except Exception as exc:
+                    logger.debug("Skipping search result %s: %s", raw.get("id"), exc)
+        logger.info("Gamma search '%s' returned %d markets", query[:40], len(markets))
+        return markets[:limit]
+
     def close(self) -> None:
         self.session.close()
 
