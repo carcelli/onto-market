@@ -1,5 +1,5 @@
-"""Gamma Markets API connector — market discovery and metadata."""
-import httpx
+"""Gamma Markets API connector - market discovery and metadata."""
+import requests
 
 from src.polymarket_agents.utils.objects import Market
 from src.utils.logger import get_logger
@@ -8,11 +8,12 @@ from src.utils.retry import retry_with_backoff
 logger = get_logger(__name__)
 
 GAMMA_BASE = "https://gamma-api.polymarket.com"
+_TIMEOUT = (10, 30)  # (connect, read) seconds
 
 
 class GammaConnector:
-    def __init__(self, timeout: float = 30.0):
-        self.client = httpx.Client(base_url=GAMMA_BASE, timeout=timeout)
+    def __init__(self):
+        self.session = requests.Session()
 
     @retry_with_backoff(attempts=3, min_wait=2, max_wait=30)
     def get_markets(
@@ -25,7 +26,7 @@ class GammaConnector:
         params: dict = {"limit": limit, "offset": offset, "active": str(active).lower()}
         if category:
             params["tag"] = category
-        resp = self.client.get("/markets", params=params)
+        resp = self.session.get(f"{GAMMA_BASE}/markets", params=params, timeout=_TIMEOUT)
         resp.raise_for_status()
         return resp.json()
 
@@ -52,7 +53,7 @@ class GammaConnector:
         return markets[:max_markets]
 
     def close(self) -> None:
-        self.client.close()
+        self.session.close()
 
 
 def _parse_market(raw: dict) -> Market:

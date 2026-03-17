@@ -4,7 +4,9 @@
       "Bash(find:*)",
       "Bash(wc:*)",
       "Bash(conda run:*)",
-      "Bash(source:*)"
+      "Bash(source:*)",
+      "Bash(kill:*)",
+      "Bash(curl:*)"
     ]
   }
 }

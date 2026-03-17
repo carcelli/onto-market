@@ -75,7 +75,7 @@ def reasoning_node(state: MemoryAgentState) -> dict:
         llm.user(f"Query: {state['query']}\n\nMarkets:\n{context_text}"),
     ]
 
-    logger.info("reasoning_node: calling LLM (%s)", config.active_model())
+    logger.info("reasoning_node: calling LLM (%s)", config.GROK_MODEL)
     analysis = llm.strip_think_tags(llm.chat(messages, temperature=0.3))
     return {"analysis": analysis}
 

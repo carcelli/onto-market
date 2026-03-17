@@ -1,2 +1,5 @@
 2026-03-16 17:46:14  INFO      __main__  memory_node: querying local DB for 'Find crypto markets'
 2026-03-16 17:46:14  INFO      __main__  enrichment_node: fetching live data from Gamma
+2026-03-16 17:58:32  INFO      __main__  memory_node: querying local DB for 'test'
+2026-03-16 17:58:32  INFO      __main__  enrichment_node: fetching live data from Gamma
+2026-03-16 19:06:07  INFO      src.connectors.gamma  Fetched 22 markets from Gamma
