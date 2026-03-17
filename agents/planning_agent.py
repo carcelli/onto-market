@@ -1,15 +1,16 @@
 """
-Planning Agent — full analysis pipeline.
+Planning Agent — full analysis pipeline with swarm + trading.
 
 Flow:
   research_node
       → ontology_node   (extract triples, query prior knowledge)
       → stats_node
-      → probability_node  (uses ontology context to sharpen estimate)
-      → decision_node
+      → probability_node  (LLM estimate using ontology context)
+      → swarm_node        (OASIS-style swarm consensus)
+      → decision_node     (BET / WATCH / PASS)
+      → trade_node        (dry-run order if BET)
 
 Decision thresholds: MIN_EDGE=3%, MIN_VOLUME=$5k, MIN_KELLY=1%
-Output: BET / WATCH / PASS
 """
 import sys
 
@@ -25,6 +26,7 @@ from src.connectors.news import NewsConnector
 from src.connectors.search import SearchConnector
 from src.memory.manager import MemoryManager
 from src.polymarket_agents.utils.analytics import score_market
+from src.swarm.oracle import SocialSentimentOracle
 from src.utils.llm_client import LLMClient
 from src.utils.logger import get_logger
 
@@ -126,13 +128,55 @@ def probability_node(state: PlanningState) -> dict:
     return {"estimated_probability": estimated}
 
 
+def swarm_node(state: PlanningState) -> dict:
+    """Run Social Sentiment Oracle to get swarm consensus on the estimated probability."""
+    estimated = state["estimated_probability"]
+    query = state["query"]
+    context = state.get("research_context", "")
+
+    logger.info("swarm_node: running oracle (swarm_size=%d)", config.SWARM_SIZE)
+
+    try:
+        oracle = SocialSentimentOracle()
+        result = oracle.estimate(
+            query=query,
+            base_prob=estimated,
+            context=context,
+            llm_client=llm,
+        )
+
+        logger.info(
+            "swarm_node: consensus=%.3f confidence=%.3f dissent=%.1f%%",
+            result.consensus_prob, result.confidence, result.dissent_ratio * 100,
+        )
+
+        return {
+            "swarm_consensus": result.consensus_prob,
+            "swarm_confidence": result.confidence,
+            "swarm_dissent": result.dissent_ratio,
+        }
+    except Exception as exc:
+        logger.warning("swarm_node: oracle failed, using LLM estimate: %s", exc)
+        return {
+            "swarm_consensus": estimated,
+            "swarm_confidence": 0.0,
+            "swarm_dissent": 0.0,
+        }
+
+
 def decision_node(state: PlanningState) -> dict:
     implied = state["implied_probability"]
     estimated = state["estimated_probability"]
+    swarm_consensus = state.get("swarm_consensus", estimated)
+    swarm_confidence = state.get("swarm_confidence", 0.0)
     volume = state["market_data"][0].get("volume", 0) if state["market_data"] else 0
 
+    # Blend LLM estimate with swarm consensus, weighted by swarm confidence
+    blend_weight = min(0.5, swarm_confidence * 0.6)
+    final_prob = (1 - blend_weight) * estimated + blend_weight * swarm_consensus
+
     scorecard = score_market(
-        true_prob=estimated,
+        true_prob=final_prob,
         implied_prob=implied,
         volume=volume,
         min_edge=config.MIN_EDGE,
@@ -141,27 +185,32 @@ def decision_node(state: PlanningState) -> dict:
     )
 
     market_id = state["market_data"][0].get("id", "") if state["market_data"] else ""
-    side = "YES" if estimated > 0.5 else "NO"
+    side = "YES" if final_prob > 0.5 else "NO"
 
     recommendation = {
         "action": scorecard["action"],
         "market_id": market_id,
         "side": side,
+        "swarm_consensus": swarm_consensus,
+        "swarm_confidence": swarm_confidence,
         **scorecard,
     }
 
     logger.info(
-        "decision_node: %s | edge=%.1f%% | EV=%.3f | kelly=%.1f%%",
+        "decision_node: %s | edge=%.1f%% | EV=%.3f | kelly=%.1f%% | "
+        "swarm=%.3f (conf=%.2f)",
         scorecard["action"],
         scorecard["edge"] * 100,
         scorecard["expected_value"],
         scorecard["kelly_fraction"] * 100,
+        swarm_consensus,
+        swarm_confidence,
     )
 
     if market_id:
         memory.store_analytics(
             market_id=market_id,
-            estimated_prob=estimated,
+            estimated_prob=final_prob,
             edge=scorecard["edge"],
             action=scorecard["action"],
         )
@@ -174,23 +223,79 @@ def decision_node(state: PlanningState) -> dict:
     }
 
 
+def trade_node(state: PlanningState) -> dict:
+    """Build a (dry-run) order when the decision is BET."""
+    rec = state.get("recommendation", {})
+    if rec.get("action") != "BET":
+        logger.info("trade_node: skipping (action=%s)", rec.get("action", "NONE"))
+        return {"trade_result": {"skipped": True, "reason": rec.get("action", "NO_REC")}}
+
+    market_data = state["market_data"]
+    if not market_data:
+        return {"trade_result": {"skipped": True, "reason": "no_market_data"}}
+
+    market = market_data[0]
+    token_ids = market.get("clob_token_ids", [])
+    if isinstance(token_ids, str):
+        import ast
+        try:
+            token_ids = ast.literal_eval(token_ids)
+        except Exception:
+            token_ids = []
+
+    side = rec.get("side", "YES")
+    token_id = token_ids[0] if side == "YES" and token_ids else (
+        token_ids[1] if side == "NO" and len(token_ids) > 1 else None
+    )
+
+    if not token_id:
+        return {"trade_result": {"skipped": True, "reason": "no_token_id"}}
+
+    try:
+        from src.connectors.polymarket import PolymarketConnector
+
+        kelly = state.get("kelly_fraction", 0)
+        implied = state.get("implied_probability", 0.5)
+        half_kelly = kelly / 2.0
+        size = max(1.0, half_kelly * 100)
+
+        connector = PolymarketConnector()
+        result = connector.build_order(
+            token_id=token_id,
+            price=implied,
+            size=size,
+            side="BUY",
+        )
+
+        logger.info("trade_node: order built (dry_run=%s)", result.get("dry_run"))
+        return {"trade_result": result}
+
+    except Exception as exc:
+        logger.warning("trade_node: order failed: %s", exc)
+        return {"trade_result": {"error": str(exc)}}
+
+
 # ── graph ──────────────────────────────────────────────────────────────────
 
 @register_graph("planning_agent")
 def create_planning_agent():
     g = StateGraph(PlanningState)
     g.add_node("research", research_node)
-    g.add_node("ontology", ontology_node)   # NEW: between research and stats
+    g.add_node("ontology", ontology_node)
     g.add_node("stats", stats_node)
     g.add_node("probability", probability_node)
+    g.add_node("swarm", swarm_node)
     g.add_node("decision", decision_node)
+    g.add_node("trade", trade_node)
 
     g.set_entry_point("research")
     g.add_edge("research", "ontology")
     g.add_edge("ontology", "stats")
     g.add_edge("stats", "probability")
-    g.add_edge("probability", "decision")
-    g.add_edge("decision", END)
+    g.add_edge("probability", "swarm")
+    g.add_edge("swarm", "decision")
+    g.add_edge("decision", "trade")
+    g.add_edge("trade", END)
 
     return g.compile()
 
@@ -202,7 +307,7 @@ if __name__ == "__main__":
     agent = create_planning_agent()
     result = agent.invoke(
         {"query": query, "messages": [HumanMessage(content=query)]},
-        config={"recursion_limit": 10},
+        config={"recursion_limit": 15},
     )
     rec = result.get("recommendation", {})
     print(f"\n=== Recommendation: {rec.get('action')} ===")
@@ -210,3 +315,9 @@ if __name__ == "__main__":
     print(f"  Edge:   {rec.get('edge', 0):.1%}")
     print(f"  EV:     {rec.get('expected_value', 0):.3f}")
     print(f"  Kelly:  {rec.get('kelly_fraction', 0):.1%}")
+    print(f"  Swarm:  {rec.get('swarm_consensus', 0):.3f} (conf={rec.get('swarm_confidence', 0):.2f})")
+
+    trade = result.get("trade_result", {})
+    if trade and not trade.get("skipped"):
+        dry = "DRY RUN" if trade.get("dry_run") else "LIVE"
+        print(f"  Trade:  [{dry}] {trade.get('side', '')} @ {trade.get('price', '')}")

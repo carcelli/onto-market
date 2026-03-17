@@ -3,3 +3,67 @@
 2026-03-16 17:58:32  INFO      __main__  memory_node: querying local DB for 'test'
 2026-03-16 17:58:32  INFO      __main__  enrichment_node: fetching live data from Gamma
 2026-03-16 19:06:07  INFO      src.connectors.gamma  Fetched 22 markets from Gamma
+2026-03-16 22:44:28  INFO      src.swarm.dynamics  Swarm reached max rounds (20) without convergence (std=0.1783)
+2026-03-16 22:44:28  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0873)
+2026-03-16 22:44:28  INFO      src.swarm.oracle  Oracle result: consensus=0.591 confidence=0.564 dissent=3.0% (mean=0.590 std=0.0873 rounds=3)
+2026-03-16 22:44:28  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0778)
+2026-03-16 22:44:28  INFO      src.swarm.oracle  Oracle result: consensus=0.502 confidence=0.611 dissent=1.5% (mean=0.502 std=0.0778 rounds=3)
+2026-03-16 22:44:28  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0720)
+2026-03-16 22:44:28  INFO      src.swarm.oracle  Oracle result: consensus=0.698 confidence=0.640 dissent=1.0% (mean=0.698 std=0.0720 rounds=3)
+2026-03-16 22:44:28  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0786)
+2026-03-16 22:44:28  INFO      src.swarm.oracle  Oracle result: consensus=0.498 confidence=0.607 dissent=1.0% (mean=0.502 std=0.0786 rounds=3)
+2026-03-16 22:44:28  INFO      src.swarm.dynamics  Swarm reached max rounds (2) without convergence (std=0.0724)
+2026-03-16 22:44:28  INFO      src.swarm.oracle  Oracle result: consensus=0.507 confidence=0.638 dissent=0.0% (mean=0.503 std=0.0724 rounds=2)
+2026-03-16 22:44:29  INFO      src.swarm.dynamics  Swarm reached max rounds (5) without convergence (std=0.1053)
+2026-03-16 22:44:29  INFO      src.swarm.oracle  Oracle result: consensus=0.702 confidence=0.474 dissent=6.2% (mean=0.703 std=0.1053 rounds=5)
+2026-03-16 22:44:29  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0482)
+2026-03-16 22:44:29  INFO      src.swarm.oracle  Oracle result: consensus=0.932 confidence=0.759 dissent=0.0% (mean=0.929 std=0.0482 rounds=3)
+2026-03-16 22:44:29  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0621)
+2026-03-16 22:44:29  INFO      src.swarm.oracle  Oracle result: consensus=0.102 confidence=0.690 dissent=0.0% (mean=0.105 std=0.0621 rounds=3)
+2026-03-16 22:44:29  INFO      src.connectors.polymarket  DRY RUN order: BUY test_token_123... @ 0.6500 (size=10.00)
+2026-03-16 22:44:29  INFO      src.connectors.polymarket  DRY RUN order: BUY abc... @ 0.5000 (size=5.00)
+2026-03-16 22:44:29  INFO      src.connectors.polymarket  DRY RUN market order: token=test_token_456... amount=25.00
+2026-03-16 22:44:29  INFO      src.trading.executor  Trade sizing: edge=5.00% kelly=10.00% half_kelly=5.00% balance=$1000.00 -> size=$50.00
+2026-03-16 22:44:29  INFO      src.trading.executor  Trade sizing: edge=10.00% kelly=50.00% half_kelly=25.00% balance=$10000.00 -> size=$500.00
+2026-03-16 22:44:29  WARNING   src.trading.executor  Event filtering failed, returning top 5: API error
+2026-03-16 22:44:29  INFO      src.trading.trader  Step 1: Discovering tradeable events
+2026-03-16 22:44:29  INFO      src.trading.trader  Found 0 tradeable events
+2026-03-16 22:44:29  INFO      src.trading.trader  Step 1: Discovering tradeable events
+2026-03-16 22:44:29  INFO      src.trading.trader  Found 1 tradeable events
+2026-03-16 22:44:29  INFO      src.trading.trader  Step 2: LLM-filtering events
+2026-03-16 22:44:29  INFO      src.trading.executor  Filtered 1 -> 1 events via LLM
+2026-03-16 22:44:29  INFO      src.trading.trader  Filtered to 1 events
+2026-03-16 22:44:29  INFO      src.trading.trader  Step 3: Mapping events to markets
+2026-03-16 22:44:29  INFO      src.trading.trader  Found 0 markets from filtered events
+2026-03-16 22:44:35  INFO      src.swarm.dynamics  Swarm reached max rounds (20) without convergence (std=0.1720)
+2026-03-16 22:44:35  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0702)
+2026-03-16 22:44:35  INFO      src.swarm.oracle  Oracle result: consensus=0.590 confidence=0.649 dissent=0.0% (mean=0.596 std=0.0702 rounds=3)
+2026-03-16 22:44:35  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0805)
+2026-03-16 22:44:35  INFO      src.swarm.oracle  Oracle result: consensus=0.500 confidence=0.597 dissent=2.5% (mean=0.500 std=0.0805 rounds=3)
+2026-03-16 22:44:35  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0856)
+2026-03-16 22:44:35  INFO      src.swarm.oracle  Oracle result: consensus=0.694 confidence=0.572 dissent=2.0% (mean=0.704 std=0.0856 rounds=3)
+2026-03-16 22:44:35  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0691)
+2026-03-16 22:44:35  INFO      src.swarm.oracle  Oracle result: consensus=0.506 confidence=0.655 dissent=0.0% (mean=0.506 std=0.0691 rounds=3)
+2026-03-16 22:44:35  INFO      src.swarm.dynamics  Swarm reached max rounds (2) without convergence (std=0.0663)
+2026-03-16 22:44:35  INFO      src.swarm.oracle  Oracle result: consensus=0.506 confidence=0.669 dissent=0.0% (mean=0.496 std=0.0663 rounds=2)
+2026-03-16 22:44:35  INFO      src.swarm.dynamics  Swarm reached max rounds (5) without convergence (std=0.0996)
+2026-03-16 22:44:35  INFO      src.swarm.oracle  Oracle result: consensus=0.700 confidence=0.502 dissent=5.0% (mean=0.700 std=0.0996 rounds=5)
+2026-03-16 22:44:35  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0484)
+2026-03-16 22:44:35  INFO      src.swarm.oracle  Oracle result: consensus=0.937 confidence=0.758 dissent=0.0% (mean=0.932 std=0.0484 rounds=3)
+2026-03-16 22:44:35  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0679)
+2026-03-16 22:44:35  INFO      src.swarm.oracle  Oracle result: consensus=0.102 confidence=0.661 dissent=1.5% (mean=0.108 std=0.0679 rounds=3)
+2026-03-16 22:44:35  INFO      src.connectors.polymarket  DRY RUN order: BUY test_token_123... @ 0.6500 (size=10.00)
+2026-03-16 22:44:35  INFO      src.connectors.polymarket  DRY RUN order: BUY abc... @ 0.5000 (size=5.00)
+2026-03-16 22:44:35  INFO      src.connectors.polymarket  DRY RUN market order: token=test_token_456... amount=25.00
+2026-03-16 22:44:35  INFO      src.trading.executor  Trade sizing: edge=5.00% kelly=10.00% half_kelly=5.00% balance=$1000.00 -> size=$50.00
+2026-03-16 22:44:35  INFO      src.trading.executor  Trade sizing: edge=10.00% kelly=50.00% half_kelly=25.00% balance=$10000.00 -> size=$500.00
+2026-03-16 22:44:35  WARNING   src.trading.executor  Event filtering failed, returning top 5: API error
+2026-03-16 22:44:35  INFO      src.trading.trader  Step 1: Discovering tradeable events
+2026-03-16 22:44:35  INFO      src.trading.trader  Found 0 tradeable events
+2026-03-16 22:44:36  INFO      src.trading.trader  Step 1: Discovering tradeable events
+2026-03-16 22:44:36  INFO      src.trading.trader  Found 1 tradeable events
+2026-03-16 22:44:36  INFO      src.trading.trader  Step 2: LLM-filtering events
+2026-03-16 22:44:36  INFO      src.trading.executor  Filtered 1 -> 1 events via LLM
+2026-03-16 22:44:36  INFO      src.trading.trader  Filtered to 1 events
+2026-03-16 22:44:36  INFO      src.trading.trader  Step 3: Mapping events to markets
+2026-03-16 22:44:36  INFO      src.trading.trader  Found 0 markets from filtered events

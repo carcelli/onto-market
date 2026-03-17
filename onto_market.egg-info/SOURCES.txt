@@ -30,3 +30,5 @@ src/utils/logger.py
 src/utils/retry.py
 tests/test_analytics.py
 tests/test_memory.py
+tests/test_swarm.py
+tests/test_trading.py

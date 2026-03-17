@@ -27,12 +27,18 @@ class Config:
     CLOB_API_URL: str = os.getenv("CLOB_API_URL", "https://clob.polymarket.com")
     CHAIN_ID: int = int(os.getenv("CHAIN_ID", "137"))
 
+    # Trading safety
+    SAFE_MODE: bool = os.getenv("SAFE_MODE", "true").lower() == "true"
+
     # Research APIs
     TAVILY_API_KEY: str | None = os.getenv("TAVILY_API_KEY")
     NEWSAPI_API_KEY: str | None = os.getenv("NEWSAPI_API_KEY")
 
     # Swarm simulation
     SWARM_SIZE: int = int(os.getenv("SWARM_SIZE", "5000"))
+    SWARM_ROUNDS: int = int(os.getenv("SWARM_ROUNDS", "5"))
+    SWARM_ANALYST_FRACTION: float = float(os.getenv("SWARM_ANALYST_FRACTION", "0.03"))
+    SWARM_CONVERGENCE_THRESHOLD: float = float(os.getenv("SWARM_CONVERGENCE_THRESHOLD", "0.02"))
 
     # Agent thresholds
     MIN_EDGE: float = float(os.getenv("MIN_EDGE", "0.03"))       # 3%

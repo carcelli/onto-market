@@ -16,8 +16,8 @@ class AgentState(TypedDict):
 class MemoryAgentState(TypedDict):
     messages: Annotated[list[BaseMessage], add_messages]
     query: str
-    memory_context: list[dict]    # markets from local DB
-    live_data: list[dict]         # markets from Gamma API (if enriched)
+    memory_context: list[dict]
+    live_data: list[dict]
     analysis: str
     decision: dict
     error: str | None
@@ -28,11 +28,18 @@ class PlanningState(TypedDict):
     query: str
     market_data: list[dict]
     research_context: str
-    ontology_context: str           # structured prior knowledge from OntologyGraph
+    ontology_context: str
     implied_probability: float
     estimated_probability: float
+    # Swarm consensus fields (populated by swarm_node)
+    swarm_consensus: float
+    swarm_confidence: float
+    swarm_dissent: float
+    # Scoring
     edge: float
     expected_value: float
     kelly_fraction: float
     recommendation: dict
+    # Trading (populated by trade_node)
+    trade_result: dict
     error: str | None
