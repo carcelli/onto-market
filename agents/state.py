@@ -28,6 +28,7 @@ class PlanningState(TypedDict):
     query: str
     market_data: list[dict]
     research_context: str
+    ontology_context: str           # structured prior knowledge from OntologyGraph
     implied_probability: float
     estimated_probability: float
     edge: float

@@ -18,6 +18,7 @@ dependencies = [
     "tenacity>=8.0.0",
     "requests",
     "httpx",
+    "networkx>=3.0",
 ]
 
 [project.optional-dependencies]

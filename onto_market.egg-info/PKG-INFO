@@ -17,6 +17,7 @@ Requires-Dist: charset-normalizer
 Requires-Dist: tenacity>=8.0.0
 Requires-Dist: requests
 Requires-Dist: httpx
+Requires-Dist: networkx>=3.0
 Provides-Extra: dev
 Requires-Dist: pytest>=8.0.0; extra == "dev"
 Requires-Dist: pytest-asyncio>=0.23.0; extra == "dev"

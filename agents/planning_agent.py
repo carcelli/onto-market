@@ -1,7 +1,13 @@
 """
 Planning Agent — full analysis pipeline.
 
-Flow: research_node → stats_node → probability_node → decision_node
+Flow:
+  research_node
+      → ontology_node   (extract triples, query prior knowledge)
+      → stats_node
+      → probability_node  (uses ontology context to sharpen estimate)
+      → decision_node
+
 Decision thresholds: MIN_EDGE=3%, MIN_VOLUME=$5k, MIN_KELLY=1%
 Output: BET / WATCH / PASS
 """
@@ -10,8 +16,10 @@ import sys
 from langchain_core.messages import HumanMessage
 from langgraph.graph import END, StateGraph
 
+from agents.ontology_agent import ontology_node
 from agents.state import PlanningState
 from config import config
+from core.graph import register_graph
 from src.connectors.gamma import GammaConnector
 from src.connectors.news import NewsConnector
 from src.connectors.search import SearchConnector
@@ -34,10 +42,8 @@ def research_node(state: PlanningState) -> dict:
     query = state["query"]
     logger.info("research_node: '%s'", query)
 
-    # DB first
     db_markets = memory.search_markets(query)
 
-    # Enrich with live Gamma if sparse
     live_markets = []
     if len(db_markets) < 3:
         try:
@@ -54,7 +60,6 @@ def research_node(state: PlanningState) -> dict:
         except Exception as exc:
             logger.warning("research_node: Gamma error: %s", exc)
 
-    # Web context
     research_context = ""
     try:
         research_context = search.search_text(query, max_results=3)
@@ -64,8 +69,7 @@ def research_node(state: PlanningState) -> dict:
         except Exception:
             pass
 
-    all_markets = db_markets + live_markets
-    return {"market_data": all_markets, "research_context": research_context}
+    return {"market_data": db_markets + live_markets, "research_context": research_context}
 
 
 def stats_node(state: PlanningState) -> dict:
@@ -74,7 +78,6 @@ def stats_node(state: PlanningState) -> dict:
         logger.info("stats_node: no market data")
         return {"implied_probability": 0.5}
 
-    # Use first matching market's implied prob
     implied = markets[0].get("implied_prob", 0.5)
     logger.info("stats_node: implied_prob=%.3f from %d markets", implied, len(markets))
     return {"implied_probability": implied}
@@ -83,30 +86,43 @@ def stats_node(state: PlanningState) -> dict:
 def probability_node(state: PlanningState) -> dict:
     implied = state["implied_probability"]
     query = state["query"]
-    context = state["research_context"][:1500]  # trim for token budget
+    context = state.get("research_context", "")[:1500]
+    ontology_context = state.get("ontology_context", "")
+
     markets_summary = "\n".join(
-        f"- {m.get('question', '?')} → {m.get('implied_prob', 0.5):.1%} (vol=${m.get('volume', 0):,.0f})"
+        f"- {m.get('question', '?')} -> {m.get('implied_prob', 0.5):.1%} "
+        f"(vol=${m.get('volume', 0):,.0f})"
         for m in state["market_data"][:5]
+    )
+
+    onto_section = (
+        f"\n\nOntology prior knowledge (structured facts from previous analyses):\n"
+        f"{ontology_context}"
+        if ontology_context
+        else ""
     )
 
     messages = [
         llm.system(
             "You are a quantitative Polymarket analyst. Given the query, market data, "
-            "and research context, estimate the TRUE probability of the event. "
-            "Respond with a JSON object: {\"estimated_prob\": <float 0-1>, \"rationale\": <str>}"
+            "research context, and any structured ontology facts, estimate the TRUE "
+            "probability of the event. The ontology facts are curated from prior "
+            "research runs — treat high-confidence ones as reliable signals.\n\n"
+            'Respond ONLY with valid JSON: {"estimated_prob": <float 0-1>, "rationale": <str>}'
         ),
         llm.user(
             f"Query: {query}\n\n"
             f"Implied market probability: {implied:.1%}\n\n"
             f"Markets:\n{markets_summary}\n\n"
             f"Research context:\n{context}"
+            f"{onto_section}"
         ),
     ]
 
-    logger.info("probability_node: asking LLM for true probability estimate")
+    logger.info("probability_node: calling LLM (%s)", config.GROK_MODEL)
     result = llm.chat_json(messages, temperature=0.2)
     estimated = float(result.get("estimated_prob", implied))
-    logger.info("probability_node: estimated_prob=%.3f (implied=%.3f)", estimated, implied)
+    logger.info("probability_node: estimated=%.3f  implied=%.3f", estimated, implied)
     return {"estimated_probability": estimated}
 
 
@@ -142,7 +158,6 @@ def decision_node(state: PlanningState) -> dict:
         scorecard["kelly_fraction"] * 100,
     )
 
-    # Persist to DB
     if market_id:
         memory.store_analytics(
             market_id=market_id,
@@ -161,20 +176,18 @@ def decision_node(state: PlanningState) -> dict:
 
 # ── graph ──────────────────────────────────────────────────────────────────
 
-from core.graph import register_graph
-
-# ... (rest of imports)
-
 @register_graph("planning_agent")
 def create_planning_agent():
     g = StateGraph(PlanningState)
     g.add_node("research", research_node)
+    g.add_node("ontology", ontology_node)   # NEW: between research and stats
     g.add_node("stats", stats_node)
     g.add_node("probability", probability_node)
     g.add_node("decision", decision_node)
 
     g.set_entry_point("research")
-    g.add_edge("research", "stats")
+    g.add_edge("research", "ontology")
+    g.add_edge("ontology", "stats")
     g.add_edge("stats", "probability")
     g.add_edge("probability", "decision")
     g.add_edge("decision", END)

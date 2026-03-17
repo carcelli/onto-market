@@ -12,6 +12,7 @@ charset-normalizer
 tenacity>=8.0.0
 requests
 httpx
+networkx>=3.0
 
 [dev]
 pytest>=8.0.0
