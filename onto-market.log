@@ -67,3 +67,73 @@
 2026-03-16 22:44:36  INFO      src.trading.trader  Filtered to 1 events
 2026-03-16 22:44:36  INFO      src.trading.trader  Step 3: Mapping events to markets
 2026-03-16 22:44:36  INFO      src.trading.trader  Found 0 markets from filtered events
+2026-03-17 00:02:26  INFO      src.swarm.dynamics  Swarm reached max rounds (20) without convergence (std=0.1830)
+2026-03-17 00:02:26  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0614)
+2026-03-17 00:02:26  INFO      src.swarm.oracle  Oracle result: consensus=0.615 confidence=0.693 dissent=0.0% (mean=0.605 std=0.0614 rounds=3)
+2026-03-17 00:02:26  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0716)
+2026-03-17 00:02:26  INFO      src.swarm.oracle  Oracle result: consensus=0.501 confidence=0.642 dissent=1.5% (mean=0.497 std=0.0716 rounds=3)
+2026-03-17 00:02:26  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0764)
+2026-03-17 00:02:26  INFO      src.swarm.oracle  Oracle result: consensus=0.695 confidence=0.618 dissent=1.5% (mean=0.697 std=0.0764 rounds=3)
+2026-03-17 00:02:26  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0773)
+2026-03-17 00:02:26  INFO      src.swarm.oracle  Oracle result: consensus=0.510 confidence=0.614 dissent=1.5% (mean=0.502 std=0.0773 rounds=3)
+2026-03-17 00:02:26  INFO      src.swarm.dynamics  Swarm reached max rounds (2) without convergence (std=0.0706)
+2026-03-17 00:02:26  INFO      src.swarm.oracle  Oracle result: consensus=0.504 confidence=0.647 dissent=0.7% (mean=0.500 std=0.0706 rounds=2)
+2026-03-17 00:02:26  INFO      src.swarm.dynamics  Swarm reached max rounds (5) without convergence (std=0.1063)
+2026-03-17 00:02:26  INFO      src.swarm.oracle  Oracle result: consensus=0.698 confidence=0.468 dissent=6.4% (mean=0.694 std=0.1063 rounds=5)
+2026-03-17 00:02:26  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0538)
+2026-03-17 00:02:26  INFO      src.swarm.oracle  Oracle result: consensus=0.940 confidence=0.731 dissent=0.0% (mean=0.927 std=0.0538 rounds=3)
+2026-03-17 00:02:26  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0641)
+2026-03-17 00:02:26  INFO      src.swarm.oracle  Oracle result: consensus=0.112 confidence=0.680 dissent=0.5% (mean=0.109 std=0.0641 rounds=3)
+2026-03-17 00:02:34  WARNING   src.swarm.oracle  Analyst LLM call failed, using heuristic: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2026-03-17 00:02:34  INFO      src.swarm.dynamics  Swarm reached max rounds (5) without convergence (std=0.1110)
+2026-03-17 00:02:34  INFO      src.swarm.oracle  Oracle result: consensus=0.596 confidence=0.445 dissent=6.1% (mean=0.597 std=0.1110 rounds=5)
+2026-03-17 00:12:59  INFO      src.swarm.oracle  Analyst LLM returned 5 estimates
+2026-03-17 00:12:59  INFO      src.swarm.dynamics  Swarm reached max rounds (5) without convergence (std=0.1111)
+2026-03-17 00:12:59  INFO      src.swarm.oracle  Oracle result: consensus=0.599 confidence=0.444 dissent=5.7% (mean=0.600 std=0.1111 rounds=5)
+2026-03-17 00:13:44  INFO      agents.planning_agent  research_node: 'Will Bitcoin hit k by end of 2025?'
+2026-03-17 00:17:41  INFO      agents.planning_agent  research_node: 'Will Bitcoin hit k by end of 2025?'
+2026-03-17 00:30:45  INFO      src.connectors.gamma  Fetched 5 markets from Gamma
+2026-03-17 00:30:52  INFO      agents.planning_agent  research_node: 'Will Bitcoin hit k by end of 2025?'
+2026-03-17 00:30:53  INFO      src.connectors.gamma  Fetched 10 markets from Gamma
+2026-03-17 00:32:17  INFO      agents.ontology_agent  ontology_node: no new triples (LLM unavailable or no context)
+2026-03-17 00:32:17  INFO      agents.ontology_agent  ontology_node: graph has no prior knowledge for this query yet
+2026-03-17 00:32:17  INFO      agents.planning_agent  stats_node: implied_prob=0.000 from 10 markets
+2026-03-17 00:32:17  INFO      agents.planning_agent  probability_node: calling LLM (grok-4)
+2026-03-17 00:33:00  INFO      agents.planning_agent  probability_node: estimated=1.000  implied=0.000
+2026-03-17 00:33:00  INFO      agents.planning_agent  swarm_node: running oracle (swarm_size=5000)
+2026-03-17 00:34:17  INFO      src.swarm.oracle  Analyst LLM returned 5 estimates
+2026-03-17 00:34:17  INFO      src.swarm.dynamics  Swarm reached max rounds (5) without convergence (std=0.0429)
+2026-03-17 00:34:17  INFO      src.swarm.oracle  Oracle result: consensus=0.975 confidence=0.786 dissent=0.7% (mean=0.956 std=0.0429 rounds=5)
+2026-03-17 00:34:17  INFO      agents.planning_agent  swarm_node: consensus=0.975 confidence=0.786 dissent=0.7%
+2026-03-17 00:34:17  INFO      agents.planning_agent  decision_node: BET | edge=98.8% | EV=0.000 | kelly=98.8% | swarm=0.975 (conf=0.79)
+2026-03-17 00:36:35  INFO      src.swarm.dynamics  Swarm reached max rounds (20) without convergence (std=0.1775)
+2026-03-17 00:36:35  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0755)
+2026-03-17 00:36:35  INFO      src.swarm.oracle  Oracle result: consensus=0.595 confidence=0.623 dissent=2.0% (mean=0.602 std=0.0755 rounds=3)
+2026-03-17 00:36:35  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0700)
+2026-03-17 00:36:35  INFO      src.swarm.oracle  Oracle result: consensus=0.502 confidence=0.650 dissent=1.0% (mean=0.500 std=0.0700 rounds=3)
+2026-03-17 00:36:35  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0707)
+2026-03-17 00:36:35  INFO      src.swarm.oracle  Oracle result: consensus=0.707 confidence=0.647 dissent=1.5% (mean=0.702 std=0.0707 rounds=3)
+2026-03-17 00:36:35  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0752)
+2026-03-17 00:36:35  INFO      src.swarm.oracle  Oracle result: consensus=0.492 confidence=0.624 dissent=2.0% (mean=0.497 std=0.0752 rounds=3)
+2026-03-17 00:36:35  INFO      src.swarm.dynamics  Swarm reached max rounds (2) without convergence (std=0.0742)
+2026-03-17 00:36:35  INFO      src.swarm.oracle  Oracle result: consensus=0.490 confidence=0.629 dissent=0.0% (mean=0.500 std=0.0742 rounds=2)
+2026-03-17 00:36:35  INFO      src.swarm.dynamics  Swarm reached max rounds (5) without convergence (std=0.1046)
+2026-03-17 00:36:35  INFO      src.swarm.oracle  Oracle result: consensus=0.703 confidence=0.477 dissent=6.0% (mean=0.699 std=0.1046 rounds=5)
+2026-03-17 00:36:35  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0587)
+2026-03-17 00:36:35  INFO      src.swarm.oracle  Oracle result: consensus=0.945 confidence=0.706 dissent=1.0% (mean=0.925 std=0.0587 rounds=3)
+2026-03-17 00:36:35  INFO      src.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0680)
+2026-03-17 00:36:35  INFO      src.swarm.oracle  Oracle result: consensus=0.092 confidence=0.660 dissent=1.0% (mean=0.103 std=0.0680 rounds=3)
+2026-03-17 00:36:45  INFO      agents.planning_agent  research_node: 'Will the Fed decrease interest rates in 2025?'
+2026-03-17 00:36:45  INFO      src.connectors.gamma  Fetched 10 markets from Gamma
+2026-03-17 00:37:14  INFO      agents.planning_agent  research_node: used Grok native search for context (821 chars)
+2026-03-17 00:37:50  INFO      agents.ontology_agent  ontology_node: ingested 10 triples  (graph now 17 nodes, 10 edges)
+2026-03-17 00:37:50  INFO      agents.ontology_agent  ontology_node: returning 6 prior facts from graph
+2026-03-17 00:37:50  INFO      agents.planning_agent  stats_node: implied_prob=0.001 from 'Will the Fed decrease interest rates by 50+ bps af' (best of 10 markets)
+2026-03-17 00:37:50  INFO      agents.planning_agent  probability_node: calling LLM (grok-4)
+2026-03-17 00:38:11  INFO      agents.planning_agent  probability_node: estimated=1.000  implied=0.001
+2026-03-17 00:38:11  INFO      agents.planning_agent  swarm_node: running oracle (swarm_size=5000)
+2026-03-17 00:38:24  INFO      src.swarm.oracle  Analyst LLM returned 5 estimates
+2026-03-17 00:38:24  INFO      src.swarm.dynamics  Swarm reached max rounds (5) without convergence (std=0.0431)
+2026-03-17 00:38:24  INFO      src.swarm.oracle  Oracle result: consensus=0.976 confidence=0.784 dissent=0.8% (mean=0.957 std=0.0431 rounds=5)
+2026-03-17 00:38:24  INFO      agents.planning_agent  swarm_node: consensus=0.976 confidence=0.784 dissent=0.8%
+2026-03-17 00:38:24  INFO      agents.planning_agent  decision_node: BET | edge=98.8% | EV=1976.704 | kelly=98.9% | swarm=0.976 (conf=0.78)

@@ -16,10 +16,10 @@ Reference implementation: `/home/orson-dev/projects/polymarket_langchain/`
 
 ## Python Environment
 
-**Always use the `market-dev` conda environment.**
+**Always use the `onto-market` conda environment.**
 
 ```bash
-source /home/orson-dev/miniconda/etc/profile.d/conda.sh && conda activate market-dev
+conda activate onto-market
 pip install -e ".[dev]"
 ```
 

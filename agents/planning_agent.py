@@ -71,6 +71,17 @@ def research_node(state: PlanningState) -> dict:
         except Exception:
             pass
 
+    if not research_context:
+        try:
+            research_context = llm.chat(
+                [llm.system("Summarize current facts relevant to this prediction market question. Be concise."),
+                 llm.user(query)],
+                temperature=0.3,
+            )
+            logger.info("research_node: used Grok native search for context (%d chars)", len(research_context))
+        except Exception as exc:
+            logger.warning("research_node: Grok search fallback failed: %s", exc)
+
     return {"market_data": db_markets + live_markets, "research_context": research_context}
 
 
@@ -80,8 +91,24 @@ def stats_node(state: PlanningState) -> dict:
         logger.info("stats_node: no market data")
         return {"implied_probability": 0.5}
 
-    implied = markets[0].get("implied_prob", 0.5)
-    logger.info("stats_node: implied_prob=%.3f from %d markets", implied, len(markets))
+    query_tokens = {t.lower() for t in state["query"].split() if len(t) > 3}
+
+    best_market = markets[0]
+    best_score = -1
+    for m in markets:
+        question = m.get("question", "").lower()
+        overlap = sum(1 for t in query_tokens if t in question)
+        volume = float(m.get("volume", 0) or 0)
+        score = overlap * 1000 + volume / 1e6
+        if score > best_score:
+            best_score = score
+            best_market = m
+
+    implied = best_market.get("implied_prob", 0.5)
+    logger.info(
+        "stats_node: implied_prob=%.3f from '%s' (best of %d markets)",
+        implied, best_market.get("question", "?")[:50], len(markets),
+    )
     return {"implied_probability": implied}
 
 

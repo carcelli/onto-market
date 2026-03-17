@@ -28,5 +28,7 @@ class SearchConnector:
 
     def search_text(self, query: str, max_results: int = 5) -> str:
         """Return concatenated snippets as a single string."""
+        if not self.api_key:
+            return ""
         results = self.search(query, max_results)
         return "\n\n".join(r.get("content", "") for r in results if r.get("content"))

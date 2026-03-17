@@ -1,0 +1,6 @@
+{
+  "venvPath": "/home/orson-dev/anaconda3/envs",
+  "venv": "onto-market",
+  "pythonVersion": "3.12",
+  "extraPaths": ["src"]
+}

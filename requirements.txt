@@ -5,3 +5,4 @@ web3
 requests
 pandas
 rich
+
