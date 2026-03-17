@@ -98,6 +98,14 @@ class TestDynamics:
         rounds = run_dynamics(agents, network, max_rounds=20, convergence_threshold=0.05)
         assert rounds <= 20
 
+    def test_run_dynamics_zero_rounds(self):
+        agents = spawn_agents(10)
+        network = build_network(10)
+        for a in agents:
+            a.seed_estimate(0.5)
+        rounds = run_dynamics(agents, network, max_rounds=0)
+        assert rounds == 0
+
 
 class TestOracle:
     def test_oracle_returns_result(self):

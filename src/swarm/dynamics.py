@@ -82,6 +82,7 @@ def run_dynamics(
 
     Returns the number of rounds actually executed.
     """
+    std: float = float("nan")
     for round_num in range(1, max_rounds + 1):
         propagate_influence(agents, network)
 
@@ -95,5 +96,6 @@ def run_dynamics(
             logger.info("Swarm converged after %d rounds (std=%.4f)", round_num, std)
             return round_num
 
-    logger.info("Swarm reached max rounds (%d) without convergence (std=%.4f)", max_rounds, std)
+    if max_rounds > 0:
+        logger.info("Swarm reached max rounds (%d) without convergence (std=%.4f)", max_rounds, std)
     return max_rounds

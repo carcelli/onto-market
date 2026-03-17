@@ -182,3 +182,19 @@ class TestTrader:
         trader = Trader(llm=mock_llm, gamma=mock_gamma, polymarket=mock_poly)
         result = trader.one_best_trade()
         assert result["action"] == "PASS"
+
+    def test_events_to_markets_uses_get_market_by_id(self):
+        mock_gamma = MagicMock()
+        mock_gamma.get_market_by_id.return_value = {
+            "id": "42",
+            "question": "Will BTC hit $100k?",
+            "outcomes": '["YES","NO"]',
+            "outcome_prices": '[0.6,0.4]',
+            "volume": 10000.0,
+            "description": "",
+            "clob_token_ids": '["tok1","tok2"]',
+        }
+        trader = Trader(gamma=mock_gamma)
+        markets = trader._events_to_markets([{"id": 1, "title": "BTC", "markets": "42"}])
+        mock_gamma.get_market_by_id.assert_called_once_with("42")
+        assert len(markets) == 1

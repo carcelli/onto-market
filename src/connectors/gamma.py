@@ -54,6 +54,25 @@ class GammaConnector:
         resp.raise_for_status()
         return resp.json()
 
+    @retry_with_backoff(attempts=3, min_wait=2, max_wait=30)
+    def get_market_by_id(self, market_id: str) -> dict | None:
+        """Fetch a single raw market dict by its integer ID.
+
+        Tries GET /markets/{market_id} first; falls back to
+        GET /markets?id={market_id}&limit=1 if the path endpoint returns non-200.
+        Returns None if no matching market is found.
+        """
+        resp = self.session.get(f"{GAMMA_BASE}/markets/{market_id}", timeout=_TIMEOUT)
+        if resp.status_code == 200:
+            data = resp.json()
+            return data[0] if isinstance(data, list) else data
+        resp = self.session.get(
+            f"{GAMMA_BASE}/markets", params={"id": market_id, "limit": 1}, timeout=_TIMEOUT
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        return data[0] if isinstance(data, list) and data else None
+
     def iter_markets(self, max_markets: int = 500, **kwargs) -> list[Market]:
         """Paginate through Gamma and return Market objects."""
         markets: list[Market] = []

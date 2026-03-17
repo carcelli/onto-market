@@ -3,7 +3,7 @@ Memory manager — SQLite short-term storage.
 Zep Cloud (long-term graph memory) wired in Phase 2 via ZepEntityReader.
 """
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 
 from src.polymarket_agents.utils.database import Database
 from src.polymarket_agents.utils.objects import Market
@@ -53,7 +53,7 @@ class MemoryManager:
     def store_research(self, market_id: str, content: str, source: str = "") -> None:
         self.db.execute(
             "INSERT INTO research (market_id, content, source, timestamp) VALUES (?, ?, ?, ?)",
-            (market_id, content, source, datetime.utcnow().isoformat()),
+            (market_id, content, source, datetime.now(timezone.utc).isoformat()),
         )
 
     def get_research(self, market_id: str) -> list[dict]:
@@ -78,5 +78,5 @@ class MemoryManager:
               (market_id, estimated_prob, edge, action, analyst_notes, timestamp)
             VALUES (?, ?, ?, ?, ?, ?)
             """,
-            (market_id, estimated_prob, edge, action, notes, datetime.utcnow().isoformat()),
+            (market_id, estimated_prob, edge, action, notes, datetime.now(timezone.utc).isoformat()),
         )

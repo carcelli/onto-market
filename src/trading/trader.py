@@ -180,11 +180,9 @@ class Trader:
                 if not mid:
                     continue
                 try:
-                    raw_markets = self.gamma.get_markets(limit=1, offset=0)
-                    for rm in raw_markets:
-                        if str(rm.get("id")) == mid:
-                            markets.append(rm)
-                            break
+                    rm = self.gamma.get_market_by_id(mid)
+                    if rm is not None:
+                        markets.append(rm)
                 except Exception as exc:
                     logger.debug("Failed to fetch market %s: %s", mid, exc)
         return markets
