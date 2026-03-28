@@ -37,22 +37,38 @@ dashboard = [
 ]
 
 [project.scripts]
-onto-market = "onto_market.main:main"
-repo-census = "onto_market.devtools.repo_tools.census:main"
-repo-map = "onto_market.devtools.repo_tools.repo_map:main"
-audit-ontology = "onto_market.devtools.repo_tools.ontology_audit:main"
-import-graph = "onto_market.devtools.repo_tools.import_graph:main"
-boundary-matrix = "onto_market.devtools.repo_tools.boundary_matrix:main"
-cycle-detector = "onto_market.devtools.repo_tools.cycle_detector:main"
-architecture-drift = "onto_market.devtools.repo_tools.architecture_drift:main"
+onto-market = "main:main"
+repo-census = "devtools.repo_tools.census:main"
+repo-import-graph = "devtools.repo_tools.import_graph:main"
+repo-boundary = "devtools.repo_tools.boundary_matrix:main"
+repo-entrypoints = "devtools.repo_tools.entrypoint_map:main"
+repo-symbols = "devtools.repo_tools.symbol_index:main"
+repo-xref = "devtools.repo_tools.symbol_xref:main"
+repo-test-map = "devtools.repo_tools.test_map:main"
+repo-config = "devtools.repo_tools.config_surface:main"
+repo-cycles = "devtools.repo_tools.cycle_detector:main"
+repo-dead-weight = "devtools.repo_tools.dead_weight:main"
+repo-arch-drift = "devtools.repo_tools.architecture_drift:main"
+repo-cartography = "devtools.repo_tools.cartography:main"
 
 [build-system]
 requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-where = ["src"]
-include = ["onto_market*"]
+where = ["src", "."]
+include = [
+    "polymarket_agents*",
+    "connectors*",
+    "memory*",
+    "swarm*",
+    "trading*",
+    "utils*",
+    "devtools*",
+    "agents*",
+    "core*",
+    "config*",
+]
 
 [tool.mypy]
 python_executable = "/home/orson-dev/anaconda3/envs/onto-market/bin/python"
