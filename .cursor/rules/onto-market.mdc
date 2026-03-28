@@ -1,0 +1,155 @@
+---
+description: onto-market project rules — always apply. Grounded in ChatGPT + Gemini audits (Mar 2026).
+alwaysApply: true
+---
+
+# onto-market — Cursor Permanent Brain
+
+## PROJECT STATE (ChatGPT + Gemini consensus, Mar 2026)
+
+- **Maturity**: advanced prototype / mature MVP — v0.1.0, fully executable
+- **What is real today**:
+  - `planning_agent` pipeline fully wired: `research → ontology → stats → probability → swarm → decision → trade`
+  - `memory_agent` pipeline: `memory → enrichment → reasoning → decide`
+  - NetworkX `OntologyGraph` — directed, confidence-weighted, JSON-persisted (`data/ontology.json`, currently ~19 nodes / ~11 edges)
+  - `SocialSentimentOracle` — 5000-agent OASIS swarm, 6 archetypes, small-world network, confidence-weighted consensus
+  - Multi-LLM router via LiteLLM (Grok default; OpenAI / Gemini / Claude switchable via `LLM_PROVIDER`)
+  - `SAFE_MODE` / `dry_run` trading via `src/trading/executor.py`
+  - SQLite memory (`data/memory.db`) with `MemoryManager`
+  - 6 test files covering analytics, memory, swarm, trading, planning agent, integration
+- **Differentiators**: ontology accumulation across runs + heterogeneous swarm simulation
+- **Immediate bottlenecks** (Gemini priority order):
+  1. **Packaging drift** — root-level packages (`agents/`, `config/`, `core/`, `ontology/`) mixed with `src/` packages; `pyproject.toml` `packages.find` covers both but fragile
+  2. **Ontology not thread-safe** — `OntologyGraph._save()` writes JSON directly, no lock; concurrent agents will corrupt `data/ontology.json`
+  3. **Phase 2 stubs** — `src/memory/zep_reader.py` (Zep Cloud), domain registry (not created), Vue dashboard (not started)
+  4. **Swarm value unproven** — no backtest comparing swarm consensus vs. LLM-only baseline
+
+## ARCHITECTURE (exact pipeline, verified from source)
+
+```
+planning_agent (agents/planning_agent.py):
+  research_node         src/connectors/{gamma,search,news}.py + LLM fallback
+      ↓
+  ontology_node         agents/ontology_agent.py → ontology/graph.py (NetworkX JSON)
+      ↓
+  stats_node            picks best market by token-overlap × volume score
+      ↓
+  probability_node      LLM estimate (uses ontology context as prior)
+      ↓
+  swarm_node            SocialSentimentOracle — 5000 agents, small-world net
+      ↓
+  decision_node         score_market() → BET / WATCH / PASS (edge/kelly/volume gates)
+      ↓
+  trade_node            PolymarketConnector.build_order() — SAFE_MODE by default
+
+memory_agent (agents/memory_agent.py):
+  memory_node → enrichment_node → reasoning_node → decide_node
+```
+
+## DIRECTORY MAP (✅ = real  ⏳ = Phase 2 stub)
+
+```
+agents/
+  memory_agent.py       ✅ DB-first agent
+  planning_agent.py     ✅ Full 7-node pipeline
+  ontology_agent.py     ✅ Extract triples → OntologyGraph
+  state.py              ✅ AgentState, MemoryAgentState, PlanningState TypedDicts
+
+config/config.py        ✅ All env vars, thresholds, swarm params
+
+core/
+  llm_router.py         ✅ LiteLLM multi-provider (llm_completion, llm_json)
+  graph.py              ✅ register_graph decorator
+  agent_base.py         ✅ Base class
+  state.py              ✅ Shared state helpers
+
+ontology/graph.py       ✅ OntologyGraph — NetworkX DiGraph, JSON persistence
+                           ⚠ NOT thread-safe (no write lock)
+
+src/
+  connectors/
+    gamma.py            ✅ Gamma Markets API (paginated, search)
+    search.py           ✅ Tavily web search
+    news.py             ✅ NewsAPI headlines
+    polymarket.py       ✅ CLOB order builder
+  memory/
+    manager.py          ✅ SQLite: upsert_market, search_markets, store_analytics
+    zep_reader.py       ⏳ Zep Cloud stub — not wired
+  swarm/
+    oracle.py           ✅ SocialSentimentOracle — full swarm simulation
+    archetypes.py       ✅ 6 archetypes: Analyst/Contrarian/Momentum/etc
+    dynamics.py         ✅ build_network, run_dynamics (small-world)
+  trading/
+    executor.py         ✅ SAFE_MODE executor
+    trader.py           ✅ Position sizing
+  utils/
+    llm_client.py       ✅ LLMClient wrapping router
+    retry.py            ✅ retry_with_backoff (tenacity)
+    logger.py           ✅ get_logger() — structured JSON + rotating file
+  polymarket_agents/utils/
+    analytics.py        ✅ score_market, kelly_fraction, calculate_edge, expected_value
+    objects.py          ✅ Market, ResearchNote dataclasses
+    database.py         ✅ Database SQLite wrapper
+
+tests/
+  test_analytics.py     ✅ Edge/Kelly/EV unit tests
+  test_memory.py        ✅ MemoryManager unit tests
+  test_swarm.py         ✅ Swarm oracle tests
+  test_trading.py       ✅ Trading executor tests
+  test_planning_agent.py ✅ Planning agent integration
+  test_integration.py   ✅ End-to-end smoke test
+
+scripts/
+  refresh_markets.py    ✅ Seed markets.db from Gamma API
+  generate_repo_map.py  ✅ Auto-generates REPO_MAP.md (run: make repo-map)
+  audit_ontology.py     ✅ Ontology health check (run: make audit-ontology)
+  cli.py                ✅ Typer CLI
+
+data/
+  memory.db             ✅ SQLite (live)
+  ontology.json         ✅ NetworkX node-link JSON (live, ~19 nodes)
+```
+
+## DECISION THRESHOLDS
+
+```python
+MIN_EDGE   = 0.03   # 3%  — minimum edge to recommend BET
+MIN_VOLUME = 5000   # $5k — minimum market liquidity
+MIN_KELLY  = 0.01   # 1%  — minimum Kelly fraction
+SWARM_SIZE = 5000   # agents
+```
+
+## CODING RULES
+
+1. **Always activate conda env**: `conda activate onto-market` before running anything
+2. **Run dryrun before push**: `make dryrun` = tests + mypy lint — treat as hard gate
+3. **Ontology writes must be thread-safe**: before adding concurrent agents, add `threading.Lock` to `OntologyGraph._save()` / `add_triples()`
+4. **Packaging**: new modules go in `src/`; do NOT add more root-level packages — the dual-layout is already a debt item
+5. **LLM cost control**: only `Analyst` archetype agents call the LLM; all others use heuristic perturbations; respect `analyst_fraction`
+6. **SAFE_MODE default**: `trade_node` uses `build_order()` which defaults to dry-run; live execution requires `POLYGON_PRIVATE_KEY` + explicit safe-mode disable
+7. **Test everything**: every new connector / node / archetype gets a test file under `tests/`
+8. **Feature flags**: use `config.py` flags to gate Phase 2 features — never import stub modules unconditionally
+9. **No Friday schema migrations**: `data/memory.db` schema changes must be backward-compatible or versioned
+
+## LEVERAGE ORDER (what to ship next)
+
+1. **Unify packaging** — move root packages into `src/` or create explicit `packages` list in `pyproject.toml`
+2. **Thread-safe ontology** — `threading.Lock` in `OntologyGraph`; consider `filelock` for multi-process
+3. **Backtest swarm** — run `planning_agent` on 30-day resolved markets with swarm ON vs. OFF; compute Brier Score delta
+4. **Separate analysis/execution** — `decision_node` should not call `memory.store_analytics()`; side effects belong in `trade_node`
+5. **PageRank on ontology** — use `nx.pagerank(g)` to surface high-influence entities; prune low-degree nodes periodically
+
+## SUCCESS METRICS
+
+- Brier Score on resolved Polymarket markets: target < 0.20 (lower is better)
+- Swarm lift over LLM-only: target ≥ 2% Brier improvement
+- Ontology recall: % of `probability_node` calls that used ≥1 ontology fact
+- Test coverage: ≥ 80% across `agents/`, `src/`, `ontology/`
+- `make dryrun` passes: 0 mypy errors, 0 test failures
+
+## PHASE 2 (deferred — do not implement without feature flag)
+
+- Zep Cloud graph memory (`src/memory/zep_reader.py` stub exists)
+- Domain registry (`domains/registry.py`) — crypto + NBA pluggable agents
+- Vue 3 trading dashboard
+- Full OASIS multi-LLM swarm (currently single-LLM analysts)

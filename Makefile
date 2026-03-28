@@ -88,6 +88,24 @@ lint:  ## mypy type-check
 dryrun: test lint  ## Gate: run before every prod push (tests + lint)
 	@printf "$(GREEN)✔ dryrun passed — safe to push$(RESET)\n"
 
+# ── Analysis ─────────────────────────────────────────────────────────────────
+
+.PHONY: repo-map
+repo-map:  ## Generate REPO_MAP.md from directory tree
+	$(call log,Generating REPO_MAP.md)
+	$(PYTHON) scripts/generate_repo_map.py
+	@printf "$(GREEN)✔ REPO_MAP.md updated$(RESET)\n"
+
+.PHONY: ontology-audit
+ontology-audit:  ## Analyze ontology graph (PageRank, components, centrality)
+	$(call log,Running ontology audit)
+	$(PYTHON) scripts/audit_ontology.py
+
+.PHONY: ontology-prune
+ontology-prune:  ## Audit + prune low-confidence ontology edges (destructive)
+	$(call log,Auditing and pruning ontology graph)
+	$(PYTHON) scripts/audit_ontology.py --prune
+
 # ── Maintenance ───────────────────────────────────────────────────────────────
 
 .PHONY: clean
