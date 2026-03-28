@@ -11,7 +11,13 @@
       "Bash(python -m pytest tests/ -x -q)",
       "Bash(conda info:*)",
       "Read(//home/orson-dev/anaconda3/envs/**)",
-      "Read(//home/orson-dev/.conda/**)"
+      "Read(//home/orson-dev/.conda/**)",
+      "Bash(python -c \"import sys; sys.path.insert\\(0, ''''.''''\\); from agents.state import PlanningState\")",
+      "Bash(python -m pytest tests/ --collect-only)",
+      "Bash(python -c \"import sys; sys.path.insert\\(0, ''.''\\); from agents.planning_agent import create_planning_agent; print\\(''Imports OK''\\)\")",
+      "Bash(python -c \":*)",
+      "Bash(python -m pytest tests/ -x --tb=short)",
+      "Bash(python -m pytest tests/ -q)"
     ]
   }
 }
