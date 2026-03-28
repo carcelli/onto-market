@@ -1,15 +1,15 @@
 """Tests for the Social Sentiment Oracle swarm simulation."""
 import pytest
 
-from src.swarm.archetypes import (
+from onto_market.swarm.archetypes import (
     Archetype,
     ArchetypeConfig,
     SwarmAgent,
     spawn_agents,
     ARCHETYPE_REGISTRY,
 )
-from src.swarm.dynamics import build_network, propagate_influence, check_convergence, run_dynamics
-from src.swarm.oracle import SocialSentimentOracle, OracleResult
+from onto_market.swarm.dynamics import build_network, propagate_influence, check_convergence, run_dynamics
+from onto_market.swarm.oracle import SocialSentimentOracle, OracleResult
 
 
 class TestArchetypes:

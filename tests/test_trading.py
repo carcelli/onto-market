@@ -2,9 +2,9 @@
 import pytest
 from unittest.mock import MagicMock, patch
 
-from src.connectors.polymarket import PolymarketConnector
-from src.trading.executor import TradeExecutor
-from src.trading.trader import Trader
+from onto_market.connectors.polymarket import PolymarketConnector
+from onto_market.trading.executor import TradeExecutor
+from onto_market.trading.trader import Trader
 
 
 class TestPolymarketConnector:

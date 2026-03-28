@@ -1,7 +1,7 @@
 """Pytest fixtures shared across the test suite."""
 import pytest
 
-from src.polymarket_agents.utils.objects import Market
+from onto_market.polymarket_agents.utils.objects import Market
 
 
 @pytest.fixture

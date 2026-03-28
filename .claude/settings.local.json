@@ -22,7 +22,17 @@
       "Bash(python:*)",
       "Bash(make help:*)",
       "Bash(echo \"EXIT_CODE=$?\")",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(rm -rf onto_market.egg-info/)",
+      "Bash(rm -rf .mypy_cache .pytest_cache)",
+      "Bash(xargs -0 sed -i 's/src\\\\.polymarket_agents\\\\./onto_market.polymarket_agents./g')",
+      "Bash(xargs -0 sed -i 's/src\\\\.connectors\\\\./onto_market.connectors./g')",
+      "Bash(xargs -0 sed -i 's/src\\\\.trading\\\\./onto_market.trading./g')",
+      "Bash(xargs -0 sed -i 's/src\\\\.memory\\\\./onto_market.memory./g')",
+      "Bash(xargs -0 sed -i 's/src\\\\.swarm\\\\./onto_market.swarm./g')",
+      "Bash(xargs -0 sed -i 's/src\\\\.utils\\\\./onto_market.utils./g')",
+      "Bash(xargs -0 sed -i 's/src\\\\.context/onto_market.context/g')",
+      "Bash(pip install:*)"
     ]
   }
 }

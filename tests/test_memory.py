@@ -1,6 +1,6 @@
 """Unit tests for MemoryManager."""
-from src.memory.manager import MemoryManager
-from src.polymarket_agents.utils.objects import Market
+from onto_market.memory.manager import MemoryManager
+from onto_market.polymarket_agents.utils.objects import Market
 
 
 def test_upsert_and_search(db_path, sample_market):

@@ -58,15 +58,15 @@ refresh: data  ## Seed/refresh local market DB from Gamma API
 
 .PHONY: run
 run:  ## Run the CLI (QUERY="..." make run)
-	$(PYTHON) main.py "$(QUERY)"
+	$(PYTHON) -m onto_market.main "$(QUERY)"
 
 .PHONY: memory
 memory:  ## Run memory_agent (QUERY="..." make memory)
-	$(PYTHON) -m agents.memory_agent "$(QUERY)"
+	$(PYTHON) -m onto_market.agents.memory_agent "$(QUERY)"
 
 .PHONY: plan
 plan:  ## Run planning_agent (QUERY="..." make plan)
-	$(PYTHON) -m agents.planning_agent "$(QUERY)"
+	$(PYTHON) -m onto_market.agents.planning_agent "$(QUERY)"
 
 # ── Quality gates ─────────────────────────────────────────────────────────────
 
@@ -82,13 +82,19 @@ test-v:  ## Verbose test run with coverage summary
 .PHONY: lint
 lint:  ## mypy type-check
 	$(call log,Running mypy)
-	$(PYTHON) -m mypy agents/ src/ core/ config/ main.py --ignore-missing-imports
+	$(PYTHON) -m mypy src/onto_market/ --ignore-missing-imports
 
 .PHONY: dryrun
 dryrun: test lint  ## Gate: run before every prod push (tests + lint)
 	@printf "$(GREEN)✔ dryrun passed — safe to push$(RESET)\n"
 
 # ── Analysis ─────────────────────────────────────────────────────────────────
+
+.PHONY: repo-census
+repo-census:  ## Generate reports/repo_census.{json,md}
+	$(call log,Generating repo census reports)
+	$(PYTHON) scripts/repo_census.py
+	@printf "$(GREEN)✔ repo census updated$(RESET)\n"
 
 .PHONY: repo-map
 repo-map:  ## Generate REPO_MAP.md from directory tree

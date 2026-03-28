@@ -5,10 +5,10 @@ import argparse
 from rich.console import Console
 from rich.progress import track
 
-from config import config
-from src.connectors.gamma import GammaConnector
-from src.memory.manager import MemoryManager
-from src.utils.logger import get_logger
+from onto_market.config import config
+from onto_market.connectors.gamma import GammaConnector
+from onto_market.memory.manager import MemoryManager
+from onto_market.utils.logger import get_logger
 
 console = Console()
 logger = get_logger(__name__)

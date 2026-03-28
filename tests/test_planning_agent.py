@@ -3,7 +3,7 @@ import json
 import pytest
 from unittest.mock import MagicMock, patch
 
-from agents.planning_agent import (
+from onto_market.agents.planning_agent import (
     _normalize_market,
     _market_from_obj,
     _score_market_match,
@@ -118,7 +118,7 @@ class TestSearchMarketsIntegration:
     """Integration-style tests mocking the Gamma connector."""
 
     def test_gamma_search_returns_market_objects(self):
-        from src.connectors.gamma import GammaConnector, _parse_market
+        from onto_market.connectors.gamma import GammaConnector, _parse_market
 
         raw_response = {
             "events": [
@@ -153,7 +153,7 @@ class TestSearchMarketsIntegration:
             assert markets[0].clob_token_ids == ["cid1", "cid2"]
 
     def test_gamma_search_empty_results(self):
-        from src.connectors.gamma import GammaConnector
+        from onto_market.connectors.gamma import GammaConnector
 
         gc = GammaConnector()
         mock_resp = MagicMock()

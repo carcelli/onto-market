@@ -10,9 +10,9 @@ These tests exercise the full order flow paths including:
 import pytest
 from unittest.mock import MagicMock, patch, call
 
-from src.connectors.polymarket import PolymarketConnector
-from src.trading.trader import Trader
-from core.llm_router import llm_completion, llm_json, _LITELLM_MODELS
+from onto_market.connectors.polymarket import PolymarketConnector
+from onto_market.trading.trader import Trader
+from onto_market.core.llm_router import llm_completion, llm_json, _LITELLM_MODELS
 
 
 # ── SAFE_MODE=false order path ─────────────────────────────────────────────
@@ -162,8 +162,8 @@ class TestLLMProviderRouting:
         mock_client = MagicMock()
         mock_client.responses.create.return_value = mock_response
 
-        with patch("core.llm_router.config") as mock_cfg, \
-             patch("core.llm_router.get_xai_client", return_value=mock_client):
+        with patch("onto_market.core.llm_router.config") as mock_cfg, \
+             patch("onto_market.core.llm_router.get_xai_client", return_value=mock_client):
             mock_cfg.LLM_PROVIDER = "grok"
             mock_cfg.GROK_MODEL = "grok-4"
 
@@ -179,8 +179,8 @@ class TestLLMProviderRouting:
         mock_client = MagicMock()
         mock_client.responses.create.return_value = mock_response
 
-        with patch("core.llm_router.config") as mock_cfg, \
-             patch("core.llm_router.get_xai_client", return_value=mock_client):
+        with patch("onto_market.core.llm_router.config") as mock_cfg, \
+             patch("onto_market.core.llm_router.get_xai_client", return_value=mock_client):
             mock_cfg.LLM_PROVIDER = "grok"
             mock_cfg.GROK_MODEL = "grok-4"
 
@@ -201,8 +201,8 @@ class TestLLMProviderRouting:
         mock_litellm_resp = MagicMock()
         mock_litellm_resp.choices = [mock_choice]
 
-        with patch("core.llm_router.config") as mock_cfg, \
-             patch("core.llm_router.litellm") as mock_litellm:
+        with patch("onto_market.core.llm_router.config") as mock_cfg, \
+             patch("onto_market.core.llm_router.litellm") as mock_litellm:
             mock_cfg.LLM_PROVIDER = provider
             mock_litellm.completion.return_value = mock_litellm_resp
 
@@ -215,7 +215,7 @@ class TestLLMProviderRouting:
             )
 
     def test_unknown_provider_raises(self):
-        with patch("core.llm_router.config") as mock_cfg:
+        with patch("onto_market.core.llm_router.config") as mock_cfg:
             mock_cfg.LLM_PROVIDER = "unknown_llm"
             with pytest.raises(ValueError, match="Unknown LLM_PROVIDER"):
                 llm_completion([{"role": "user", "content": "test"}])

@@ -7,13 +7,6 @@ Commands:
     trade     Run the trading pipeline (dry-run by default)
     swarm     Run the Social Sentiment Oracle standalone
 """
-import sys
-from pathlib import Path
-
-# Ensure project root is on sys.path for local imports
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
-
 import typer
 from rich.console import Console
 from rich.table import Table
@@ -32,7 +25,7 @@ def analyze(
 ):
     """Run the full planning agent pipeline: research -> ontology -> stats -> probability -> swarm -> decision -> trade."""
     from langchain_core.messages import HumanMessage
-    from agents.planning_agent import create_planning_agent
+    from onto_market.agents.planning_agent import create_planning_agent
 
     console.print(f"\n[bold cyan]Analyzing:[/] {query}\n")
 
@@ -71,7 +64,7 @@ def scan(
     limit: int = typer.Option(20, "--limit", "-n", help="Max markets to display"),
 ):
     """Discover and list active markets from Gamma API."""
-    from src.connectors.gamma import GammaConnector
+    from onto_market.connectors.gamma import GammaConnector
 
     console.print(f"\n[bold cyan]Scanning markets[/]", end="")
     if category:
@@ -108,8 +101,8 @@ def trade(
     live: bool = typer.Option(False, "--live", help="Execute live trades (disables SAFE_MODE)"),
 ):
     """Run the trading pipeline. Dry-run by default unless --live is passed."""
-    from src.trading.trader import Trader
-    from src.connectors.polymarket import PolymarketConnector
+    from onto_market.trading.trader import Trader
+    from onto_market.connectors.polymarket import PolymarketConnector
 
     if live:
         console.print("[bold red]WARNING: Live trading mode enabled![/]\n")
@@ -146,8 +139,8 @@ def swarm(
     rounds: int = typer.Option(None, "--rounds", "-r", help="Override max rounds"),
 ):
     """Run the Social Sentiment Oracle standalone."""
-    from src.swarm.oracle import SocialSentimentOracle
-    from src.utils.llm_client import LLMClient
+    from onto_market.swarm.oracle import SocialSentimentOracle
+    from onto_market.utils.llm_client import LLMClient
 
     size = swarm_size or None
     max_rounds = rounds or None

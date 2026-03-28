@@ -57,3 +57,22 @@ cp .env.example .env
 
 npm run setup:all          # (if you want the MiroFish UI)
 npm run dev                # or docker compose up -d
+```
+
+## Developer Tooling
+
+Repository-health and repo-cartography logic now lives under `src/onto_market/devtools/repo_tools/`. The files in `scripts/` are compatibility wrappers, not the primary implementation surface.
+
+For local development, install the repo in editable mode so the console entry points are available:
+
+```bash
+pip install -e ".[dev]"
+```
+
+Useful commands:
+
+- `repo-census` or `make repo-census` to write `reports/repo_census.json` and `reports/repo_census.md`
+- `repo-map` or `make repo-map` to regenerate `REPO_MAP.md`
+- `audit-ontology` or `make ontology-audit` to inspect ontology graph health
+
+This keeps repo-specific tooling inside `onto-market` while preserving a clean extraction seam if it later needs to become its own package.

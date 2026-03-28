@@ -1,6 +1,6 @@
 """Unit tests for edge/kelly/EV analytics."""
 import pytest
-from src.polymarket_agents.utils.analytics import (
+from onto_market.polymarket_agents.utils.analytics import (
     calculate_edge,
     expected_value,
     kelly_fraction,

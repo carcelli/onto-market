@@ -1,18 +1,19 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-This repository is currently a minimal scaffold. The committed root files are [`README.md`](/home/orson-dev/projects/onto-market/README.md), [`.env`](/home/orson-dev/projects/onto-market/.env), and [`.claude/settings.local.json`](/home/orson-dev/projects/onto-market/.claude/settings.local.json).
+This repo is an active Python project with a mixed root-plus-`src/` layout. Runtime code currently lives across top-level packages such as `agents/`, `core/`, `config/`, and `ontology/`, plus `src/` packages such as `src/connectors/`, `src/memory/`, `src/swarm/`, and `src/trading/`.
 
-Keep the root directory sparse. When application code is added, place runtime modules in `src/`, shared assets in `assets/`, and tests in `tests/` or alongside source files as `*.test.*`. Store local-only editor or assistant settings under `.claude/`; do not make runtime code depend on them.
+Keep new reusable developer tooling under `src/onto_market/devtools/`, specifically `src/onto_market/devtools/repo_tools/` for repo-cartography and architecture checks. Keep `scripts/` limited to thin wrappers or launch points. Put tests in `tests/` or alongside source files as `*.test.*`. Store local-only editor or assistant settings under `.claude/`; do not make runtime code depend on them.
 
 ## Build, Test, and Development Commands
-No package manifest, Makefile, or test runner is committed yet, so there is no standard build or test command today.
+The repo has a Python package manifest, a `Makefile`, and a pytest suite. Prefer these entry points:
 
-When introducing tooling, expose predictable entry points and document them in both this file and `README.md`, for example:
-
-- `npm run dev` or `pnpm dev` for local development
-- `npm test` or `pnpm test` for automated tests
-- `npm run lint` for formatting and static checks
+- `pip install -e ".[dev]"` to install the project in editable mode with test dependencies
+- `pytest` or `make test` for automated tests
+- `make lint` for static checks
+- `make repo-census` / `repo-census` for repo census reports
+- `make repo-map` / `repo-map` for `REPO_MAP.md`
+- `make ontology-audit` / `audit-ontology` for ontology health checks
 
 ## Coding Style & Naming Conventions
 Use clear, small modules and avoid adding project logic at the repository root. Follow the formatter and linter for the language you introduce; if none exists yet, add one with the feature.

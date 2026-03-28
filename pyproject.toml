@@ -33,15 +33,22 @@ dev = [
 ]
 
 [project.scripts]
-onto-market = "main:main"
+onto-market = "onto_market.main:main"
+repo-census = "onto_market.devtools.repo_tools.census:main"
+repo-map = "onto_market.devtools.repo_tools.repo_map:main"
+audit-ontology = "onto_market.devtools.repo_tools.ontology_audit:main"
+import-graph = "onto_market.devtools.repo_tools.import_graph:main"
+boundary-matrix = "onto_market.devtools.repo_tools.boundary_matrix:main"
+cycle-detector = "onto_market.devtools.repo_tools.cycle_detector:main"
+architecture-drift = "onto_market.devtools.repo_tools.architecture_drift:main"
 
 [build-system]
 requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-where = ["src", "."]
-include = ["polymarket_agents*", "agents*", "core*", "config*", "utils*"]
+where = ["src"]
+include = ["onto_market*"]
 
 [tool.mypy]
 python_executable = "/home/orson-dev/anaconda3/envs/onto-market/bin/python"
