@@ -7,11 +7,8 @@ import os
 from typing import Any
 
 from openai import OpenAI
-from dotenv import load_dotenv
 
 from config import config
-
-load_dotenv()
 
 
 def get_client() -> OpenAI:

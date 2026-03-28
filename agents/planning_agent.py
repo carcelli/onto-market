@@ -342,15 +342,18 @@ def trade_node(state: PlanningState) -> dict:
 
     try:
         from src.connectors.polymarket import PolymarketConnector
-        from dotenv import load_dotenv
-        load_dotenv("config/.env")
 
-        kelly = state.get("kelly_fraction", 0)
+        kelly = state.get("kelly_fraction", 0.0)
         implied = state.get("implied_probability", 0.5)
-        half_kelly = kelly / 2.0
-        size = max(1.0, half_kelly * 100)
 
         connector = PolymarketConnector()
+        try:
+            balance = connector.get_usdc_balance()
+        except Exception:
+            logger.warning("trade_node: could not fetch USDC balance, using notional $100")
+            balance = 100.0
+        half_kelly = kelly / 2.0
+        size = max(1.0, round(balance * min(half_kelly, 0.05), 2))
         result = connector.build_order(
             token_id=token_id,
             price=implied,

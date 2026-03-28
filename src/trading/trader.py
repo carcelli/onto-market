@@ -6,6 +6,8 @@ connectors, LLMClient, and SAFE_MODE gating.
 """
 from __future__ import annotations
 
+import ast
+
 from src.connectors.gamma import GammaConnector
 from src.connectors.polymarket import PolymarketConnector
 from src.polymarket_agents.utils.analytics import score_market, calculate_edge
@@ -14,6 +16,18 @@ from src.utils.llm_client import LLMClient
 from src.utils.logger import get_logger
 
 logger = get_logger(__name__)
+
+
+def _parse_list(value: object, default: list) -> list:
+    """Return value as a list, parsing a JSON-encoded string if needed."""
+    if isinstance(value, list):
+        return value
+    if isinstance(value, str):
+        try:
+            return ast.literal_eval(value)
+        except Exception:
+            return default
+    return default
 
 
 class Trader:
@@ -73,21 +87,8 @@ class Trader:
         best_edge = -1.0
 
         for market in markets[:20]:
-            outcomes = market.get("outcomes", ["YES", "NO"])
-            if isinstance(outcomes, str):
-                import ast
-                try:
-                    outcomes = ast.literal_eval(outcomes)
-                except Exception:
-                    outcomes = ["YES", "NO"]
-
-            prices = market.get("outcome_prices", "[0.5, 0.5]")
-            if isinstance(prices, str):
-                import ast
-                try:
-                    prices = ast.literal_eval(prices)
-                except Exception:
-                    prices = [0.5, 0.5]
+            outcomes = _parse_list(market.get("outcomes", ["YES", "NO"]), ["YES", "NO"])
+            prices = _parse_list(market.get("outcome_prices", [0.5, 0.5]), [0.5, 0.5])
 
             implied_prob = float(prices[0]) if prices else 0.5
             volume = float(market.get("volume", 0) or 0)
@@ -128,13 +129,9 @@ class Trader:
         )
 
         # Raw Gamma dicts use camelCase; parsed Market objects use snake_case
-        token_ids = market.get("clob_token_ids") or market.get("clobTokenIds", "[]")
-        if isinstance(token_ids, str):
-            import ast
-            try:
-                token_ids = ast.literal_eval(token_ids)
-            except Exception:
-                token_ids = []
+        token_ids = _parse_list(
+            market.get("clob_token_ids") or market.get("clobTokenIds", []), []
+        )
 
         side = best_trade["forecast"]["side"]
         token_id = token_ids[0] if side == "YES" and token_ids else (

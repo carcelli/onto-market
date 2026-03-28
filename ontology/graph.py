@@ -181,7 +181,7 @@ class OntologyGraph:
     def _save(self) -> None:
         self.persist_path.parent.mkdir(parents=True, exist_ok=True)
         # node_link_data is the canonical nx JSON format
-        data = nx.node_link_data(self.g)
+        data = nx.node_link_data(self.g, edges="links")
         self.persist_path.write_text(json.dumps(data, default=str), encoding="utf-8")
 
     def _load(self) -> None:
@@ -189,6 +189,6 @@ class OntologyGraph:
             return
         try:
             data = json.loads(self.persist_path.read_text(encoding="utf-8"))
-            self.g = nx.node_link_graph(data, directed=True, multigraph=False)
+            self.g = nx.node_link_graph(data, directed=True, multigraph=False, edges="links")
         except Exception:
             self.g = nx.DiGraph()  # corrupt file → start fresh
