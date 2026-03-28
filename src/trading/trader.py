@@ -169,18 +169,56 @@ class Trader:
         return result
 
     def _events_to_markets(self, events: list[dict]) -> list[dict]:
-        """Resolve event IDs to their constituent markets."""
+        """Resolve event IDs to their constituent markets.
+
+        Primary path: fetch each market by its ID from the event's market list.
+        Fallback: if the primary path yields nothing for an event, query the
+        Gamma API by event_id directly (handles cases where the embedded IDs
+        are stale or use a different format).
+        """
         markets = []
         for evt in events:
-            market_ids = str(evt.get("markets", "")).split(",")
+            event_id = evt.get("id")
+            market_ids = [
+                mid.strip()
+                for mid in str(evt.get("markets", "")).split(",")
+                if mid.strip()
+            ]
+            event_markets: list[dict] = []
+
             for mid in market_ids:
-                mid = mid.strip()
-                if not mid:
-                    continue
                 try:
                     rm = self.gamma.get_market_by_id(mid)
                     if rm is not None:
-                        markets.append(rm)
+                        event_markets.append(rm)
+                    else:
+                        logger.debug(
+                            "get_market_by_id returned None for id=%s (event=%s)",
+                            mid, event_id,
+                        )
                 except Exception as exc:
-                    logger.debug("Failed to fetch market %s: %s", mid, exc)
+                    logger.debug("Failed to fetch market id=%s: %s", mid, exc)
+
+            if not event_markets and event_id:
+                logger.debug(
+                    "Per-ID lookup yielded 0 markets for event=%s; "
+                    "falling back to event_id query",
+                    event_id,
+                )
+                try:
+                    raw_batch = self.gamma.get_markets(
+                        event_id=event_id, limit=50, active=True
+                    )
+                    event_markets = raw_batch or []
+                    if event_markets:
+                        logger.debug(
+                            "event_id fallback recovered %d markets for event=%s",
+                            len(event_markets), event_id,
+                        )
+                except Exception as exc:
+                    logger.warning(
+                        "event_id fallback failed for event=%s: %s", event_id, exc
+                    )
+
+            markets.extend(event_markets)
         return markets

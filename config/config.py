@@ -5,6 +5,9 @@ load_dotenv()
 
 
 class Config:
+    # LLM provider: grok | openai | gemini | claude
+    LLM_PROVIDER: str = os.getenv("LLM_PROVIDER", "grok").lower()
+
     # xAI (Native Agent Tools)
     XAI_API_KEY: str | None = os.getenv("XAI_API_KEY")
     GROK_MODEL: str = os.getenv("GROK_MODEL", "grok-4")
@@ -23,7 +26,7 @@ class Config:
     POLYGON_RPC_URL: str = os.getenv("POLYGON_RPC_URL", "https://polygon-rpc.com")
     CLOB_API_KEY: str | None = os.getenv("CLOB_API_KEY")
     CLOB_SECRET: str | None = os.getenv("CLOB_SECRET")
-    CLOB_PASS_PHRASE: str | None = os.getenv("CLOB_PASS_PHRASE")
+    CLOB_PASSPHRASE: str | None = os.getenv("CLOB_PASSPHRASE")
     CLOB_API_URL: str = os.getenv("CLOB_API_URL", "https://clob.polymarket.com")
     CHAIN_ID: int = int(os.getenv("CHAIN_ID", "137"))
 

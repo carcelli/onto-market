@@ -90,6 +90,6 @@ New domains (e.g., "politics") should be registered in the domain registry to au
 See `config/config.py` for full details.
 - `OPENAI_API_KEY`, `GOOGLE_API_KEY`, `ANTHROPIC_API_KEY`, `XAI_API_KEY` (as needed)
 - `POLYGON_PRIVATE_KEY`: For live trading
-- `CLOB_API_KEY`, `CLOB_SECRET`, `CLOB_PASS_PHRASE`: Polymarket CLOB access
+- `CLOB_API_KEY`, `CLOB_SECRET`, `CLOB_PASSPHRASE`: Polymarket CLOB access
 - `TAVILY_API_KEY`: For web research nodes
 - `ZEP_API_KEY`: For graph memory

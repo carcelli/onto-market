@@ -39,6 +39,7 @@ class GammaConnector:
         category: str | None = None,
         order: str = "volumeNum",
         ascending: bool = False,
+        event_id: str | int | None = None,
     ) -> list[dict]:
         params: dict = {
             "limit": limit,
@@ -50,6 +51,8 @@ class GammaConnector:
         }
         if category:
             params["tag"] = category
+        if event_id is not None:
+            params["event_id"] = str(event_id)
         resp = self.session.get(f"{GAMMA_BASE}/markets", params=params, timeout=_TIMEOUT)
         resp.raise_for_status()
         return resp.json()
