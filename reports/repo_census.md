@@ -1,0 +1,124 @@
+# Repo Census
+
+- Repo root: `/home/orson-dev/projects/onto-market`
+- Total files counted: **85**
+
+## Top-level directories
+- `.claude`
+- `.cursor`
+- `.grok`
+- `agents`
+- `config`
+- `core`
+- `data`
+- `onto_market.egg-info`
+- `ontology`
+- `scripts`
+- `src`
+- `tests`
+
+## Important repo files
+- `.gitattributes`
+- `.gitignore`
+- `Makefile`
+- `README.md`
+- `langgraph.json`
+- `pyproject.toml`
+- `pyrightconfig.json`
+- `requirements.txt`
+
+## Top-level Python files
+- `main.py`
+
+## Category counts
+- `data`: 2
+- `data_misc`: 5
+- `docs_misc`: 11
+- `other`: 5
+- `python_code`: 15
+- `repo_config`: 8
+- `scripts`: 5
+- `src`: 26
+- `tests`: 8
+
+## Top file extensions
+- `.py`: 54
+- `.json`: 8
+- `.md`: 7
+- `<no_ext>`: 6
+- `.txt`: 6
+- `.log`: 1
+- `.toml`: 1
+- `.db`: 1
+- `.mdc`: 1
+
+## Python files by top-level area
+### `agents`
+- `agents/__init__.py`
+- `agents/memory_agent.py`
+- `agents/ontology_agent.py`
+- `agents/planning_agent.py`
+- `agents/state.py`
+
+### `config`
+- `config/__init__.py`
+- `config/config.py`
+
+### `core`
+- `core/__init__.py`
+- `core/agent_base.py`
+- `core/graph.py`
+- `core/llm_router.py`
+- `core/state.py`
+
+### `main.py`
+- `main.py`
+
+### `ontology`
+- `ontology/__init__.py`
+- `ontology/graph.py`
+
+### `scripts`
+- `scripts/audit_ontology.py`
+- `scripts/cli.py`
+- `scripts/generate_repo_map.py`
+- `scripts/refresh_markets.py`
+- `scripts/repo_census.py`
+
+### `src`
+- `src/connectors/__init__.py`
+- `src/connectors/gamma.py`
+- `src/connectors/news.py`
+- `src/connectors/polymarket.py`
+- `src/connectors/search.py`
+- `src/context.py`
+- `src/memory/__init__.py`
+- `src/memory/manager.py`
+- `src/memory/zep_reader.py`
+- `src/polymarket_agents/__init__.py`
+- `src/polymarket_agents/utils/__init__.py`
+- `src/polymarket_agents/utils/analytics.py`
+- `src/polymarket_agents/utils/database.py`
+- `src/polymarket_agents/utils/objects.py`
+- `src/swarm/__init__.py`
+- `src/swarm/archetypes.py`
+- `src/swarm/dynamics.py`
+- `src/swarm/oracle.py`
+- `src/trading/__init__.py`
+- `src/trading/executor.py`
+- `src/trading/trader.py`
+- `src/utils/__init__.py`
+- `src/utils/file_parser.py`
+- `src/utils/llm_client.py`
+- `src/utils/logger.py`
+- `src/utils/retry.py`
+
+### `tests`
+- `tests/__init__.py`
+- `tests/conftest.py`
+- `tests/test_analytics.py`
+- `tests/test_integration.py`
+- `tests/test_memory.py`
+- `tests/test_planning_agent.py`
+- `tests/test_swarm.py`
+- `tests/test_trading.py`
