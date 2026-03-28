@@ -112,6 +112,39 @@ ontology-prune:  ## Audit + prune low-confidence ontology edges (destructive)
 	$(call log,Auditing and pruning ontology graph)
 	$(PYTHON) scripts/audit_ontology.py --prune
 
+.PHONY: import-graph
+import-graph:  ## Build module dependency graph → reports/import_graph.{json,md}
+	$(call log,Building import graph)
+	$(PYTHON) scripts/import_graph.py
+	@printf "$(GREEN)✔ import graph updated$(RESET)\n"
+
+.PHONY: boundary-matrix
+boundary-matrix:  ## Show cross-domain coupling → reports/boundary_matrix.{json,md}
+	$(call log,Computing boundary matrix)
+	$(PYTHON) scripts/import_graph.py --boundary
+	@printf "$(GREEN)✔ boundary matrix updated$(RESET)\n"
+
+.PHONY: cycle-check
+cycle-check:  ## Detect import cycles → reports/cycles.{json,md}
+	$(call log,Detecting import cycles)
+	$(PYTHON) scripts/import_graph.py --cycles
+	@printf "$(GREEN)✔ cycle check done$(RESET)\n"
+
+.PHONY: arch-drift
+arch-drift:  ## Audit architecture layer violations → reports/architecture_drift.{json,md}
+	$(call log,Auditing architecture drift)
+	$(PYTHON) scripts/import_graph.py --drift
+	@printf "$(GREEN)✔ architecture drift audit done$(RESET)\n"
+
+.PHONY: repo-health
+repo-health: repo-census import-graph cycle-check arch-drift  ## Run all repo-cartography tools
+	@printf "$(GREEN)✔ full repo health check done$(RESET)\n"
+
+.PHONY: dashboard
+dashboard:  ## Launch the Streamlit repo ontology dashboard
+	$(call log,Launching dashboard at http://localhost:8501)
+	$(PYTHON) -m streamlit run reports/streamlit_app.py
+
 # ── Maintenance ───────────────────────────────────────────────────────────────
 
 .PHONY: clean
