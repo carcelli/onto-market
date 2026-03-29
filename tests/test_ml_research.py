@@ -26,9 +26,9 @@ RESOLVED_ROWS = [
         "liquidity": 5000.0 + i * 500,
         "implied_prob_at_close": 0.3 + i * 0.03,
         "resolved_yes": 1 if i % 3 == 0 else 0,
-        "end_date": f"2025-0{min(i+1, 9)}-15T00:00:00Z",
-        "closed_time": f"2025-0{min(i+1, 9)}-10T00:00:00Z",
-        "fetched_at": "2025-06-01T00:00:00Z",
+        "end_date": f"2026-03-{min(i + 1, 28):02d}T00:00:00Z",
+        "closed_time": f"2026-03-{min(i + 1, 28):02d}T00:00:00Z",
+        "fetched_at": "2026-03-28T00:00:00Z",
     }
     for i in range(20)
 ]
@@ -431,7 +431,7 @@ class TestTrain:
         """Train on fixture data, verify it returns a model and reasonable Brier."""
         from onto_market.ml_research.train import train
 
-        model, brier = train(db_path=tmp_db)
+        model, brier = train(db_path=tmp_db, max_age_days=0)
         assert model is not None
         assert 0.0 <= brier <= 1.0
 
@@ -442,7 +442,7 @@ class TestTrain:
 
         from onto_market.ml_research.train import train
 
-        model, brier = train(db_path=db)
+        model, brier = train(db_path=db, max_age_days=0)
         assert model is None
         assert brier == pytest.approx(0.25)
 
@@ -450,7 +450,7 @@ class TestTrain:
         """Verify the brier: <float> stdout contract."""
         from onto_market.ml_research.train import train
 
-        train(db_path=tmp_db)
+        train(db_path=tmp_db, max_age_days=0)
         captured = capsys.readouterr()
         assert "brier:" in captured.out
 

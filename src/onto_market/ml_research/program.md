@@ -47,40 +47,42 @@ make ml-research-local-torch            # terminal 2
 
 ---
 
-## sklearn mode (default)
+## sklearn mode (default) — now PyTorch-based
 
 You are editing `train.py` — the only mutable file in this mode.
+`train.py` uses a tiny inline PyTorch MLP (`TinyForecaster`) so the
+researcher LLM (gpt-oss-20b) can see and edit the architecture directly.
 
 ### Allowed edits
 
-- `MODEL_PARAMS` — any hyperparameters accepted by scikit-learn estimators.
-- `build_model()` — swap to any scikit-learn classifier (RandomForest,
-  LogisticRegression, GradientBoosting, stacking ensembles, etc.).
-- `USE_VOCAB` / `MAX_VOCAB` — toggle bag-of-words features from question text.
-- Feature engineering inside `train()` — you may add derived features, apply
-  transforms (StandardScaler, QuantileTransformer), or combine features, as
-  long as you call `extract_matrix()` to get the base features.
-- Ensemble multiple models and blend their probabilities.
-- Calibrate with `sklearn.calibration.CalibratedClassifierCV`.
+- CONFIG block: `DEPTH`, `HIDDEN`, `DROPOUT`, `LR`, `WEIGHT_DECAY`,
+  `BATCH_SIZE`, `MAX_EPOCHS`, `TIME_BUDGET`, `USE_VOCAB`, `MAX_VOCAB`.
+- `TinyForecaster` class — change architecture, activations, add layers.
+- Add learning-rate schedulers, gradient clipping, early stopping logic.
+- Feature engineering inside `train()` — derived features, normalization, etc.,
+  as long as you call `extract_matrix()` to get the base features.
+- Change the loss function (focal loss, log-loss, etc.) as long as Brier is
+  still the reported metric.
 
 ### Forbidden edits
 
 - Do NOT change the `train()` function signature.
-- Do NOT remove the `brier: <float>` print statement.
+- Do NOT remove the `brier:`, `training_seconds:`, or `peak_vram_mb:` print
+  statements.
 - Do NOT change imports from sibling modules (`dataset`, `features`, `evaluate`).
-- Do NOT add dependencies beyond scikit-learn and numpy.
+- Do NOT add dependencies beyond torch, numpy, and sklearn.
 - Do NOT use information from the validation set during training (no leakage).
-- Do NOT read or write files other than through the provided API.
+- Do NOT exceed VRAM budget: keep HIDDEN <= 128, DEPTH <= 4, BATCH_SIZE <= 512.
 
 ### Strategy hints
 
-1. Start with hyperparameter tuning — `learning_rate`, `max_depth`, `max_iter`.
+1. Start with LR + weight_decay tuning.
 2. Try enabling bag-of-words features (`USE_VOCAB = True`).
-3. Experiment with `CalibratedClassifierCV` for better probability calibration.
-4. Try stacking: train a meta-model on out-of-fold predictions.
+3. Try CosineAnnealingLR or OneCycleLR for better convergence.
+4. Add dropout (0.1–0.3) to prevent overfitting on small datasets.
 5. The implied_prob feature already contains strong market signal — models that
    learn to correct market mispricing will outperform.
-6. Watch for overfitting on small datasets; prefer regularization.
+6. Use gradient clipping if training is unstable.
 
 ---
 
@@ -146,8 +148,7 @@ over the current best **and** passes all promotion gates, the model is saved
 as a new artifact and promoted.  If it regresses or any gate fails, the
 training file is reverted to its previous version.
 
-Each sklearn iteration must complete in under 120 seconds.
-Each torch iteration must complete in under 300 seconds (5 minutes).
+Both modes must complete each iteration in under 300 seconds (5 minutes).
 
 ### Available metrics (from `evaluate.py`)
 

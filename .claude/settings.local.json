@@ -32,7 +32,8 @@
       "Bash(xargs -0 sed -i 's/src\\\\.swarm\\\\./onto_market.swarm./g')",
       "Bash(xargs -0 sed -i 's/src\\\\.utils\\\\./onto_market.utils./g')",
       "Bash(xargs -0 sed -i 's/src\\\\.context/onto_market.context/g')",
-      "Bash(pip install:*)"
+      "Bash(pip install:*)",
+      "Bash(grep -r gpt-oss /home/orson-dev/projects/onto-market --include=*.py --include=*.md --include=*.toml)"
     ]
   }
 }

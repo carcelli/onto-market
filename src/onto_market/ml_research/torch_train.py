@@ -56,14 +56,19 @@ def build_model(n_features: int) -> TinyForecaster:
 # ── Training entrypoint ──────────────────────────────────────────────────
 
 
-def train(db_path: str | None = None) -> tuple[object | None, float]:
+def train(db_path: str | None = None, max_age_days: int | None = None) -> tuple[object | None, float]:
     """Train a PyTorch model on resolved markets and return ``(model, brier)``.
 
     Prints ``brier: <float>`` to stdout as required by the runner contract.
     """
+    from onto_market.config import config
+
     kwargs: dict = {}
     if db_path:
         kwargs["db_path"] = db_path
+    age = max_age_days if max_age_days is not None else config.ML_MAX_AGE_DAYS
+    if age and age > 0:
+        kwargs["max_age_days"] = age
 
     rows = load_resolved(**kwargs)
     if len(rows) < 10:

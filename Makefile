@@ -192,11 +192,23 @@ dashboard:  ## Launch the Streamlit repo ontology dashboard
 
 # ── ML Research ──────────────────────────────────────────────────────────
 
+RECENT_DAYS  ?= 90
+
 .PHONY: fetch-resolved
 fetch-resolved:  ## Download resolved markets from Gamma → SQLite
 	$(call log,Fetching resolved markets)
 	$(PYTHON) scripts/fetch_resolved.py
 	@printf "$(GREEN)✔ resolved markets fetched$(RESET)\n"
+
+.PHONY: fetch-fresh
+fetch-fresh: data  ## Refresh everything: active markets + recent resolved (RECENT_DAYS=90)
+	$(call log,Refreshing active markets + resolved (last $(RECENT_DAYS) days))
+	$(PYTHON) scripts/refresh_markets.py --max-events $(MAX_MARKETS) --include-resolved --recent-days $(RECENT_DAYS)
+	@printf "$(GREEN)✔ fresh data loaded — active + resolved$(RESET)\n"
+
+.PHONY: data-status
+data-status:  ## Show data freshness: counts, date ranges, active snapshots
+	@$(PYTHON) -m onto_market.ml_research.dataset --recent-days $(RECENT_DAYS)
 
 .PHONY: ml-train
 ml-train:  ## Single training run → save artifact

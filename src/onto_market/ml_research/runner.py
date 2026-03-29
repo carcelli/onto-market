@@ -48,7 +48,7 @@ _OOM_PATTERNS = ("CUDA out of memory", "OutOfMemoryError", "CUDA error")
 TrainingMode = Literal["sklearn", "torch"]
 
 _DEFAULT_TIMEOUTS: dict[TrainingMode, int] = {
-    "sklearn": 120,
+    "sklearn": 300,  # train.py is now torch-based
     "torch": 300,
 }
 
@@ -154,16 +154,20 @@ def _run_train(
 # ── LLM prompts ──────────────────────────────────────────────────────────
 
 _SKLEARN_SYSTEM = (
-    "You are an ML research assistant optimizing a Polymarket forecaster.\n"
+    "You are an ML research assistant optimizing a PyTorch Polymarket forecaster.\n"
     "You will receive the current train.py and must output a COMPLETE "
     "replacement version of the file.\n\n"
     "Rules:\n"
-    "- You may change MODEL_PARAMS, USE_VOCAB, MAX_VOCAB, build_model(), "
-    "and the training logic.\n"
-    "- You must NOT change the function signatures of train() or the "
-    "brier: <float> output contract.\n"
+    "- You may change the CONFIG block (DEPTH, HIDDEN, DROPOUT, LR, "
+    "WEIGHT_DECAY, BATCH_SIZE, MAX_EPOCHS, TIME_BUDGET, USE_VOCAB, MAX_VOCAB).\n"
+    "- You may change the TinyForecaster class architecture.\n"
+    "- You may add learning-rate schedulers, gradient clipping, early stopping.\n"
+    "- You must NOT change the function signature of train() or the "
+    "brier:/training_seconds:/peak_vram_mb: output contracts.\n"
     "- You must NOT change imports from sibling modules.\n"
-    "- Only use scikit-learn and numpy (no torch, no new deps).\n"
+    "- Only use torch, numpy, and sklearn (no new deps).\n"
+    "- Keep the model small: HIDDEN <= 128, DEPTH <= 4, BATCH_SIZE <= 512 "
+    "(RTX 3050, 8 GB VRAM).\n"
     "- Respond with ONLY the Python file contents, no markdown fences."
 )
 

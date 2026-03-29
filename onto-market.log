@@ -1468,3 +1468,102 @@
 2026-03-28 20:18:58  INFO      onto_market.ml_research.runner  runner [torch]: researcher LLM = local
 2026-03-28 20:19:05  INFO      onto_market.ml_research.runner  runner [torch]: baseline brier = 0.000002
 2026-03-28 20:19:05  INFO      onto_market.ml_research.runner  runner [torch]: === iteration 1/3 (best=0.000002) ===
+2026-03-28 20:29:21  WARNING   onto_market.ml_research.runner  runner: LLM call failed: Connection error.
+2026-03-28 20:29:21  INFO      onto_market.ml_research.runner  runner [torch]: === iteration 2/3 (best=0.000002) ===
+2026-03-28 20:29:22  WARNING   onto_market.ml_research.runner  runner: LLM call failed: Connection error.
+2026-03-28 20:29:22  INFO      onto_market.ml_research.runner  runner [torch]: === iteration 3/3 (best=0.000002) ===
+2026-03-28 20:30:29  INFO      onto_market.ml_research.runner  runner [torch]: researcher LLM = local
+2026-03-28 20:30:39  INFO      onto_market.ml_research.runner  runner [torch]: baseline brier = 0.000009
+2026-03-28 20:30:39  INFO      onto_market.ml_research.runner  runner [torch]: === iteration 1/3 (best=0.000004) ===
+2026-03-28 20:30:41  WARNING   onto_market.ml_research.runner  runner: LLM call failed: Connection error.
+2026-03-28 20:30:41  INFO      onto_market.ml_research.runner  runner [torch]: === iteration 2/3 (best=0.000004) ===
+2026-03-28 20:30:42  WARNING   onto_market.ml_research.runner  runner: LLM call failed: Connection error.
+2026-03-28 20:30:42  INFO      onto_market.ml_research.runner  runner [torch]: === iteration 3/3 (best=0.000004) ===
+2026-03-28 20:30:43  WARNING   onto_market.ml_research.runner  runner: LLM call failed: Connection error.
+2026-03-28 20:31:46  INFO      onto_market.ml_research.runner  runner [torch]: researcher LLM = local
+2026-03-28 20:31:54  INFO      onto_market.ml_research.runner  runner [torch]: baseline brier = 0.000001
+2026-03-28 20:31:54  INFO      onto_market.ml_research.runner  runner [torch]: === iteration 1/3 (best=0.000001) ===
+2026-03-28 20:49:53  INFO      onto_market.ml_research.runner  runner [torch]: researcher LLM = local
+2026-03-28 20:49:58  INFO      onto_market.ml_research.runner  runner [torch]: baseline brier = 0.000003
+2026-03-28 20:49:58  INFO      onto_market.ml_research.runner  runner [torch]: === iteration 1/10 (best=0.000003) ===
+2026-03-28 20:54:44  WARNING   onto_market.ml_research.runner  runner: LLM call failed: Connection error.
+2026-03-28 20:54:44  INFO      onto_market.ml_research.runner  runner [torch]: === iteration 2/10 (best=0.000003) ===
+2026-03-28 20:54:46  WARNING   onto_market.ml_research.runner  runner: LLM call failed: Connection error.
+2026-03-28 20:54:46  INFO      onto_market.ml_research.runner  runner [torch]: === iteration 3/10 (best=0.000003) ===
+2026-03-28 21:02:16  INFO      onto_market.ml_research.artifacts  artifacts: saved v003 [sklearn] (brier=0.001383)
+2026-03-28 21:02:16  INFO      onto_market.ml_research.artifacts  artifacts: promoted v003
+2026-03-28 21:08:39  INFO      onto_market.ml_research.dataset  fetch_resolved: stored 1 resolved markets (total 1)
+2026-03-28 21:08:39  INFO      onto_market.ml_research.dataset  fetch_resolved: finished — 1 resolved markets in DB
+2026-03-28 21:08:41  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 [sklearn] (brier=0.180000)
+2026-03-28 21:08:41  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 [sklearn] (brier=0.200000)
+2026-03-28 21:08:41  INFO      onto_market.ml_research.artifacts  artifacts: saved v002 [sklearn] (brier=0.150000)
+2026-03-28 21:08:41  INFO      onto_market.ml_research.artifacts  artifacts: promoted v001
+2026-03-28 21:08:41  INFO      onto_market.ml_research.artifacts  artifacts: promoted v002
+2026-03-28 21:08:41  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 [sklearn] (brier=0.200000)
+2026-03-28 21:08:41  INFO      onto_market.ml_research.artifacts  artifacts: saved v002 [sklearn] (brier=0.100000)
+2026-03-28 21:08:41  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 [sklearn] (brier=0.180000)
+2026-03-28 21:08:50  WARNING   onto_market.ml_research.inference  ml_research.inference: artifact metadata missing feature_names
+2026-03-28 21:08:50  WARNING   onto_market.ml_research.inference  ml_research.inference: clamped ML_PRIOR_WEIGHT 2.000 -> 1.000
+2026-03-28 21:08:50  INFO      onto_market.ml_research.inference  ml_research.inference: blended llm=0.800 model=0.200 weight=100.0% -> 0.200
+2026-03-28 21:10:03  INFO      onto_market.ml_research.dataset  fetch_resolved: stored 1 resolved markets (total 1)
+2026-03-28 21:10:03  INFO      onto_market.ml_research.dataset  fetch_resolved: finished — 1 resolved markets in DB
+2026-03-28 21:10:05  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 [sklearn] (brier=0.180000)
+2026-03-28 21:10:05  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 [sklearn] (brier=0.200000)
+2026-03-28 21:10:05  INFO      onto_market.ml_research.artifacts  artifacts: saved v002 [sklearn] (brier=0.150000)
+2026-03-28 21:10:05  INFO      onto_market.ml_research.artifacts  artifacts: promoted v001
+2026-03-28 21:10:05  INFO      onto_market.ml_research.artifacts  artifacts: promoted v002
+2026-03-28 21:10:05  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 [sklearn] (brier=0.200000)
+2026-03-28 21:10:05  INFO      onto_market.ml_research.artifacts  artifacts: saved v002 [sklearn] (brier=0.100000)
+2026-03-28 21:10:05  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 [sklearn] (brier=0.180000)
+2026-03-28 21:10:12  WARNING   onto_market.ml_research.inference  ml_research.inference: artifact metadata missing feature_names
+2026-03-28 21:10:12  WARNING   onto_market.ml_research.inference  ml_research.inference: clamped ML_PRIOR_WEIGHT 2.000 -> 1.000
+2026-03-28 21:10:12  INFO      onto_market.ml_research.inference  ml_research.inference: blended llm=0.800 model=0.200 weight=100.0% -> 0.200
+2026-03-28 21:23:44  INFO      __main__  fetch_active: stored 100 active markets (total 100)
+2026-03-28 21:23:45  INFO      __main__  fetch_active: stored 100 active markets (total 200)
+2026-03-28 21:23:45  INFO      __main__  fetch_active: stored 100 active markets (total 300)
+2026-03-28 21:23:45  INFO      __main__  fetch_active: stored 100 active markets (total 400)
+2026-03-28 21:23:45  INFO      __main__  fetch_active: stored 100 active markets (total 500)
+2026-03-28 21:23:45  INFO      __main__  fetch_active: finished — 500 active markets snapshotted
+2026-03-28 21:24:15  INFO      __main__  fetch_resolved: stored 100 resolved markets (total 100)
+2026-03-28 21:24:16  INFO      __main__  fetch_resolved: stored 99 resolved markets (total 199)
+2026-03-28 21:24:17  INFO      __main__  fetch_resolved: stored 100 resolved markets (total 299)
+2026-03-28 21:24:18  INFO      __main__  fetch_resolved: stored 100 resolved markets (total 399)
+2026-03-28 21:24:18  INFO      __main__  fetch_resolved: stored 100 resolved markets (total 499)
+2026-03-28 21:24:19  INFO      __main__  fetch_resolved: stored 99 resolved markets (total 598)
+2026-03-28 21:24:19  INFO      __main__  fetch_resolved: stored 99 resolved markets (total 697)
+2026-03-28 21:24:20  INFO      __main__  fetch_resolved: stored 100 resolved markets (total 797)
+2026-03-28 21:24:21  INFO      __main__  fetch_resolved: stored 99 resolved markets (total 896)
+2026-03-28 21:24:23  INFO      __main__  fetch_resolved: stored 99 resolved markets (total 995)
+2026-03-28 21:24:24  INFO      __main__  fetch_resolved: stored 99 resolved markets (total 1094)
+2026-03-28 21:24:26  INFO      __main__  fetch_resolved: stored 100 resolved markets (total 1194)
+2026-03-28 21:24:28  INFO      __main__  fetch_resolved: stored 100 resolved markets (total 1294)
+2026-03-28 21:24:29  INFO      __main__  fetch_resolved: stored 99 resolved markets (total 1393)
+2026-03-28 21:24:31  INFO      __main__  fetch_resolved: stored 99 resolved markets (total 1492)
+2026-03-28 21:24:32  INFO      __main__  fetch_resolved: stored 100 resolved markets (total 1592)
+2026-03-28 21:24:33  INFO      __main__  fetch_resolved: stored 100 resolved markets (total 1692)
+2026-03-28 21:24:35  INFO      __main__  fetch_resolved: stored 100 resolved markets (total 1792)
+2026-03-28 21:24:36  INFO      __main__  fetch_resolved: stored 100 resolved markets (total 1892)
+2026-03-28 21:24:37  INFO      __main__  fetch_resolved: stored 99 resolved markets (total 1991)
+2026-03-28 21:24:39  INFO      __main__  fetch_resolved: stored 100 resolved markets (total 2091)
+2026-03-28 21:24:39  INFO      __main__  fetch_resolved: finished — 2091 resolved markets in DB
+2026-03-28 21:25:23  INFO      onto_market.ml_research.runner  runner [torch]: researcher LLM = local
+2026-03-28 21:25:27  INFO      onto_market.ml_research.runner  runner [torch]: baseline brier = 0.000262
+2026-03-28 21:25:27  INFO      onto_market.ml_research.runner  runner [torch]: === iteration 1/200 (best=0.000262) ===
+2026-03-28 21:26:39  INFO      onto_market.ml_research.runner  runner [torch]: researcher LLM = local
+2026-03-28 21:26:44  INFO      onto_market.ml_research.runner  runner [torch]: baseline brier = 0.001150
+2026-03-28 21:26:44  INFO      onto_market.ml_research.runner  runner [torch]: === iteration 1/10 (best=0.001150) ===
+2026-03-28 21:28:02  INFO      onto_market.ml_research.dataset  fetch_resolved: stored 1 resolved markets (total 1)
+2026-03-28 21:28:02  INFO      onto_market.ml_research.dataset  fetch_resolved: finished — 1 resolved markets in DB
+2026-03-28 21:30:38  INFO      onto_market.ml_research.dataset  fetch_resolved: stored 1 resolved markets (total 1)
+2026-03-28 21:30:38  INFO      onto_market.ml_research.dataset  fetch_resolved: finished — 1 resolved markets in DB
+2026-03-28 21:30:41  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 [sklearn] (brier=0.180000)
+2026-03-28 21:30:41  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 [sklearn] (brier=0.200000)
+2026-03-28 21:30:41  INFO      onto_market.ml_research.artifacts  artifacts: saved v002 [sklearn] (brier=0.150000)
+2026-03-28 21:30:41  INFO      onto_market.ml_research.artifacts  artifacts: promoted v001
+2026-03-28 21:30:41  INFO      onto_market.ml_research.artifacts  artifacts: promoted v002
+2026-03-28 21:30:41  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 [sklearn] (brier=0.200000)
+2026-03-28 21:30:41  INFO      onto_market.ml_research.artifacts  artifacts: saved v002 [sklearn] (brier=0.100000)
+2026-03-28 21:30:41  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 [sklearn] (brier=0.180000)
+2026-03-28 21:30:50  WARNING   onto_market.ml_research.inference  ml_research.inference: artifact metadata missing feature_names
+2026-03-28 21:30:50  WARNING   onto_market.ml_research.inference  ml_research.inference: clamped ML_PRIOR_WEIGHT 2.000 -> 1.000
+2026-03-28 21:30:50  INFO      onto_market.ml_research.inference  ml_research.inference: blended llm=0.800 model=0.200 weight=100.0% -> 0.200

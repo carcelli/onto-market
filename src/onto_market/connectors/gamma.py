@@ -40,7 +40,17 @@ class GammaConnector:
         order: str = "volumeNum",
         ascending: bool = False,
         event_id: str | int | None = None,
+        end_date_min: str | None = None,
+        start_date_min: str | None = None,
     ) -> list[dict]:
+        """Fetch markets from Gamma API with optional date range filters.
+
+        Args:
+            end_date_min: ISO-8601 datetime string — only return markets
+                ending on or after this date (e.g. "2026-01-01T00:00:00Z").
+            start_date_min: ISO-8601 datetime string — only return markets
+                starting on or after this date.
+        """
         params: dict = {
             "limit": limit,
             "offset": offset,
@@ -53,6 +63,10 @@ class GammaConnector:
             params["tag"] = category
         if event_id is not None:
             params["event_id"] = str(event_id)
+        if end_date_min:
+            params["end_date_min"] = end_date_min
+        if start_date_min:
+            params["start_date_min"] = start_date_min
         resp = self.session.get(f"{GAMMA_BASE}/markets", params=params, timeout=_TIMEOUT)
         resp.raise_for_status()
         return resp.json()

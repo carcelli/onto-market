@@ -59,6 +59,7 @@ class Config:
     ML_TRAINING_MODE: str = os.getenv("ML_TRAINING_MODE", "sklearn")  # sklearn | torch
     ML_TRAINING_TIMEOUT: int = int(os.getenv("ML_TRAINING_TIMEOUT", "0"))  # 0 = use mode default
     ML_MAX_VRAM_MB: int = int(os.getenv("ML_MAX_VRAM_MB", "3500"))
+    ML_MAX_AGE_DAYS: int = int(os.getenv("ML_MAX_AGE_DAYS", "90"))  # 0 = no filter (all data)
 
 
 config = Config()
