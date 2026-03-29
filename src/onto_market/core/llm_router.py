@@ -11,6 +11,7 @@ callers never need to change anything other than the LLM_PROVIDER env var.
   LLM_PROVIDER=openai  → openai/gpt-4o-mini
   LLM_PROVIDER=gemini  → gemini/gemini-1.5-pro
   LLM_PROVIDER=claude  → anthropic/claude-3-5-sonnet-20241022
+  LLM_PROVIDER=local   → Ollama (gpt-oss:20b or LOCAL_MODEL)
 """
 import json
 import os
@@ -37,6 +38,31 @@ def get_xai_client() -> OpenAI:
         api_key=os.getenv("XAI_API_KEY"),
         base_url="https://api.x.ai/v1",
     )
+
+
+def get_ollama_client(base_url: str | None = None) -> OpenAI:
+    """Return an OpenAI-compatible client pointed at a local Ollama server."""
+    return OpenAI(
+        api_key="ollama",
+        base_url=base_url or config.OLLAMA_BASE_URL,
+    )
+
+
+def _ollama_completion(
+    messages: list[dict[str, str]],
+    temperature: float,
+    model: str | None = None,
+    base_url: str | None = None,
+) -> str:
+    """Call a local Ollama model via the OpenAI-compatible endpoint."""
+    client = get_ollama_client(base_url)
+    target_model = model or config.LOCAL_MODEL
+    response = client.chat.completions.create(
+        model=target_model,
+        messages=messages,
+        temperature=temperature,
+    )
+    return response.choices[0].message.content or ""
 
 
 def _litellm_completion(
@@ -66,7 +92,11 @@ def llm_completion(
     For Grok the xAI Responses API is used with native web/x search tools.
     For all other providers LiteLLM handles the call.
     """
-    provider = config.LLM_PROVIDER
+    provider = kwargs.pop("provider", None) or config.LLM_PROVIDER
+    base_url = kwargs.pop("base_url", None)
+
+    if provider == "local":
+        return _ollama_completion(messages, temperature, model, base_url)
 
     if provider == "grok":
         client = get_xai_client()
@@ -90,7 +120,7 @@ def llm_completion(
     if not litellm_model:
         raise ValueError(
             f"Unknown LLM_PROVIDER '{provider}'. "
-            f"Valid options: grok, {', '.join(_LITELLM_MODELS)}"
+            f"Valid options: grok, local, {', '.join(_LITELLM_MODELS)}"
         )
     return _litellm_completion(messages, temperature, litellm_model)
 

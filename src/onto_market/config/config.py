@@ -48,10 +48,17 @@ class Config:
     MIN_VOLUME: float = float(os.getenv("MIN_VOLUME", "5000"))   # $5k
     MIN_KELLY: float = float(os.getenv("MIN_KELLY", "0.01"))     # 1%
 
+    # Local LLM (Ollama)
+    OLLAMA_BASE_URL: str = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434/v1")
+    LOCAL_MODEL: str = os.getenv("LOCAL_MODEL", "gpt-oss:20b")
+
     # ML research integration
     USE_ML_PRIOR: bool = os.getenv("USE_ML_PRIOR", "false").lower() == "true"
     ML_PRIOR_WEIGHT: float = max(0.0, min(1.0, float(os.getenv("ML_PRIOR_WEIGHT", "0.3"))))
     ML_ARTIFACT_DIR: str = os.getenv("ML_ARTIFACT_DIR", "data/ml_artifacts")
+    ML_TRAINING_MODE: str = os.getenv("ML_TRAINING_MODE", "sklearn")  # sklearn | torch
+    ML_TRAINING_TIMEOUT: int = int(os.getenv("ML_TRAINING_TIMEOUT", "0"))  # 0 = use mode default
+    ML_MAX_VRAM_MB: int = int(os.getenv("ML_MAX_VRAM_MB", "3500"))
 
 
 config = Config()

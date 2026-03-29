@@ -1,10 +1,14 @@
 """Model versioning — store, promote, and retrieve trained artifacts.
 
+Supports both sklearn (joblib .pkl) and PyTorch (.pt) models.
+The ``model_type`` metadata field controls which loader is used.
+
 Layout under ``data/ml_artifacts/``:
 
     model_v001.pkl          — pickled sklearn model
-    metadata_v001.json      — brier, log_loss, feature_names, timestamp, …
-    registry.json           — {"latest": 1, "promoted": 1, "versions": [...]}
+    model_v002.pt           — PyTorch state dict + constructor info
+    metadata_v001.json      — brier, model_type, feature_names, timestamp, …
+    registry.json           — {"latest": 2, "promoted": 2, "versions": [...]}
 """
 from __future__ import annotations
 
@@ -59,7 +63,23 @@ def _extract_model_metadata(model: Any) -> dict[str, Any]:
             metadata[key] = value
 
     metadata["model_class"] = model.__class__.__name__
+
+    hyperparams_fn = getattr(model, "hyperparams", None)
+    if callable(hyperparams_fn):
+        metadata["hyperparams"] = hyperparams_fn()
+
     return metadata
+
+
+def _infer_model_type(model: Any) -> str:
+    """Detect whether a model is sklearn or torch."""
+    try:
+        import torch.nn as nn
+        if isinstance(model, nn.Module):
+            return "torch"
+    except ImportError:
+        pass
+    return "sklearn"
 
 
 # ── Public API ────────────────────────────────────────────────────────────
@@ -76,14 +96,27 @@ def save_artifact(
     version = reg["latest"] + 1
     tag = _version_tag(version)
 
-    model_path = base / f"model_{tag}.pkl"
-    meta_path = base / f"metadata_{tag}.json"
+    model_type = metadata.get("model_type") or _infer_model_type(model)
 
-    joblib.dump(model, model_path)
+    if model_type == "torch":
+        import torch
+        model_path = base / f"model_{tag}.pt"
+        torch.save({
+            "state_dict": model.state_dict(),
+            "class_name": model.__class__.__name__,
+            "hyperparams": getattr(model, "hyperparams", lambda: {})(),
+            "n_features": getattr(model, "_n_features", None),
+        }, model_path)
+    else:
+        model_path = base / f"model_{tag}.pkl"
+        joblib.dump(model, model_path)
+
+    meta_path = base / f"metadata_{tag}.json"
     metadata = {
         **_extract_model_metadata(model),
         **metadata,
         "version": version,
+        "model_type": model_type,
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "model_path": str(model_path),
     }
@@ -93,7 +126,7 @@ def save_artifact(
     reg["versions"].append(version)
     _save_registry(base, reg)
 
-    logger.info("artifacts: saved %s (brier=%.6f)", tag, metadata.get("brier", -1))
+    logger.info("artifacts: saved %s [%s] (brier=%.6f)", tag, model_type, metadata.get("brier", -1))
     return version
 
 
@@ -106,6 +139,43 @@ def promote(version: int, artifact_dir: str | Path = _DEFAULT_DIR) -> None:
     reg["promoted"] = version
     _save_registry(base, reg)
     logger.info("artifacts: promoted %s", _version_tag(version))
+
+
+def _load_torch_model(model_path: Path, metadata: dict) -> Any:
+    """Reconstruct a PyTorch model from a .pt checkpoint."""
+    import torch
+    from onto_market.ml_research.models import TinyForecaster, TinyTransformerForecaster
+
+    checkpoint = torch.load(model_path, map_location="cpu", weights_only=False)
+    class_name = checkpoint.get("class_name", metadata.get("model_class", "TinyForecaster"))
+    hp = checkpoint.get("hyperparams", metadata.get("hyperparams", {}))
+    n_features = checkpoint.get("n_features") or hp.get("n_features", 6)
+
+    model_classes = {
+        "TinyForecaster": TinyForecaster,
+        "TinyTransformerForecaster": TinyTransformerForecaster,
+    }
+    cls = model_classes.get(class_name, TinyForecaster)
+
+    constructor_kwargs: dict[str, Any] = {"n_features": n_features}
+    for k in ("hidden", "depth", "dropout", "d_model", "n_heads", "n_layers"):
+        if k in hp:
+            constructor_kwargs[k] = hp[k]
+
+    model = cls(**constructor_kwargs)
+    model.load_state_dict(checkpoint["state_dict"])
+    model.eval()
+
+    for attr, key in [
+        ("_onto_market_feature_names", "feature_names"),
+        ("_onto_market_category_map", "category_map"),
+        ("_onto_market_vocab", "vocab"),
+    ]:
+        val = metadata.get(key)
+        if val is not None:
+            setattr(model, attr, val)
+
+    return model
 
 
 def get_latest(artifact_dir: str | Path = _DEFAULT_DIR) -> tuple[Any, dict] | None:
@@ -121,15 +191,24 @@ def get_latest(artifact_dir: str | Path = _DEFAULT_DIR) -> tuple[Any, dict] | No
         return None
 
     tag = _version_tag(version)
-    model_path = base / f"model_{tag}.pkl"
     meta_path = base / f"metadata_{tag}.json"
-
-    if not model_path.exists():
-        logger.warning("artifacts: model file missing for %s", tag)
-        return None
-
-    model = joblib.load(model_path)
     metadata = json.loads(meta_path.read_text()) if meta_path.exists() else {}
+
+    model_type = metadata.get("model_type", "sklearn")
+
+    if model_type == "torch":
+        model_path = base / f"model_{tag}.pt"
+        if not model_path.exists():
+            logger.warning("artifacts: torch model file missing for %s", tag)
+            return None
+        model = _load_torch_model(model_path, metadata)
+    else:
+        model_path = base / f"model_{tag}.pkl"
+        if not model_path.exists():
+            logger.warning("artifacts: model file missing for %s", tag)
+            return None
+        model = joblib.load(model_path)
+
     return model, metadata
 
 
@@ -162,6 +241,7 @@ def status(artifact_dir: str | Path = _DEFAULT_DIR) -> str:
     promoted_v = reg.get("promoted") or reg.get("latest", 0)
     meta = get_metadata(promoted_v, base)
     if meta:
+        lines.append(f"  Type:     {meta.get('model_type', 'sklearn')}")
         lines.append(f"  Brier:    {meta.get('brier', '?')}")
         lines.append(f"  Trained:  {meta.get('timestamp', '?')}")
 

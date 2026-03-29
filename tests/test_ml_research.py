@@ -305,6 +305,28 @@ class TestEvaluate:
         total = sum(b["count"] for b in buckets)
         assert total == 6
 
+    def test_calibration_error_perfect(self):
+        from onto_market.ml_research.evaluate import calibration_error
+
+        probs = np.array([0.0, 0.0, 1.0, 1.0])
+        labels = np.array([0.0, 0.0, 1.0, 1.0])
+        ece = calibration_error(probs, labels, n_bins=5)
+        assert ece == pytest.approx(0.0, abs=0.01)
+
+    def test_calibration_error_bad(self):
+        from onto_market.ml_research.evaluate import calibration_error
+
+        probs = np.array([0.9, 0.9, 0.1, 0.1])
+        labels = np.array([0.0, 0.0, 1.0, 1.0])
+        ece = calibration_error(probs, labels, n_bins=5)
+        assert ece > 0.5
+
+    def test_calibration_error_empty(self):
+        from onto_market.ml_research.evaluate import calibration_error
+
+        ece = calibration_error(np.array([]), np.array([]))
+        assert ece == 0.0
+
     def test_edge_backtest(self):
         from onto_market.ml_research.evaluate import edge_backtest
 
@@ -319,6 +341,86 @@ class TestEvaluate:
             result["market_brier"] - result["model_brier"], abs=1e-6
         )
         assert result["n_samples"] == 3
+
+    def test_simulated_pnl_no_trades(self):
+        from onto_market.ml_research.evaluate import simulated_pnl
+
+        model_probs = np.array([0.51, 0.49])
+        implied_probs = np.array([0.50, 0.50])
+        labels = np.array([1.0, 0.0])
+        result = simulated_pnl(model_probs, implied_probs, labels, edge_threshold=0.05)
+        assert result["n_trades"] == 0
+        assert result["total_pnl"] == 0.0
+
+    def test_simulated_pnl_with_trades(self):
+        from onto_market.ml_research.evaluate import simulated_pnl
+
+        model_probs = np.array([0.8, 0.2, 0.7])
+        implied_probs = np.array([0.5, 0.5, 0.5])
+        labels = np.array([1.0, 0.0, 1.0])
+        result = simulated_pnl(model_probs, implied_probs, labels, edge_threshold=0.03)
+        assert result["n_trades"] == 3
+        assert "win_rate" in result
+        assert "max_drawdown" in result
+        assert "roi" in result
+
+    def test_simulated_pnl_keys(self):
+        from onto_market.ml_research.evaluate import simulated_pnl
+
+        result = simulated_pnl(
+            np.array([0.9]), np.array([0.5]), np.array([1.0]),
+            edge_threshold=0.03,
+        )
+        expected_keys = {"total_pnl", "n_trades", "win_rate", "max_drawdown", "roi"}
+        assert expected_keys == set(result.keys())
+
+    def test_promotion_score_gates_pass(self):
+        from onto_market.ml_research.evaluate import promotion_score
+
+        n = 30
+        np.random.seed(42)
+        model_probs = np.clip(np.random.rand(n), 0.1, 0.9)
+        implied_probs = np.clip(np.random.rand(n), 0.1, 0.9)
+        labels = (np.random.rand(n) > 0.5).astype(float)
+
+        result = promotion_score(
+            model_probs, implied_probs, labels,
+            min_samples=20,
+        )
+        assert "brier" in result
+        assert "composite_score" in result
+        assert "gates" in result
+        assert "promotable" in result
+        assert result["gates"]["sufficient_samples"] is True
+        assert result["n_samples"] == n
+
+    def test_promotion_score_rejects_small_sample(self):
+        from onto_market.ml_research.evaluate import promotion_score
+
+        result = promotion_score(
+            np.array([0.8, 0.2]),
+            np.array([0.5, 0.5]),
+            np.array([1.0, 0.0]),
+            min_samples=20,
+        )
+        assert result["promotable"] is False
+        assert result["gates"]["sufficient_samples"] is False
+
+    def test_promotion_score_rejects_uncalibrated(self):
+        from onto_market.ml_research.evaluate import promotion_score
+
+        n = 30
+        model_probs = np.array([0.95] * n)
+        implied_probs = np.array([0.5] * n)
+        labels = np.array([0.0] * 15 + [1.0] * 15)
+
+        result = promotion_score(
+            model_probs, implied_probs, labels,
+            min_samples=10,
+            max_calibration_error=0.05,
+        )
+        assert result["promotable"] is False
+        assert result["gates"]["calibrated"] is False
 
 
 # ── train tests ───────────────────────────────────────────────────────────
@@ -449,7 +551,7 @@ class TestRunner:
         """Verify _run_train can execute train.py and parse the Brier score."""
         from onto_market.ml_research.runner import _run_train
 
-        brier = _run_train(db_path=tmp_db)
+        brier, extras = _run_train("sklearn", db_path=tmp_db)
         assert brier is not None
         assert 0.0 <= brier <= 1.0
 
@@ -457,8 +559,7 @@ class TestRunner:
         """If train.py doesn't exist or crashes, _run_train returns None."""
         from onto_market.ml_research.runner import _run_train
 
-        brier = _run_train(db_path=str(tmp_path / "nonexistent.db"))
-        # Should either return 0.25 (fallback) or a valid float
+        brier, extras = _run_train("sklearn", db_path=str(tmp_path / "nonexistent.db"))
         assert brier is None or (0.0 <= brier <= 1.0)
 
     def test_backup_and_restore(self, tmp_path: Path):
@@ -469,11 +570,11 @@ class TestRunner:
         )
 
         original = _TRAIN_PY.read_text()
-        backup = _backup_train()
+        backup = _backup_train("sklearn")
         assert Path(backup).read_text() == original
 
         _TRAIN_PY.write_text("# corrupted")
-        _restore_train(backup)
+        _restore_train(backup, "sklearn")
         assert _TRAIN_PY.read_text() == original
 
         Path(backup).unlink(missing_ok=True)
@@ -544,3 +645,77 @@ class TestInference:
             )
 
         assert blended == pytest.approx(0.2)
+
+
+# ── local provider tests ────────────────────────────────────────────────
+
+
+class TestLocalProvider:
+    def test_llm_client_local_factory(self):
+        from onto_market.utils.llm_client import LLMClient
+
+        client = LLMClient.local(model="test-model")
+        assert client.provider == "local"
+        assert client.model == "test-model"
+        assert "11434" in client.base_url
+
+    def test_llm_client_local_default_model(self):
+        from onto_market.utils.llm_client import LLMClient
+
+        client = LLMClient.local()
+        assert client.provider == "local"
+        assert client.model is not None
+
+    def test_llm_client_provider_override(self):
+        from onto_market.utils.llm_client import LLMClient
+
+        client = LLMClient(provider="local", base_url="http://test:1234/v1")
+        kw = client._extra_kwargs()
+        assert kw["provider"] == "local"
+        assert kw["base_url"] == "http://test:1234/v1"
+
+    def test_llm_client_no_override(self):
+        from onto_market.utils.llm_client import LLMClient
+
+        client = LLMClient()
+        kw = client._extra_kwargs()
+        assert kw == {}
+
+    def test_ollama_completion_called(self):
+        """Verify the local provider dispatches to _ollama_completion."""
+        from onto_market.core.llm_router import llm_completion
+
+        with patch("onto_market.core.llm_router._ollama_completion", return_value="hello") as mock:
+            result = llm_completion(
+                [{"role": "user", "content": "test"}],
+                provider="local",
+            )
+        assert result == "hello"
+        mock.assert_called_once()
+
+    def test_resolve_researcher_local(self):
+        from onto_market.ml_research.runner import _resolve_researcher
+
+        client = _resolve_researcher(None, "local")
+        assert client.provider == "local"
+
+    def test_resolve_researcher_local_with_model(self):
+        from onto_market.ml_research.runner import _resolve_researcher
+
+        client = _resolve_researcher(None, "local/qwen2:7b")
+        assert client.provider == "local"
+        assert client.model == "qwen2:7b"
+
+    def test_resolve_researcher_default(self):
+        from onto_market.ml_research.runner import _resolve_researcher
+
+        client = _resolve_researcher(None, None)
+        assert client.provider is None
+
+    def test_resolve_researcher_explicit_llm(self):
+        from onto_market.ml_research.runner import _resolve_researcher
+        from onto_market.utils.llm_client import LLMClient
+
+        explicit = LLMClient(model="custom")
+        result = _resolve_researcher(explicit, "local")
+        assert result is explicit

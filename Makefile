@@ -210,6 +210,30 @@ ml-research:  ## Start the autoresearch experiment loop
 	$(PYTHON) scripts/ml_research.py
 	@printf "$(GREEN)✔ autoresearch complete$(RESET)\n"
 
+.PHONY: ml-train-torch
+ml-train-torch:  ## Single PyTorch training run → save artifact
+	$(call log,Training PyTorch forecaster)
+	$(PYTHON) scripts/ml_train_torch.py
+	@printf "$(GREEN)✔ torch training complete$(RESET)\n"
+
+.PHONY: ml-research-torch
+ml-research-torch:  ## Start the autoresearch loop (PyTorch mode, local LLM)
+	$(call log,Starting autoresearch loop — torch mode)
+	$(PYTHON) scripts/ml_research.py --mode torch --researcher local
+	@printf "$(GREEN)✔ torch autoresearch complete$(RESET)\n"
+
+.PHONY: ml-research-local
+ml-research-local:  ## Autoresearch: local LLM on CPU, training on GPU
+	$(call log,Starting autoresearch — researcher=local (Ollama on CPU/RAM))
+	$(PYTHON) scripts/ml_research.py --mode sklearn --researcher local
+	@printf "$(GREEN)✔ local autoresearch complete$(RESET)\n"
+
+.PHONY: ml-research-local-torch
+ml-research-local-torch:  ## Autoresearch (torch): local LLM on CPU, training on GPU
+	$(call log,Starting autoresearch — torch mode + researcher=local)
+	$(PYTHON) scripts/ml_research.py --mode torch --researcher local
+	@printf "$(GREEN)✔ local torch autoresearch complete$(RESET)\n"
+
 .PHONY: ml-status
 ml-status:  ## Print latest ML artifact metadata + Brier score
 	@$(PYTHON) scripts/ml_status.py

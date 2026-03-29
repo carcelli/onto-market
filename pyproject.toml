@@ -39,6 +39,11 @@ ml = [
     "scikit-learn>=1.3.0",
     "joblib>=1.3.0",
 ]
+torch = [
+    "torch>=2.4",
+    "scikit-learn>=1.3.0",
+    "joblib>=1.3.0",
+]
 
 [project.scripts]
 onto-market = "onto_market.main:main"
@@ -78,6 +83,7 @@ module = [
     "pandas.*",
     "sklearn.*",
     "joblib.*",
+    "torch.*",
 ]
 ignore_missing_imports = true
 

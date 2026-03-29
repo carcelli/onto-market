@@ -1,4 +1,8 @@
-"""Runtime ML prior inference for live market scoring."""
+"""Runtime ML prior inference for live market scoring.
+
+Supports both sklearn (predict_proba) and PyTorch (forward pass) models.
+The ``model_type`` metadata field controls the dispatch.
+"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -57,6 +61,35 @@ def _validate_metadata(metadata: dict[str, Any]) -> tuple[list[str], dict[str, i
     return feature_names, normalized_category_map, vocab
 
 
+def _predict_sklearn(model: Any, X: np.ndarray) -> float | None:
+    """Run sklearn predict_proba and return P(YES)."""
+    if not hasattr(model, "predict_proba"):
+        logger.warning("ml_research.inference: sklearn model lacks predict_proba")
+        return None
+
+    probs = model.predict_proba(X)
+    if getattr(probs, "ndim", 0) != 2 or probs.shape[1] < 2:
+        logger.warning("ml_research.inference: predict_proba returned incompatible shape")
+        return None
+
+    return float(probs[:, 1][0])
+
+
+def _predict_torch(model: Any, X: np.ndarray) -> float | None:
+    """Run a PyTorch forward pass and return the scalar probability."""
+    try:
+        import torch
+    except ImportError:
+        logger.warning("ml_research.inference: torch not installed, cannot run torch model")
+        return None
+
+    model.eval()
+    with torch.no_grad():
+        x_tensor = torch.tensor(X, dtype=torch.float32)
+        output = model(x_tensor)
+        return float(output.item()) if output.numel() == 1 else float(output[0].item())
+
+
 def predict_market_prior(
     market: dict,
     artifact_dir: str | Path = "data/ml_artifacts",
@@ -82,17 +115,17 @@ def predict_market_prior(
         )
         return None
 
-    if not hasattr(model, "predict_proba"):
-        logger.warning("ml_research.inference: artifact model lacks predict_proba")
-        return None
-
     X = np.array([[features[name] for name in feature_names]], dtype=np.float64)
-    probs = model.predict_proba(X)
-    if getattr(probs, "ndim", 0) != 2 or probs.shape[1] < 2:
-        logger.warning("ml_research.inference: predict_proba returned incompatible shape")
-        return None
 
-    return _clamp_probability(float(probs[:, 1][0]))
+    model_type = metadata.get("model_type", "sklearn")
+    if model_type == "torch":
+        raw = _predict_torch(model, X.astype(np.float32))
+    else:
+        raw = _predict_sklearn(model, X)
+
+    if raw is None:
+        return None
+    return _clamp_probability(raw)
 
 
 def blend_with_ml_prior(
