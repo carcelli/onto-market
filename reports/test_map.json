@@ -1,0 +1,278 @@
+[
+  {
+    "module": "devtools",
+    "covered": true,
+    "test_files": [
+      "src/devtools/repo_tools/test_map.py"
+    ]
+  },
+  {
+    "module": "onto_market",
+    "covered": true,
+    "test_files": [
+      "scripts/repo_tools/test_map.py",
+      "tests/test_analytics.py",
+      "tests/test_integration.py",
+      "tests/test_memory.py",
+      "tests/test_planning_agent.py",
+      "tests/test_repo_tools.py",
+      "tests/test_swarm.py",
+      "tests/test_trading.py"
+    ]
+  },
+  {
+    "module": "onto_market.agents",
+    "covered": true,
+    "test_files": [
+      "tests/test_planning_agent.py"
+    ]
+  },
+  {
+    "module": "onto_market.agents.memory_agent",
+    "covered": false,
+    "test_files": []
+  },
+  {
+    "module": "onto_market.agents.ontology_agent",
+    "covered": false,
+    "test_files": []
+  },
+  {
+    "module": "onto_market.agents.planning_agent",
+    "covered": true,
+    "test_files": [
+      "tests/test_planning_agent.py"
+    ]
+  },
+  {
+    "module": "onto_market.agents.state",
+    "covered": false,
+    "test_files": []
+  },
+  {
+    "module": "onto_market.connectors",
+    "covered": true,
+    "test_files": [
+      "tests/test_integration.py",
+      "tests/test_planning_agent.py",
+      "tests/test_trading.py"
+    ]
+  },
+  {
+    "module": "onto_market.connectors.gamma",
+    "covered": true,
+    "test_files": [
+      "tests/test_planning_agent.py"
+    ]
+  },
+  {
+    "module": "onto_market.connectors.news",
+    "covered": false,
+    "test_files": []
+  },
+  {
+    "module": "onto_market.connectors.polymarket",
+    "covered": true,
+    "test_files": [
+      "tests/test_integration.py",
+      "tests/test_trading.py"
+    ]
+  },
+  {
+    "module": "onto_market.connectors.search",
+    "covered": false,
+    "test_files": []
+  },
+  {
+    "module": "onto_market.context",
+    "covered": false,
+    "test_files": []
+  },
+  {
+    "module": "onto_market.core",
+    "covered": true,
+    "test_files": [
+      "tests/test_integration.py"
+    ]
+  },
+  {
+    "module": "onto_market.core.agent_base",
+    "covered": false,
+    "test_files": []
+  },
+  {
+    "module": "onto_market.core.graph",
+    "covered": false,
+    "test_files": []
+  },
+  {
+    "module": "onto_market.core.llm_router",
+    "covered": true,
+    "test_files": [
+      "tests/test_integration.py"
+    ]
+  },
+  {
+    "module": "onto_market.core.state",
+    "covered": false,
+    "test_files": []
+  },
+  {
+    "module": "onto_market.devtools",
+    "covered": true,
+    "test_files": [
+      "scripts/repo_tools/test_map.py",
+      "tests/test_repo_tools.py"
+    ]
+  },
+  {
+    "module": "onto_market.memory",
+    "covered": true,
+    "test_files": [
+      "tests/test_memory.py"
+    ]
+  },
+  {
+    "module": "onto_market.memory.manager",
+    "covered": true,
+    "test_files": [
+      "tests/test_memory.py"
+    ]
+  },
+  {
+    "module": "onto_market.memory.zep_reader",
+    "covered": false,
+    "test_files": []
+  },
+  {
+    "module": "onto_market.ontology",
+    "covered": false,
+    "test_files": []
+  },
+  {
+    "module": "onto_market.ontology.graph",
+    "covered": false,
+    "test_files": []
+  },
+  {
+    "module": "onto_market.polymarket_agents",
+    "covered": true,
+    "test_files": [
+      "tests/test_analytics.py",
+      "tests/test_memory.py"
+    ]
+  },
+  {
+    "module": "onto_market.polymarket_agents.utils",
+    "covered": true,
+    "test_files": [
+      "tests/test_analytics.py",
+      "tests/test_memory.py"
+    ]
+  },
+  {
+    "module": "onto_market.polymarket_agents.utils.analytics",
+    "covered": true,
+    "test_files": [
+      "tests/test_analytics.py"
+    ]
+  },
+  {
+    "module": "onto_market.polymarket_agents.utils.database",
+    "covered": false,
+    "test_files": []
+  },
+  {
+    "module": "onto_market.polymarket_agents.utils.objects",
+    "covered": true,
+    "test_files": [
+      "tests/test_memory.py"
+    ]
+  },
+  {
+    "module": "onto_market.swarm",
+    "covered": true,
+    "test_files": [
+      "tests/test_swarm.py"
+    ]
+  },
+  {
+    "module": "onto_market.swarm.archetypes",
+    "covered": true,
+    "test_files": [
+      "tests/test_swarm.py"
+    ]
+  },
+  {
+    "module": "onto_market.swarm.dynamics",
+    "covered": true,
+    "test_files": [
+      "tests/test_swarm.py"
+    ]
+  },
+  {
+    "module": "onto_market.swarm.oracle",
+    "covered": true,
+    "test_files": [
+      "tests/test_swarm.py"
+    ]
+  },
+  {
+    "module": "onto_market.trading",
+    "covered": true,
+    "test_files": [
+      "tests/test_integration.py",
+      "tests/test_trading.py"
+    ]
+  },
+  {
+    "module": "onto_market.trading.executor",
+    "covered": true,
+    "test_files": [
+      "tests/test_trading.py"
+    ]
+  },
+  {
+    "module": "onto_market.trading.trader",
+    "covered": true,
+    "test_files": [
+      "tests/test_integration.py",
+      "tests/test_trading.py"
+    ]
+  },
+  {
+    "module": "onto_market.utils",
+    "covered": false,
+    "test_files": []
+  },
+  {
+    "module": "onto_market.utils.file_parser",
+    "covered": false,
+    "test_files": []
+  },
+  {
+    "module": "onto_market.utils.llm_client",
+    "covered": false,
+    "test_files": []
+  },
+  {
+    "module": "onto_market.utils.logger",
+    "covered": false,
+    "test_files": []
+  },
+  {
+    "module": "onto_market.utils.retry",
+    "covered": false,
+    "test_files": []
+  },
+  {
+    "module": "reports.streamlit_app",
+    "covered": false,
+    "test_files": []
+  },
+  {
+    "module": "tests",
+    "covered": false,
+    "test_files": []
+  }
+]

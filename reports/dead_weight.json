@@ -1,0 +1,257 @@
+[
+  {
+    "module": "scripts.audit_ontology",
+    "file": "scripts/audit_ontology.py",
+    "flags": [
+      "empty_module"
+    ]
+  },
+  {
+    "module": "scripts.generate_repo_map",
+    "file": "scripts/generate_repo_map.py",
+    "flags": [
+      "empty_module"
+    ]
+  },
+  {
+    "module": "scripts.repo_census",
+    "file": "scripts/repo_census.py",
+    "flags": [
+      "empty_module"
+    ]
+  },
+  {
+    "module": "scripts.repo_tools",
+    "file": "scripts/repo_tools/__init__.py",
+    "flags": [
+      "empty_module"
+    ]
+  },
+  {
+    "module": "scripts.repo_tools.architecture_drift",
+    "file": "scripts/repo_tools/architecture_drift.py",
+    "flags": [
+      "empty_module"
+    ]
+  },
+  {
+    "module": "scripts.repo_tools.boundary_matrix",
+    "file": "scripts/repo_tools/boundary_matrix.py",
+    "flags": [
+      "empty_module"
+    ]
+  },
+  {
+    "module": "scripts.repo_tools.cartography",
+    "file": "scripts/repo_tools/cartography.py",
+    "flags": [
+      "empty_module"
+    ]
+  },
+  {
+    "module": "scripts.repo_tools.config_surface",
+    "file": "scripts/repo_tools/config_surface.py",
+    "flags": [
+      "empty_module"
+    ]
+  },
+  {
+    "module": "scripts.repo_tools.cycle_detector",
+    "file": "scripts/repo_tools/cycle_detector.py",
+    "flags": [
+      "empty_module"
+    ]
+  },
+  {
+    "module": "scripts.repo_tools.dead_weight",
+    "file": "scripts/repo_tools/dead_weight.py",
+    "flags": [
+      "empty_module"
+    ]
+  },
+  {
+    "module": "scripts.repo_tools.entrypoint_map",
+    "file": "scripts/repo_tools/entrypoint_map.py",
+    "flags": [
+      "empty_module"
+    ]
+  },
+  {
+    "module": "scripts.repo_tools.import_graph",
+    "file": "scripts/repo_tools/import_graph.py",
+    "flags": [
+      "empty_module"
+    ]
+  },
+  {
+    "module": "scripts.repo_tools.symbol_index",
+    "file": "scripts/repo_tools/symbol_index.py",
+    "flags": [
+      "empty_module"
+    ]
+  },
+  {
+    "module": "scripts.repo_tools.symbol_xref",
+    "file": "scripts/repo_tools/symbol_xref.py",
+    "flags": [
+      "empty_module"
+    ]
+  },
+  {
+    "module": "scripts.repo_tools.test_map",
+    "file": "scripts/repo_tools/test_map.py",
+    "flags": [
+      "empty_module"
+    ]
+  },
+  {
+    "module": "devtools.repo_tools",
+    "file": "src/devtools/repo_tools/__init__.py",
+    "flags": [
+      "empty_module"
+    ]
+  },
+  {
+    "module": "reports.streamlit_app",
+    "file": "reports/streamlit_app.py",
+    "flags": [
+      "zero_inbound"
+    ]
+  },
+  {
+    "module": "devtools",
+    "file": "src/devtools/__init__.py",
+    "flags": [
+      "zero_inbound",
+      "empty_module"
+    ]
+  },
+  {
+    "module": "onto_market",
+    "file": "src/onto_market/__init__.py",
+    "flags": [
+      "zero_inbound"
+    ]
+  },
+  {
+    "module": "onto_market.agents",
+    "file": "src/onto_market/agents/__init__.py",
+    "flags": [
+      "zero_inbound"
+    ]
+  },
+  {
+    "module": "onto_market.agents.memory_agent",
+    "file": "src/onto_market/agents/memory_agent.py",
+    "flags": [
+      "zero_inbound"
+    ]
+  },
+  {
+    "module": "onto_market.connectors",
+    "file": "src/onto_market/connectors/__init__.py",
+    "flags": [
+      "zero_inbound"
+    ]
+  },
+  {
+    "module": "onto_market.context",
+    "file": "src/onto_market/context.py",
+    "flags": [
+      "zero_inbound"
+    ]
+  },
+  {
+    "module": "onto_market.core",
+    "file": "src/onto_market/core/__init__.py",
+    "flags": [
+      "zero_inbound"
+    ]
+  },
+  {
+    "module": "onto_market.core.agent_base",
+    "file": "src/onto_market/core/agent_base.py",
+    "flags": [
+      "zero_inbound"
+    ]
+  },
+  {
+    "module": "onto_market.devtools",
+    "file": "src/onto_market/devtools/__init__.py",
+    "flags": [
+      "zero_inbound",
+      "empty_module"
+    ]
+  },
+  {
+    "module": "onto_market.memory",
+    "file": "src/onto_market/memory/__init__.py",
+    "flags": [
+      "zero_inbound"
+    ]
+  },
+  {
+    "module": "onto_market.memory.zep_reader",
+    "file": "src/onto_market/memory/zep_reader.py",
+    "flags": [
+      "zero_inbound"
+    ]
+  },
+  {
+    "module": "onto_market.ontology",
+    "file": "src/onto_market/ontology/__init__.py",
+    "flags": [
+      "zero_inbound"
+    ]
+  },
+  {
+    "module": "onto_market.polymarket_agents",
+    "file": "src/onto_market/polymarket_agents/__init__.py",
+    "flags": [
+      "zero_inbound"
+    ]
+  },
+  {
+    "module": "onto_market.polymarket_agents.utils",
+    "file": "src/onto_market/polymarket_agents/utils/__init__.py",
+    "flags": [
+      "zero_inbound"
+    ]
+  },
+  {
+    "module": "onto_market.swarm",
+    "file": "src/onto_market/swarm/__init__.py",
+    "flags": [
+      "zero_inbound"
+    ]
+  },
+  {
+    "module": "onto_market.trading",
+    "file": "src/onto_market/trading/__init__.py",
+    "flags": [
+      "zero_inbound"
+    ]
+  },
+  {
+    "module": "onto_market.utils",
+    "file": "src/onto_market/utils/__init__.py",
+    "flags": [
+      "zero_inbound"
+    ]
+  },
+  {
+    "module": "onto_market.utils.file_parser",
+    "file": "src/onto_market/utils/file_parser.py",
+    "flags": [
+      "zero_inbound"
+    ]
+  },
+  {
+    "module": "tests",
+    "file": "tests/__init__.py",
+    "flags": [
+      "zero_inbound",
+      "empty_module"
+    ]
+  }
+]

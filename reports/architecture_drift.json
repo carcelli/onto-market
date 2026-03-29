@@ -1,8 +1,8 @@
 {
   "root": "/home/orson-dev/projects/onto-market",
-  "modules_scanned": 52,
-  "edges_checked": 84,
-  "violations_found": 3,
+  "modules_scanned": 60,
+  "edges_checked": 111,
+  "violations_found": 2,
   "violations": [
     {
       "src_module": "onto_market.connectors.gamma",
@@ -10,13 +10,6 @@
       "src_domain": "connectors",
       "dst_domain": "polymarket_agents",
       "reason": "'connectors' is not permitted to import from 'polymarket_agents' under the current layering policy"
-    },
-    {
-      "src_module": "onto_market.main",
-      "dst_module": "onto_market.ontology.graph",
-      "src_domain": "main",
-      "dst_domain": "ontology",
-      "reason": "'main' is not permitted to import from 'ontology' under the current layering policy"
     },
     {
       "src_module": "onto_market.utils.llm_client",

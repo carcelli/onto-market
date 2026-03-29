@@ -1,0 +1,281 @@
+{
+  "*.json": [
+    {
+      "file": "src/devtools/repo_tools/_common.py",
+      "line": 106,
+      "kind": "json_load"
+    },
+    {
+      "file": "src/devtools/repo_tools/symbol_xref.py",
+      "line": 27,
+      "kind": "json_load"
+    },
+    {
+      "file": "src/onto_market/agents/planning_agent.py",
+      "line": 55,
+      "kind": "json_load"
+    },
+    {
+      "file": "src/onto_market/agents/planning_agent.py",
+      "line": 63,
+      "kind": "json_load"
+    },
+    {
+      "file": "src/onto_market/agents/planning_agent.py",
+      "line": 331,
+      "kind": "json_load"
+    },
+    {
+      "file": "src/onto_market/core/llm_router.py",
+      "line": 115,
+      "kind": "json_load"
+    },
+    {
+      "file": "src/onto_market/devtools/repo_tools/ontology_audit.py",
+      "line": 32,
+      "kind": "json_load"
+    },
+    {
+      "file": "src/onto_market/devtools/repo_tools/repo_map.py",
+      "line": 184,
+      "kind": "json_load"
+    },
+    {
+      "file": "src/onto_market/devtools/repo_tools/symbol_xref.py",
+      "line": 28,
+      "kind": "json_load"
+    },
+    {
+      "file": "src/onto_market/ontology/graph.py",
+      "line": 191,
+      "kind": "json_load"
+    },
+    {
+      "file": "tests/test_repo_tools.py",
+      "line": 49,
+      "kind": "json_load"
+    },
+    {
+      "file": "tests/test_repo_tools.py",
+      "line": 158,
+      "kind": "json_load"
+    },
+    {
+      "file": "tests/test_repo_tools.py",
+      "line": 282,
+      "kind": "json_load"
+    }
+  ],
+  ".env": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 4,
+      "kind": "dotenv_load"
+    }
+  ],
+  "ANTHROPIC_API_KEY": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 17,
+      "kind": "env_var"
+    }
+  ],
+  "CHAIN_ID": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 31,
+      "kind": "env_var"
+    }
+  ],
+  "CLOB_API_KEY": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 27,
+      "kind": "env_var"
+    }
+  ],
+  "CLOB_API_URL": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 30,
+      "kind": "env_var"
+    },
+    {
+      "file": "src/onto_market/context.py",
+      "line": 27,
+      "kind": "env_var"
+    }
+  ],
+  "CLOB_PASSPHRASE": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 29,
+      "kind": "env_var"
+    }
+  ],
+  "CLOB_SECRET": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 28,
+      "kind": "env_var"
+    }
+  ],
+  "DATABASE_PATH": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 22,
+      "kind": "env_var"
+    },
+    {
+      "file": "src/onto_market/context.py",
+      "line": 23,
+      "kind": "env_var"
+    }
+  ],
+  "GOOGLE_API_KEY": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 16,
+      "kind": "env_var"
+    }
+  ],
+  "GROK_MODEL": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 13,
+      "kind": "env_var"
+    }
+  ],
+  "LLM_PROVIDER": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 9,
+      "kind": "env_var"
+    }
+  ],
+  "MIN_EDGE": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 47,
+      "kind": "env_var"
+    }
+  ],
+  "MIN_KELLY": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 49,
+      "kind": "env_var"
+    }
+  ],
+  "MIN_VOLUME": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 48,
+      "kind": "env_var"
+    }
+  ],
+  "NEWSAPI_API_KEY": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 38,
+      "kind": "env_var"
+    },
+    {
+      "file": "src/onto_market/connectors/news.py",
+      "line": 12,
+      "kind": "env_var"
+    }
+  ],
+  "OPENAI_API_KEY": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 18,
+      "kind": "env_var"
+    }
+  ],
+  "POLYGON_PRIVATE_KEY": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 25,
+      "kind": "env_var"
+    }
+  ],
+  "POLYGON_RPC_URL": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 26,
+      "kind": "env_var"
+    }
+  ],
+  "SAFE_MODE": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 34,
+      "kind": "env_var"
+    },
+    {
+      "file": "src/onto_market/context.py",
+      "line": 30,
+      "kind": "env_var"
+    }
+  ],
+  "SWARM_ANALYST_FRACTION": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 43,
+      "kind": "env_var"
+    }
+  ],
+  "SWARM_CONVERGENCE_THRESHOLD": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 44,
+      "kind": "env_var"
+    }
+  ],
+  "SWARM_ROUNDS": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 42,
+      "kind": "env_var"
+    }
+  ],
+  "SWARM_SIZE": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 41,
+      "kind": "env_var"
+    }
+  ],
+  "TAVILY_API_KEY": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 37,
+      "kind": "env_var"
+    },
+    {
+      "file": "src/onto_market/connectors/search.py",
+      "line": 12,
+      "kind": "env_var"
+    }
+  ],
+  "XAI_API_KEY": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 12,
+      "kind": "env_var"
+    },
+    {
+      "file": "src/onto_market/core/llm_router.py",
+      "line": 37,
+      "kind": "env_var"
+    }
+  ],
+  "ZEP_API_KEY": [
+    {
+      "file": "src/onto_market/config/config.py",
+      "line": 21,
+      "kind": "env_var"
+    }
+  ]
+}

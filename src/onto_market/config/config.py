@@ -48,5 +48,10 @@ class Config:
     MIN_VOLUME: float = float(os.getenv("MIN_VOLUME", "5000"))   # $5k
     MIN_KELLY: float = float(os.getenv("MIN_KELLY", "0.01"))     # 1%
 
+    # ML research integration
+    USE_ML_PRIOR: bool = os.getenv("USE_ML_PRIOR", "false").lower() == "true"
+    ML_PRIOR_WEIGHT: float = max(0.0, min(1.0, float(os.getenv("ML_PRIOR_WEIGHT", "0.3"))))
+    ML_ARTIFACT_DIR: str = os.getenv("ML_ARTIFACT_DIR", "data/ml_artifacts")
+
 
 config = Config()

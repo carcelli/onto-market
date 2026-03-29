@@ -89,6 +89,22 @@ def _score_market_match(query_tokens: set[str], question: str, volume: float) ->
     return overlap * 10_000 + volume / 1e6
 
 
+def _blend_ml_prior(llm_prob: float, selected: dict, implied: float) -> float:
+    """Blend LLM estimate with ML model prediction if an artifact exists."""
+    try:
+        from onto_market.ml_research.inference import blend_with_ml_prior
+
+        return blend_with_ml_prior(
+            llm_prob=llm_prob,
+            market=selected,
+            artifact_dir=config.ML_ARTIFACT_DIR,
+            weight=config.ML_PRIOR_WEIGHT,
+        )
+    except Exception as exc:
+        logger.warning("probability_node: ML prior failed, using LLM-only: %s", exc)
+        return llm_prob
+
+
 # ── nodes ──────────────────────────────────────────────────────────────────
 
 def research_node(state: PlanningState) -> dict:
@@ -213,6 +229,10 @@ def probability_node(state: PlanningState) -> dict:
     estimated = max(0.01, min(0.99, raw))
     if raw != estimated:
         logger.warning("probability_node: clamped %.3f -> %.3f", raw, estimated)
+
+    if config.USE_ML_PRIOR:
+        estimated = _blend_ml_prior(estimated, selected, implied)
+
     logger.info("probability_node: estimated=%.3f  implied=%.3f", estimated, implied)
     return {"estimated_probability": estimated}
 

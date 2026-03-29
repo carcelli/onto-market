@@ -1,15 +1,16 @@
 # Import Graph Report
 
 - Repo root: `/home/orson-dev/projects/onto-market`
-- Modules scanned: **52**
-- Import edges: **84**
-- Isolated modules (no imports): **12**
+- Modules scanned: **60**
+- Import edges: **111**
+- Isolated modules (no imports): **11**
 - Cycles detected: **0**
 
 ## Top importers (highest out-degree)
 | Module | Imports |
 |--------|---------|
 | `onto_market.agents.planning_agent` | 14 |
+| `onto_market.devtools.repo_tools.cartography` | 13 |
 | `onto_market.agents.memory_agent` | 8 |
 | `onto_market.trading.trader` | 6 |
 | `onto_market.swarm.oracle` | 5 |
@@ -18,25 +19,24 @@
 | `onto_market.trading.executor` | 4 |
 | `onto_market.agents.ontology_agent` | 3 |
 | `onto_market.connectors.gamma` | 3 |
+| `onto_market.devtools.repo_tools.dead_weight` | 3 |
 | `onto_market.main` | 3 |
-| `onto_market.connectors.news` | 2 |
-| `onto_market.connectors.search` | 2 |
 
 ## Most imported (highest in-degree)
 | Module | Imported by |
 |--------|------------|
+| `onto_market.devtools.repo_tools._paths` | 15 |
 | `onto_market.utils.logger` | 12 |
 | `onto_market.config.config` | 7 |
-| `onto_market.devtools.repo_tools._paths` | 7 |
 | `onto_market.config` | 6 |
+| `onto_market.devtools.repo_tools._common` | 6 |
 | `onto_market.utils.llm_client` | 6 |
 | `onto_market.connectors.gamma` | 5 |
+| `onto_market.devtools.repo_tools.import_graph` | 5 |
 | `onto_market.connectors.polymarket` | 4 |
 | `onto_market.utils.retry` | 4 |
-| `onto_market.devtools.repo_tools.import_graph` | 3 |
 | `onto_market.memory.manager` | 3 |
 | `onto_market.ontology.graph` | 3 |
-| `onto_market.swarm.archetypes` | 3 |
 
 ## Adjacency list
 
@@ -106,6 +106,9 @@
 - `onto_market.config`
 - `onto_market.config.config`
 
+### `onto_market.devtools.repo_tools._common`
+- `onto_market.devtools.repo_tools._paths`
+
 ### `onto_market.devtools.repo_tools.architecture_drift`
 - `onto_market.devtools.repo_tools._paths`
 - `onto_market.devtools.repo_tools.import_graph`
@@ -114,12 +117,40 @@
 - `onto_market.devtools.repo_tools._paths`
 - `onto_market.devtools.repo_tools.import_graph`
 
+### `onto_market.devtools.repo_tools.cartography`
+- `onto_market.devtools.repo_tools`
+- `onto_market.devtools.repo_tools._paths`
+- `onto_market.devtools.repo_tools.architecture_drift`
+- `onto_market.devtools.repo_tools.boundary_matrix`
+- `onto_market.devtools.repo_tools.census`
+- `onto_market.devtools.repo_tools.config_surface`
+- `onto_market.devtools.repo_tools.cycle_detector`
+- `onto_market.devtools.repo_tools.dead_weight`
+- `onto_market.devtools.repo_tools.entrypoint_map`
+- `onto_market.devtools.repo_tools.import_graph`
+- `onto_market.devtools.repo_tools.symbol_index`
+- `onto_market.devtools.repo_tools.symbol_xref`
+- `onto_market.devtools.repo_tools.test_map`
+
 ### `onto_market.devtools.repo_tools.census`
+- `onto_market.devtools.repo_tools._paths`
+
+### `onto_market.devtools.repo_tools.config_surface`
+- `onto_market.devtools.repo_tools._common`
 - `onto_market.devtools.repo_tools._paths`
 
 ### `onto_market.devtools.repo_tools.cycle_detector`
 - `onto_market.devtools.repo_tools._paths`
 - `onto_market.devtools.repo_tools.import_graph`
+
+### `onto_market.devtools.repo_tools.dead_weight`
+- `onto_market.devtools.repo_tools._common`
+- `onto_market.devtools.repo_tools._paths`
+- `onto_market.devtools.repo_tools.import_graph`
+
+### `onto_market.devtools.repo_tools.entrypoint_map`
+- `onto_market.devtools.repo_tools._common`
+- `onto_market.devtools.repo_tools._paths`
 
 ### `onto_market.devtools.repo_tools.import_graph`
 - `onto_market.devtools.repo_tools._paths`
@@ -129,6 +160,18 @@
 - `onto_market.ontology.graph`
 
 ### `onto_market.devtools.repo_tools.repo_map`
+- `onto_market.devtools.repo_tools._paths`
+
+### `onto_market.devtools.repo_tools.symbol_index`
+- `onto_market.devtools.repo_tools._common`
+- `onto_market.devtools.repo_tools._paths`
+
+### `onto_market.devtools.repo_tools.symbol_xref`
+- `onto_market.devtools.repo_tools._common`
+- `onto_market.devtools.repo_tools._paths`
+
+### `onto_market.devtools.repo_tools.test_map`
+- `onto_market.devtools.repo_tools._common`
 - `onto_market.devtools.repo_tools._paths`
 
 ### `onto_market.main`

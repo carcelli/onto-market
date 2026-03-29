@@ -1,0 +1,541 @@
+[
+  {
+    "kind": "__main__",
+    "module": "scripts.audit_ontology",
+    "file": "scripts/audit_ontology.py",
+    "line": 7,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "scripts.cli",
+    "file": "scripts/cli.py",
+    "line": 175,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "scripts.generate_repo_map",
+    "file": "scripts/generate_repo_map.py",
+    "line": 7,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "scripts.import_graph",
+    "file": "scripts/import_graph.py",
+    "line": 75,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "scripts.refresh_markets",
+    "file": "scripts/refresh_markets.py",
+    "line": 36,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "scripts.repo_census",
+    "file": "scripts/repo_census.py",
+    "line": 7,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "scripts.repo_tools.architecture_drift",
+    "file": "scripts/repo_tools/architecture_drift.py",
+    "line": 11,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "scripts.repo_tools.boundary_matrix",
+    "file": "scripts/repo_tools/boundary_matrix.py",
+    "line": 11,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "scripts.repo_tools.cartography",
+    "file": "scripts/repo_tools/cartography.py",
+    "line": 11,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "scripts.repo_tools.config_surface",
+    "file": "scripts/repo_tools/config_surface.py",
+    "line": 11,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "scripts.repo_tools.cycle_detector",
+    "file": "scripts/repo_tools/cycle_detector.py",
+    "line": 11,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "scripts.repo_tools.dead_weight",
+    "file": "scripts/repo_tools/dead_weight.py",
+    "line": 11,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "scripts.repo_tools.entrypoint_map",
+    "file": "scripts/repo_tools/entrypoint_map.py",
+    "line": 11,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "scripts.repo_tools.import_graph",
+    "file": "scripts/repo_tools/import_graph.py",
+    "line": 11,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "scripts.repo_tools.symbol_index",
+    "file": "scripts/repo_tools/symbol_index.py",
+    "line": 11,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "scripts.repo_tools.symbol_xref",
+    "file": "scripts/repo_tools/symbol_xref.py",
+    "line": 11,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "scripts.repo_tools.test_map",
+    "file": "scripts/repo_tools/test_map.py",
+    "line": 11,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "devtools.repo_tools.architecture_drift",
+    "file": "src/devtools/repo_tools/architecture_drift.py",
+    "line": 188,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "devtools.repo_tools.boundary_matrix",
+    "file": "src/devtools/repo_tools/boundary_matrix.py",
+    "line": 109,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "devtools.repo_tools.cartography",
+    "file": "src/devtools/repo_tools/cartography.py",
+    "line": 95,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "devtools.repo_tools.census",
+    "file": "src/devtools/repo_tools/census.py",
+    "line": 177,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "devtools.repo_tools.config_surface",
+    "file": "src/devtools/repo_tools/config_surface.py",
+    "line": 196,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "devtools.repo_tools.cycle_detector",
+    "file": "src/devtools/repo_tools/cycle_detector.py",
+    "line": 155,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "devtools.repo_tools.dead_weight",
+    "file": "src/devtools/repo_tools/dead_weight.py",
+    "line": 211,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "devtools.repo_tools.entrypoint_map",
+    "file": "src/devtools/repo_tools/entrypoint_map.py",
+    "line": 230,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "devtools.repo_tools.import_graph",
+    "file": "src/devtools/repo_tools/import_graph.py",
+    "line": 99,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "devtools.repo_tools.symbol_index",
+    "file": "src/devtools/repo_tools/symbol_index.py",
+    "line": 172,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "devtools.repo_tools.symbol_xref",
+    "file": "src/devtools/repo_tools/symbol_xref.py",
+    "line": 160,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "devtools.repo_tools.test_map",
+    "file": "src/devtools/repo_tools/test_map.py",
+    "line": 169,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "onto_market.agents.memory_agent",
+    "file": "src/onto_market/agents/memory_agent.py",
+    "line": 124,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "onto_market.agents.planning_agent",
+    "file": "src/onto_market/agents/planning_agent.py",
+    "line": 400,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "onto_market.devtools.repo_tools.architecture_drift",
+    "file": "src/onto_market/devtools/repo_tools/architecture_drift.py",
+    "line": 290,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "onto_market.devtools.repo_tools.boundary_matrix",
+    "file": "src/onto_market/devtools/repo_tools/boundary_matrix.py",
+    "line": 184,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "onto_market.devtools.repo_tools.cartography",
+    "file": "src/onto_market/devtools/repo_tools/cartography.py",
+    "line": 113,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "onto_market.devtools.repo_tools.census",
+    "file": "src/onto_market/devtools/repo_tools/census.py",
+    "line": 230,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "onto_market.devtools.repo_tools.config_surface",
+    "file": "src/onto_market/devtools/repo_tools/config_surface.py",
+    "line": 167,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "onto_market.devtools.repo_tools.cycle_detector",
+    "file": "src/onto_market/devtools/repo_tools/cycle_detector.py",
+    "line": 171,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "onto_market.devtools.repo_tools.dead_weight",
+    "file": "src/onto_market/devtools/repo_tools/dead_weight.py",
+    "line": 176,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "onto_market.devtools.repo_tools.entrypoint_map",
+    "file": "src/onto_market/devtools/repo_tools/entrypoint_map.py",
+    "line": 199,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "onto_market.devtools.repo_tools.import_graph",
+    "file": "src/onto_market/devtools/repo_tools/import_graph.py",
+    "line": 284,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "onto_market.devtools.repo_tools.ontology_audit",
+    "file": "src/onto_market/devtools/repo_tools/ontology_audit.py",
+    "line": 295,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "onto_market.devtools.repo_tools.repo_map",
+    "file": "src/onto_market/devtools/repo_tools/repo_map.py",
+    "line": 430,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "onto_market.devtools.repo_tools.symbol_index",
+    "file": "src/onto_market/devtools/repo_tools/symbol_index.py",
+    "line": 156,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "onto_market.devtools.repo_tools.symbol_xref",
+    "file": "src/onto_market/devtools/repo_tools/symbol_xref.py",
+    "line": 137,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "onto_market.devtools.repo_tools.test_map",
+    "file": "src/onto_market/devtools/repo_tools/test_map.py",
+    "line": 139,
+    "detail": ""
+  },
+  {
+    "kind": "__main__",
+    "module": "onto_market.main",
+    "file": "src/onto_market/main.py",
+    "line": 90,
+    "detail": ""
+  },
+  {
+    "kind": "console-script",
+    "module": "onto_market.main",
+    "file": "pyproject.toml",
+    "line": 40,
+    "detail": "onto-market = onto_market.main:main"
+  },
+  {
+    "kind": "console-script",
+    "module": "onto_market.devtools.repo_tools.census",
+    "file": "pyproject.toml",
+    "line": 41,
+    "detail": "repo-census = onto_market.devtools.repo_tools.census:main"
+  },
+  {
+    "kind": "console-script",
+    "module": "onto_market.devtools.repo_tools.import_graph",
+    "file": "pyproject.toml",
+    "line": 42,
+    "detail": "repo-import-graph = onto_market.devtools.repo_tools.import_graph:main"
+  },
+  {
+    "kind": "console-script",
+    "module": "onto_market.devtools.repo_tools.boundary_matrix",
+    "file": "pyproject.toml",
+    "line": 43,
+    "detail": "repo-boundary = onto_market.devtools.repo_tools.boundary_matrix:main"
+  },
+  {
+    "kind": "console-script",
+    "module": "onto_market.devtools.repo_tools.entrypoint_map",
+    "file": "pyproject.toml",
+    "line": 44,
+    "detail": "repo-entrypoints = onto_market.devtools.repo_tools.entrypoint_map:main"
+  },
+  {
+    "kind": "console-script",
+    "module": "onto_market.devtools.repo_tools.symbol_index",
+    "file": "pyproject.toml",
+    "line": 45,
+    "detail": "repo-symbols = onto_market.devtools.repo_tools.symbol_index:main"
+  },
+  {
+    "kind": "console-script",
+    "module": "onto_market.devtools.repo_tools.symbol_xref",
+    "file": "pyproject.toml",
+    "line": 46,
+    "detail": "repo-xref = onto_market.devtools.repo_tools.symbol_xref:main"
+  },
+  {
+    "kind": "console-script",
+    "module": "onto_market.devtools.repo_tools.test_map",
+    "file": "pyproject.toml",
+    "line": 47,
+    "detail": "repo-test-map = onto_market.devtools.repo_tools.test_map:main"
+  },
+  {
+    "kind": "console-script",
+    "module": "onto_market.devtools.repo_tools.config_surface",
+    "file": "pyproject.toml",
+    "line": 48,
+    "detail": "repo-config = onto_market.devtools.repo_tools.config_surface:main"
+  },
+  {
+    "kind": "console-script",
+    "module": "onto_market.devtools.repo_tools.cycle_detector",
+    "file": "pyproject.toml",
+    "line": 49,
+    "detail": "repo-cycles = onto_market.devtools.repo_tools.cycle_detector:main"
+  },
+  {
+    "kind": "console-script",
+    "module": "onto_market.devtools.repo_tools.dead_weight",
+    "file": "pyproject.toml",
+    "line": 50,
+    "detail": "repo-dead-weight = onto_market.devtools.repo_tools.dead_weight:main"
+  },
+  {
+    "kind": "console-script",
+    "module": "onto_market.devtools.repo_tools.architecture_drift",
+    "file": "pyproject.toml",
+    "line": 51,
+    "detail": "repo-arch-drift = onto_market.devtools.repo_tools.architecture_drift:main"
+  },
+  {
+    "kind": "console-script",
+    "module": "onto_market.devtools.repo_tools.cartography",
+    "file": "pyproject.toml",
+    "line": 52,
+    "detail": "repo-cartography = onto_market.devtools.repo_tools.cartography:main"
+  },
+  {
+    "kind": "langgraph",
+    "module": "onto_market.agents.memory_agent",
+    "file": "src/onto_market/agents/memory_agent.py",
+    "line": 107,
+    "detail": "StateGraph"
+  },
+  {
+    "kind": "langgraph",
+    "module": "onto_market.agents.memory_agent",
+    "file": "src/onto_market/agents/memory_agent.py",
+    "line": 108,
+    "detail": ".add_node()"
+  },
+  {
+    "kind": "langgraph",
+    "module": "onto_market.agents.memory_agent",
+    "file": "src/onto_market/agents/memory_agent.py",
+    "line": 109,
+    "detail": ".add_node()"
+  },
+  {
+    "kind": "langgraph",
+    "module": "onto_market.agents.memory_agent",
+    "file": "src/onto_market/agents/memory_agent.py",
+    "line": 110,
+    "detail": ".add_node()"
+  },
+  {
+    "kind": "langgraph",
+    "module": "onto_market.agents.memory_agent",
+    "file": "src/onto_market/agents/memory_agent.py",
+    "line": 111,
+    "detail": ".add_node()"
+  },
+  {
+    "kind": "langgraph",
+    "module": "onto_market.agents.planning_agent",
+    "file": "src/onto_market/agents/planning_agent.py",
+    "line": 377,
+    "detail": "StateGraph"
+  },
+  {
+    "kind": "langgraph",
+    "module": "onto_market.agents.planning_agent",
+    "file": "src/onto_market/agents/planning_agent.py",
+    "line": 378,
+    "detail": ".add_node()"
+  },
+  {
+    "kind": "langgraph",
+    "module": "onto_market.agents.planning_agent",
+    "file": "src/onto_market/agents/planning_agent.py",
+    "line": 379,
+    "detail": ".add_node()"
+  },
+  {
+    "kind": "langgraph",
+    "module": "onto_market.agents.planning_agent",
+    "file": "src/onto_market/agents/planning_agent.py",
+    "line": 380,
+    "detail": ".add_node()"
+  },
+  {
+    "kind": "langgraph",
+    "module": "onto_market.agents.planning_agent",
+    "file": "src/onto_market/agents/planning_agent.py",
+    "line": 381,
+    "detail": ".add_node()"
+  },
+  {
+    "kind": "langgraph",
+    "module": "onto_market.agents.planning_agent",
+    "file": "src/onto_market/agents/planning_agent.py",
+    "line": 382,
+    "detail": ".add_node()"
+  },
+  {
+    "kind": "langgraph",
+    "module": "onto_market.agents.planning_agent",
+    "file": "src/onto_market/agents/planning_agent.py",
+    "line": 383,
+    "detail": ".add_node()"
+  },
+  {
+    "kind": "langgraph",
+    "module": "onto_market.agents.planning_agent",
+    "file": "src/onto_market/agents/planning_agent.py",
+    "line": 384,
+    "detail": ".add_node()"
+  },
+  {
+    "kind": "langgraph",
+    "module": "onto_market.core.agent_base",
+    "file": "src/onto_market/core/agent_base.py",
+    "line": 26,
+    "detail": "StateGraph"
+  },
+  {
+    "kind": "langgraph",
+    "module": "onto_market.ontology.graph",
+    "file": "src/onto_market/ontology/graph.py",
+    "line": 76,
+    "detail": ".add_node()"
+  },
+  {
+    "kind": "langgraph",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 327,
+    "detail": ".add_node()"
+  },
+  {
+    "kind": "langgraph",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 328,
+    "detail": ".add_node()"
+  },
+  {
+    "kind": "typer/click",
+    "module": "scripts.cli",
+    "file": "scripts/cli.py",
+    "line": 15,
+    "detail": "typer.Typer"
+  }
+]

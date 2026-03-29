@@ -35,40 +35,33 @@ dashboard = [
     "streamlit>=1.30.0",
     "matplotlib>=3.7.0",
 ]
+ml = [
+    "scikit-learn>=1.3.0",
+    "joblib>=1.3.0",
+]
 
 [project.scripts]
-onto-market = "main:main"
-repo-census = "devtools.repo_tools.census:main"
-repo-import-graph = "devtools.repo_tools.import_graph:main"
-repo-boundary = "devtools.repo_tools.boundary_matrix:main"
-repo-entrypoints = "devtools.repo_tools.entrypoint_map:main"
-repo-symbols = "devtools.repo_tools.symbol_index:main"
-repo-xref = "devtools.repo_tools.symbol_xref:main"
-repo-test-map = "devtools.repo_tools.test_map:main"
-repo-config = "devtools.repo_tools.config_surface:main"
-repo-cycles = "devtools.repo_tools.cycle_detector:main"
-repo-dead-weight = "devtools.repo_tools.dead_weight:main"
-repo-arch-drift = "devtools.repo_tools.architecture_drift:main"
-repo-cartography = "devtools.repo_tools.cartography:main"
+onto-market = "onto_market.main:main"
+repo-census = "onto_market.devtools.repo_tools.census:main"
+repo-import-graph = "onto_market.devtools.repo_tools.import_graph:main"
+repo-boundary = "onto_market.devtools.repo_tools.boundary_matrix:main"
+repo-entrypoints = "onto_market.devtools.repo_tools.entrypoint_map:main"
+repo-symbols = "onto_market.devtools.repo_tools.symbol_index:main"
+repo-xref = "onto_market.devtools.repo_tools.symbol_xref:main"
+repo-test-map = "onto_market.devtools.repo_tools.test_map:main"
+repo-config = "onto_market.devtools.repo_tools.config_surface:main"
+repo-cycles = "onto_market.devtools.repo_tools.cycle_detector:main"
+repo-dead-weight = "onto_market.devtools.repo_tools.dead_weight:main"
+repo-arch-drift = "onto_market.devtools.repo_tools.architecture_drift:main"
+repo-cartography = "onto_market.devtools.repo_tools.cartography:main"
 
 [build-system]
 requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-where = ["src", "."]
-include = [
-    "polymarket_agents*",
-    "connectors*",
-    "memory*",
-    "swarm*",
-    "trading*",
-    "utils*",
-    "devtools*",
-    "agents*",
-    "core*",
-    "config*",
-]
+where = ["src"]
+include = ["onto_market*"]
 
 [tool.mypy]
 python_executable = "/home/orson-dev/anaconda3/envs/onto-market/bin/python"
@@ -83,6 +76,8 @@ module = [
     "web3.*",
     "networkx.*",
     "pandas.*",
+    "sklearn.*",
+    "joblib.*",
 ]
 ignore_missing_imports = true
 

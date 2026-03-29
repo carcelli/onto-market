@@ -8,6 +8,7 @@ from onto_market.agents.planning_agent import (
     _market_from_obj,
     _score_market_match,
     _STOPWORDS,
+    probability_node,
 )
 
 
@@ -164,3 +165,39 @@ class TestSearchMarketsIntegration:
         with patch.object(gc.session, "get", return_value=mock_resp):
             markets = gc.search_markets("nonexistent query xyz", limit=5)
             assert len(markets) == 0
+
+
+class TestProbabilityNode:
+    def test_probability_node_without_ml_prior_uses_llm_estimate(self):
+        state = {
+            "query": "Will BTC hit $100k?",
+            "implied_probability": 0.6,
+            "selected_market": {"question": "Will BTC hit $100k?", "volume": 10000},
+            "market_data": [{"question": "Will BTC hit $100k?", "implied_prob": 0.6, "volume": 10000}],
+            "research_context": "Context",
+            "ontology_context": "",
+        }
+
+        with patch("onto_market.agents.planning_agent.llm.chat_json", return_value={"estimated_prob": 0.74}), \
+             patch.object(__import__("onto_market.agents.planning_agent", fromlist=["config"]).config, "USE_ML_PRIOR", False):
+            result = probability_node(state)
+
+        assert result["estimated_probability"] == pytest.approx(0.74)
+
+    def test_probability_node_with_ml_prior_blends_estimate(self):
+        state = {
+            "query": "Will BTC hit $100k?",
+            "implied_probability": 0.6,
+            "selected_market": {"question": "Will BTC hit $100k?", "volume": 10000},
+            "market_data": [{"question": "Will BTC hit $100k?", "implied_prob": 0.6, "volume": 10000}],
+            "research_context": "Context",
+            "ontology_context": "",
+        }
+
+        with patch("onto_market.agents.planning_agent.llm.chat_json", return_value={"estimated_prob": 0.8}), \
+             patch("onto_market.agents.planning_agent._blend_ml_prior", return_value=0.725) as blend_mock, \
+             patch.object(__import__("onto_market.agents.planning_agent", fromlist=["config"]).config, "USE_ML_PRIOR", True):
+            result = probability_node(state)
+
+        blend_mock.assert_called_once()
+        assert result["estimated_probability"] == pytest.approx(0.725)

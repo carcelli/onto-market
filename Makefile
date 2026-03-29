@@ -10,6 +10,7 @@ ENV_NAME     := onto-market
 DB_PATH      := data/memory.db
 TEST_DIR     := tests
 MAX_MARKETS  ?= 500
+PYTHONPATH   := src:.
 
 .DEFAULT_GOAL := help
 
@@ -112,38 +113,106 @@ ontology-prune:  ## Audit + prune low-confidence ontology edges (destructive)
 	$(call log,Auditing and pruning ontology graph)
 	$(PYTHON) scripts/audit_ontology.py --prune
 
+# ── Repo Cartography ──────────────────────────────────────────────────────────
+
+.PHONY: cartography
+cartography:  ## Run full cartography pipeline (all 11 tools → reports/)
+	$(call log,Running full repo cartography pipeline)
+	PYTHONPATH=$(PYTHONPATH) $(PYTHON) -m onto_market.devtools.repo_tools.cartography
+	@printf "$(GREEN)✔ Cartography complete — see reports/$(RESET)\n"
+
 .PHONY: import-graph
-import-graph:  ## Build module dependency graph → reports/import_graph.{json,md}
+import-graph:  ## Build AST import graph (JSON + Mermaid + DOT)
 	$(call log,Building import graph)
-	$(PYTHON) scripts/import_graph.py
+	PYTHONPATH=$(PYTHONPATH) $(PYTHON) -m onto_market.devtools.repo_tools.import_graph
 	@printf "$(GREEN)✔ import graph updated$(RESET)\n"
 
 .PHONY: boundary-matrix
-boundary-matrix:  ## Show cross-domain coupling → reports/boundary_matrix.{json,md}
+boundary-matrix:  ## Collapse import graph to domain-level coupling matrix
 	$(call log,Computing boundary matrix)
-	$(PYTHON) scripts/import_graph.py --boundary
+	PYTHONPATH=$(PYTHONPATH) $(PYTHON) -m onto_market.devtools.repo_tools.boundary_matrix
 	@printf "$(GREEN)✔ boundary matrix updated$(RESET)\n"
 
+.PHONY: entrypoint-map
+entrypoint-map:  ## Discover all real execution entrypoints
+	$(call log,Mapping entrypoints)
+	PYTHONPATH=$(PYTHONPATH) $(PYTHON) -m onto_market.devtools.repo_tools.entrypoint_map
+	@printf "$(GREEN)✔ entrypoint map updated$(RESET)\n"
+
+.PHONY: symbol-index
+symbol-index:  ## Index all classes, functions, dataclasses, enums
+	$(call log,Indexing symbols)
+	PYTHONPATH=$(PYTHONPATH) $(PYTHON) -m onto_market.devtools.repo_tools.symbol_index
+	@printf "$(GREEN)✔ symbol index updated$(RESET)\n"
+
+.PHONY: symbol-xref
+symbol-xref:  ## Cross-reference symbol usages (requires symbol-index to run first)
+	$(call log,Cross-referencing symbols)
+	PYTHONPATH=$(PYTHONPATH) $(PYTHON) -m onto_market.devtools.repo_tools.symbol_xref
+	@printf "$(GREEN)✔ symbol xref updated$(RESET)\n"
+
+.PHONY: test-map
+test-map:  ## Map source modules to tests, show coverage gaps
+	$(call log,Mapping test coverage)
+	PYTHONPATH=$(PYTHONPATH) $(PYTHON) -m onto_market.devtools.repo_tools.test_map
+	@printf "$(GREEN)✔ test map updated$(RESET)\n"
+
+.PHONY: config-surface
+config-surface:  ## Surface all env vars and config file loads
+	$(call log,Scanning config surface)
+	PYTHONPATH=$(PYTHONPATH) $(PYTHON) -m onto_market.devtools.repo_tools.config_surface
+	@printf "$(GREEN)✔ config surface updated$(RESET)\n"
+
 .PHONY: cycle-check
-cycle-check:  ## Detect import cycles → reports/cycles.{json,md}
+cycle-check:  ## Detect circular imports (strongly connected components)
 	$(call log,Detecting import cycles)
-	$(PYTHON) scripts/import_graph.py --cycles
+	PYTHONPATH=$(PYTHONPATH) $(PYTHON) -m onto_market.devtools.repo_tools.cycle_detector
 	@printf "$(GREEN)✔ cycle check done$(RESET)\n"
 
+.PHONY: dead-weight
+dead-weight:  ## Flag unreachable files and stale copies
+	$(call log,Finding dead weight)
+	PYTHONPATH=$(PYTHONPATH) $(PYTHON) -m onto_market.devtools.repo_tools.dead_weight
+	@printf "$(GREEN)✔ dead weight report updated$(RESET)\n"
+
 .PHONY: arch-drift
-arch-drift:  ## Audit architecture layer violations → reports/architecture_drift.{json,md}
+arch-drift:  ## Check architecture boundary rules, emit violations
 	$(call log,Auditing architecture drift)
-	$(PYTHON) scripts/import_graph.py --drift
+	PYTHONPATH=$(PYTHONPATH) $(PYTHON) -m onto_market.devtools.repo_tools.architecture_drift
 	@printf "$(GREEN)✔ architecture drift audit done$(RESET)\n"
 
 .PHONY: repo-health
-repo-health: repo-census import-graph cycle-check arch-drift  ## Run all repo-cartography tools
+repo-health: cartography  ## Alias for cartography (full pipeline)
 	@printf "$(GREEN)✔ full repo health check done$(RESET)\n"
 
 .PHONY: dashboard
 dashboard:  ## Launch the Streamlit repo ontology dashboard
 	$(call log,Launching dashboard at http://localhost:8501)
 	$(PYTHON) -m streamlit run reports/streamlit_app.py
+
+# ── ML Research ──────────────────────────────────────────────────────────
+
+.PHONY: fetch-resolved
+fetch-resolved:  ## Download resolved markets from Gamma → SQLite
+	$(call log,Fetching resolved markets)
+	$(PYTHON) scripts/fetch_resolved.py
+	@printf "$(GREEN)✔ resolved markets fetched$(RESET)\n"
+
+.PHONY: ml-train
+ml-train:  ## Single training run → save artifact
+	$(call log,Training ML forecaster)
+	$(PYTHON) scripts/ml_train.py
+	@printf "$(GREEN)✔ training complete$(RESET)\n"
+
+.PHONY: ml-research
+ml-research:  ## Start the autoresearch experiment loop
+	$(call log,Starting autoresearch loop)
+	$(PYTHON) scripts/ml_research.py
+	@printf "$(GREEN)✔ autoresearch complete$(RESET)\n"
+
+.PHONY: ml-status
+ml-status:  ## Print latest ML artifact metadata + Brier score
+	@$(PYTHON) scripts/ml_status.py
 
 # ── Maintenance ───────────────────────────────────────────────────────────────
 

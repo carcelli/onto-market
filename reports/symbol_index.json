@@ -1,0 +1,4281 @@
+[
+  {
+    "name": "should_skip",
+    "kind": "function",
+    "module": "devtools.repo_tools._common",
+    "file": "src/devtools/repo_tools/_common.py",
+    "line": 31,
+    "bases": []
+  },
+  {
+    "name": "find_python_files",
+    "kind": "function",
+    "module": "devtools.repo_tools._common",
+    "file": "src/devtools/repo_tools/_common.py",
+    "line": 35,
+    "bases": []
+  },
+  {
+    "name": "module_name",
+    "kind": "function",
+    "module": "devtools.repo_tools._common",
+    "file": "src/devtools/repo_tools/_common.py",
+    "line": 44,
+    "bases": []
+  },
+  {
+    "name": "parse_imports",
+    "kind": "function",
+    "module": "devtools.repo_tools._common",
+    "file": "src/devtools/repo_tools/_common.py",
+    "line": 54,
+    "bases": []
+  },
+  {
+    "name": "is_internal",
+    "kind": "function",
+    "module": "devtools.repo_tools._common",
+    "file": "src/devtools/repo_tools/_common.py",
+    "line": 74,
+    "bases": []
+  },
+  {
+    "name": "normalize_internal_target",
+    "kind": "function",
+    "module": "devtools.repo_tools._common",
+    "file": "src/devtools/repo_tools/_common.py",
+    "line": 85,
+    "bases": []
+  },
+  {
+    "name": "load_import_graph_json",
+    "kind": "function",
+    "module": "devtools.repo_tools._common",
+    "file": "src/devtools/repo_tools/_common.py",
+    "line": 97,
+    "bases": []
+  },
+  {
+    "name": "Violation",
+    "kind": "dataclass",
+    "module": "devtools.repo_tools.architecture_drift",
+    "file": "src/devtools/repo_tools/architecture_drift.py",
+    "line": 68,
+    "bases": []
+  },
+  {
+    "name": "find_violations",
+    "kind": "function",
+    "module": "devtools.repo_tools.architecture_drift",
+    "file": "src/devtools/repo_tools/architecture_drift.py",
+    "line": 76,
+    "bases": []
+  },
+  {
+    "name": "write_json",
+    "kind": "function",
+    "module": "devtools.repo_tools.architecture_drift",
+    "file": "src/devtools/repo_tools/architecture_drift.py",
+    "line": 104,
+    "bases": []
+  },
+  {
+    "name": "write_md",
+    "kind": "function",
+    "module": "devtools.repo_tools.architecture_drift",
+    "file": "src/devtools/repo_tools/architecture_drift.py",
+    "line": 120,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "devtools.repo_tools.architecture_drift",
+    "file": "src/devtools/repo_tools/architecture_drift.py",
+    "line": 167,
+    "bases": []
+  },
+  {
+    "name": "domain_of",
+    "kind": "function",
+    "module": "devtools.repo_tools.boundary_matrix",
+    "file": "src/devtools/repo_tools/boundary_matrix.py",
+    "line": 37,
+    "bases": []
+  },
+  {
+    "name": "build_matrix",
+    "kind": "function",
+    "module": "devtools.repo_tools.boundary_matrix",
+    "file": "src/devtools/repo_tools/boundary_matrix.py",
+    "line": 45,
+    "bases": []
+  },
+  {
+    "name": "write_json",
+    "kind": "function",
+    "module": "devtools.repo_tools.boundary_matrix",
+    "file": "src/devtools/repo_tools/boundary_matrix.py",
+    "line": 62,
+    "bases": []
+  },
+  {
+    "name": "write_md",
+    "kind": "function",
+    "module": "devtools.repo_tools.boundary_matrix",
+    "file": "src/devtools/repo_tools/boundary_matrix.py",
+    "line": 72,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "devtools.repo_tools.boundary_matrix",
+    "file": "src/devtools/repo_tools/boundary_matrix.py",
+    "line": 90,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "devtools.repo_tools.cartography",
+    "file": "src/devtools/repo_tools/cartography.py",
+    "line": 58,
+    "bases": []
+  },
+  {
+    "name": "run",
+    "kind": "function",
+    "module": "devtools.repo_tools.census",
+    "file": "src/devtools/repo_tools/census.py",
+    "line": 71,
+    "bases": []
+  },
+  {
+    "name": "write_outputs",
+    "kind": "function",
+    "module": "devtools.repo_tools.census",
+    "file": "src/devtools/repo_tools/census.py",
+    "line": 120,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "devtools.repo_tools.census",
+    "file": "src/devtools/repo_tools/census.py",
+    "line": 168,
+    "bases": []
+  },
+  {
+    "name": "ConfigRef",
+    "kind": "dataclass",
+    "module": "devtools.repo_tools.config_surface",
+    "file": "src/devtools/repo_tools/config_surface.py",
+    "line": 32,
+    "bases": []
+  },
+  {
+    "name": "extract_config_refs",
+    "kind": "function",
+    "module": "devtools.repo_tools.config_surface",
+    "file": "src/devtools/repo_tools/config_surface.py",
+    "line": 62,
+    "bases": []
+  },
+  {
+    "name": "run",
+    "kind": "function",
+    "module": "devtools.repo_tools.config_surface",
+    "file": "src/devtools/repo_tools/config_surface.py",
+    "line": 125,
+    "bases": []
+  },
+  {
+    "name": "write_json",
+    "kind": "function",
+    "module": "devtools.repo_tools.config_surface",
+    "file": "src/devtools/repo_tools/config_surface.py",
+    "line": 141,
+    "bases": []
+  },
+  {
+    "name": "write_md",
+    "kind": "function",
+    "module": "devtools.repo_tools.config_surface",
+    "file": "src/devtools/repo_tools/config_surface.py",
+    "line": 147,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "devtools.repo_tools.config_surface",
+    "file": "src/devtools/repo_tools/config_surface.py",
+    "line": 182,
+    "bases": []
+  },
+  {
+    "name": "strongconnect",
+    "kind": "function",
+    "module": "devtools.repo_tools.cycle_detector",
+    "file": "src/devtools/repo_tools/cycle_detector.py",
+    "line": 28,
+    "bases": []
+  },
+  {
+    "name": "build_adj",
+    "kind": "function",
+    "module": "devtools.repo_tools.cycle_detector",
+    "file": "src/devtools/repo_tools/cycle_detector.py",
+    "line": 74,
+    "bases": []
+  },
+  {
+    "name": "find_cycles",
+    "kind": "function",
+    "module": "devtools.repo_tools.cycle_detector",
+    "file": "src/devtools/repo_tools/cycle_detector.py",
+    "line": 81,
+    "bases": []
+  },
+  {
+    "name": "write_json",
+    "kind": "function",
+    "module": "devtools.repo_tools.cycle_detector",
+    "file": "src/devtools/repo_tools/cycle_detector.py",
+    "line": 98,
+    "bases": []
+  },
+  {
+    "name": "write_md",
+    "kind": "function",
+    "module": "devtools.repo_tools.cycle_detector",
+    "file": "src/devtools/repo_tools/cycle_detector.py",
+    "line": 104,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "devtools.repo_tools.cycle_detector",
+    "file": "src/devtools/repo_tools/cycle_detector.py",
+    "line": 137,
+    "bases": []
+  },
+  {
+    "name": "DeadFile",
+    "kind": "dataclass",
+    "module": "devtools.repo_tools.dead_weight",
+    "file": "src/devtools/repo_tools/dead_weight.py",
+    "line": 52,
+    "bases": []
+  },
+  {
+    "name": "run",
+    "kind": "function",
+    "module": "devtools.repo_tools.dead_weight",
+    "file": "src/devtools/repo_tools/dead_weight.py",
+    "line": 111,
+    "bases": []
+  },
+  {
+    "name": "write_json",
+    "kind": "function",
+    "module": "devtools.repo_tools.dead_weight",
+    "file": "src/devtools/repo_tools/dead_weight.py",
+    "line": 141,
+    "bases": []
+  },
+  {
+    "name": "write_md",
+    "kind": "function",
+    "module": "devtools.repo_tools.dead_weight",
+    "file": "src/devtools/repo_tools/dead_weight.py",
+    "line": 151,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "devtools.repo_tools.dead_weight",
+    "file": "src/devtools/repo_tools/dead_weight.py",
+    "line": 193,
+    "bases": []
+  },
+  {
+    "name": "Entrypoint",
+    "kind": "dataclass",
+    "module": "devtools.repo_tools.entrypoint_map",
+    "file": "src/devtools/repo_tools/entrypoint_map.py",
+    "line": 29,
+    "bases": []
+  },
+  {
+    "name": "run",
+    "kind": "function",
+    "module": "devtools.repo_tools.entrypoint_map",
+    "file": "src/devtools/repo_tools/entrypoint_map.py",
+    "line": 150,
+    "bases": []
+  },
+  {
+    "name": "write_json",
+    "kind": "function",
+    "module": "devtools.repo_tools.entrypoint_map",
+    "file": "src/devtools/repo_tools/entrypoint_map.py",
+    "line": 182,
+    "bases": []
+  },
+  {
+    "name": "write_md",
+    "kind": "function",
+    "module": "devtools.repo_tools.entrypoint_map",
+    "file": "src/devtools/repo_tools/entrypoint_map.py",
+    "line": 198,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "devtools.repo_tools.entrypoint_map",
+    "file": "src/devtools/repo_tools/entrypoint_map.py",
+    "line": 213,
+    "bases": []
+  },
+  {
+    "name": "build_graph",
+    "kind": "function",
+    "module": "devtools.repo_tools.import_graph",
+    "file": "src/devtools/repo_tools/import_graph.py",
+    "line": 25,
+    "bases": []
+  },
+  {
+    "name": "write_json",
+    "kind": "function",
+    "module": "devtools.repo_tools.import_graph",
+    "file": "src/devtools/repo_tools/import_graph.py",
+    "line": 43,
+    "bases": []
+  },
+  {
+    "name": "write_mermaid",
+    "kind": "function",
+    "module": "devtools.repo_tools.import_graph",
+    "file": "src/devtools/repo_tools/import_graph.py",
+    "line": 56,
+    "bases": []
+  },
+  {
+    "name": "write_dot",
+    "kind": "function",
+    "module": "devtools.repo_tools.import_graph",
+    "file": "src/devtools/repo_tools/import_graph.py",
+    "line": 69,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "devtools.repo_tools.import_graph",
+    "file": "src/devtools/repo_tools/import_graph.py",
+    "line": 83,
+    "bases": []
+  },
+  {
+    "name": "Symbol",
+    "kind": "dataclass",
+    "module": "devtools.repo_tools.symbol_index",
+    "file": "src/devtools/repo_tools/symbol_index.py",
+    "line": 18,
+    "bases": []
+  },
+  {
+    "name": "extract_symbols",
+    "kind": "function",
+    "module": "devtools.repo_tools.symbol_index",
+    "file": "src/devtools/repo_tools/symbol_index.py",
+    "line": 54,
+    "bases": []
+  },
+  {
+    "name": "run",
+    "kind": "function",
+    "module": "devtools.repo_tools.symbol_index",
+    "file": "src/devtools/repo_tools/symbol_index.py",
+    "line": 113,
+    "bases": []
+  },
+  {
+    "name": "write_json",
+    "kind": "function",
+    "module": "devtools.repo_tools.symbol_index",
+    "file": "src/devtools/repo_tools/symbol_index.py",
+    "line": 120,
+    "bases": []
+  },
+  {
+    "name": "write_md",
+    "kind": "function",
+    "module": "devtools.repo_tools.symbol_index",
+    "file": "src/devtools/repo_tools/symbol_index.py",
+    "line": 137,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "devtools.repo_tools.symbol_index",
+    "file": "src/devtools/repo_tools/symbol_index.py",
+    "line": 155,
+    "bases": []
+  },
+  {
+    "name": "run",
+    "kind": "function",
+    "module": "devtools.repo_tools.symbol_xref",
+    "file": "src/devtools/repo_tools/symbol_xref.py",
+    "line": 71,
+    "bases": []
+  },
+  {
+    "name": "write_json",
+    "kind": "function",
+    "module": "devtools.repo_tools.symbol_xref",
+    "file": "src/devtools/repo_tools/symbol_xref.py",
+    "line": 112,
+    "bases": []
+  },
+  {
+    "name": "write_md",
+    "kind": "function",
+    "module": "devtools.repo_tools.symbol_xref",
+    "file": "src/devtools/repo_tools/symbol_xref.py",
+    "line": 118,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "devtools.repo_tools.symbol_xref",
+    "file": "src/devtools/repo_tools/symbol_xref.py",
+    "line": 144,
+    "bases": []
+  },
+  {
+    "name": "build_map",
+    "kind": "function",
+    "module": "devtools.repo_tools.test_map",
+    "file": "src/devtools/repo_tools/test_map.py",
+    "line": 63,
+    "bases": []
+  },
+  {
+    "name": "write_json",
+    "kind": "function",
+    "module": "devtools.repo_tools.test_map",
+    "file": "src/devtools/repo_tools/test_map.py",
+    "line": 102,
+    "bases": []
+  },
+  {
+    "name": "write_md",
+    "kind": "function",
+    "module": "devtools.repo_tools.test_map",
+    "file": "src/devtools/repo_tools/test_map.py",
+    "line": 112,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "devtools.repo_tools.test_map",
+    "file": "src/devtools/repo_tools/test_map.py",
+    "line": 152,
+    "bases": []
+  },
+  {
+    "name": "memory_node",
+    "kind": "function",
+    "module": "onto_market.agents.memory_agent",
+    "file": "src/onto_market/agents/memory_agent.py",
+    "line": 28,
+    "bases": []
+  },
+  {
+    "name": "enrichment_node",
+    "kind": "function",
+    "module": "onto_market.agents.memory_agent",
+    "file": "src/onto_market/agents/memory_agent.py",
+    "line": 35,
+    "bases": []
+  },
+  {
+    "name": "reasoning_node",
+    "kind": "function",
+    "module": "onto_market.agents.memory_agent",
+    "file": "src/onto_market/agents/memory_agent.py",
+    "line": 63,
+    "bases": []
+  },
+  {
+    "name": "decide_node",
+    "kind": "function",
+    "module": "onto_market.agents.memory_agent",
+    "file": "src/onto_market/agents/memory_agent.py",
+    "line": 83,
+    "bases": []
+  },
+  {
+    "name": "create_memory_agent",
+    "kind": "function",
+    "module": "onto_market.agents.memory_agent",
+    "file": "src/onto_market/agents/memory_agent.py",
+    "line": 106,
+    "bases": []
+  },
+  {
+    "name": "ontology_node",
+    "kind": "function",
+    "module": "onto_market.agents.ontology_agent",
+    "file": "src/onto_market/agents/ontology_agent.py",
+    "line": 77,
+    "bases": []
+  },
+  {
+    "name": "research_node",
+    "kind": "function",
+    "module": "onto_market.agents.planning_agent",
+    "file": "src/onto_market/agents/planning_agent.py",
+    "line": 94,
+    "bases": []
+  },
+  {
+    "name": "stats_node",
+    "kind": "function",
+    "module": "onto_market.agents.planning_agent",
+    "file": "src/onto_market/agents/planning_agent.py",
+    "line": 134,
+    "bases": []
+  },
+  {
+    "name": "probability_node",
+    "kind": "function",
+    "module": "onto_market.agents.planning_agent",
+    "file": "src/onto_market/agents/planning_agent.py",
+    "line": 169,
+    "bases": []
+  },
+  {
+    "name": "swarm_node",
+    "kind": "function",
+    "module": "onto_market.agents.planning_agent",
+    "file": "src/onto_market/agents/planning_agent.py",
+    "line": 220,
+    "bases": []
+  },
+  {
+    "name": "decision_node",
+    "kind": "function",
+    "module": "onto_market.agents.planning_agent",
+    "file": "src/onto_market/agents/planning_agent.py",
+    "line": 256,
+    "bases": []
+  },
+  {
+    "name": "trade_node",
+    "kind": "function",
+    "module": "onto_market.agents.planning_agent",
+    "file": "src/onto_market/agents/planning_agent.py",
+    "line": 317,
+    "bases": []
+  },
+  {
+    "name": "create_planning_agent",
+    "kind": "function",
+    "module": "onto_market.agents.planning_agent",
+    "file": "src/onto_market/agents/planning_agent.py",
+    "line": 376,
+    "bases": []
+  },
+  {
+    "name": "AgentState",
+    "kind": "class",
+    "module": "onto_market.agents.state",
+    "file": "src/onto_market/agents/state.py",
+    "line": 8,
+    "bases": [
+      "TypedDict"
+    ]
+  },
+  {
+    "name": "MemoryAgentState",
+    "kind": "class",
+    "module": "onto_market.agents.state",
+    "file": "src/onto_market/agents/state.py",
+    "line": 16,
+    "bases": [
+      "TypedDict"
+    ]
+  },
+  {
+    "name": "PlanningState",
+    "kind": "class",
+    "module": "onto_market.agents.state",
+    "file": "src/onto_market/agents/state.py",
+    "line": 26,
+    "bases": [
+      "TypedDict"
+    ]
+  },
+  {
+    "name": "Config",
+    "kind": "class",
+    "module": "onto_market.config.config",
+    "file": "src/onto_market/config/config.py",
+    "line": 7,
+    "bases": []
+  },
+  {
+    "name": "GammaConnector",
+    "kind": "class",
+    "module": "onto_market.connectors.gamma",
+    "file": "src/onto_market/connectors/gamma.py",
+    "line": 28,
+    "bases": []
+  },
+  {
+    "name": "GammaConnector.__init__",
+    "kind": "method",
+    "module": "onto_market.connectors.gamma",
+    "file": "src/onto_market/connectors/gamma.py",
+    "line": 29,
+    "bases": []
+  },
+  {
+    "name": "GammaConnector.get_markets",
+    "kind": "method",
+    "module": "onto_market.connectors.gamma",
+    "file": "src/onto_market/connectors/gamma.py",
+    "line": 33,
+    "bases": []
+  },
+  {
+    "name": "get_markets",
+    "kind": "function",
+    "module": "onto_market.connectors.gamma",
+    "file": "src/onto_market/connectors/gamma.py",
+    "line": 33,
+    "bases": []
+  },
+  {
+    "name": "GammaConnector.get_market_by_id",
+    "kind": "method",
+    "module": "onto_market.connectors.gamma",
+    "file": "src/onto_market/connectors/gamma.py",
+    "line": 61,
+    "bases": []
+  },
+  {
+    "name": "get_market_by_id",
+    "kind": "function",
+    "module": "onto_market.connectors.gamma",
+    "file": "src/onto_market/connectors/gamma.py",
+    "line": 61,
+    "bases": []
+  },
+  {
+    "name": "GammaConnector.iter_markets",
+    "kind": "method",
+    "module": "onto_market.connectors.gamma",
+    "file": "src/onto_market/connectors/gamma.py",
+    "line": 79,
+    "bases": []
+  },
+  {
+    "name": "iter_markets",
+    "kind": "function",
+    "module": "onto_market.connectors.gamma",
+    "file": "src/onto_market/connectors/gamma.py",
+    "line": 79,
+    "bases": []
+  },
+  {
+    "name": "GammaConnector.search_markets",
+    "kind": "method",
+    "module": "onto_market.connectors.gamma",
+    "file": "src/onto_market/connectors/gamma.py",
+    "line": 110,
+    "bases": []
+  },
+  {
+    "name": "search_markets",
+    "kind": "function",
+    "module": "onto_market.connectors.gamma",
+    "file": "src/onto_market/connectors/gamma.py",
+    "line": 110,
+    "bases": []
+  },
+  {
+    "name": "GammaConnector.close",
+    "kind": "method",
+    "module": "onto_market.connectors.gamma",
+    "file": "src/onto_market/connectors/gamma.py",
+    "line": 129,
+    "bases": []
+  },
+  {
+    "name": "close",
+    "kind": "function",
+    "module": "onto_market.connectors.gamma",
+    "file": "src/onto_market/connectors/gamma.py",
+    "line": 129,
+    "bases": []
+  },
+  {
+    "name": "NewsConnector",
+    "kind": "class",
+    "module": "onto_market.connectors.news",
+    "file": "src/onto_market/connectors/news.py",
+    "line": 10,
+    "bases": []
+  },
+  {
+    "name": "NewsConnector.__init__",
+    "kind": "method",
+    "module": "onto_market.connectors.news",
+    "file": "src/onto_market/connectors/news.py",
+    "line": 11,
+    "bases": []
+  },
+  {
+    "name": "NewsConnector.get_headlines",
+    "kind": "method",
+    "module": "onto_market.connectors.news",
+    "file": "src/onto_market/connectors/news.py",
+    "line": 15,
+    "bases": []
+  },
+  {
+    "name": "get_headlines",
+    "kind": "function",
+    "module": "onto_market.connectors.news",
+    "file": "src/onto_market/connectors/news.py",
+    "line": 15,
+    "bases": []
+  },
+  {
+    "name": "NewsConnector.headlines_text",
+    "kind": "method",
+    "module": "onto_market.connectors.news",
+    "file": "src/onto_market/connectors/news.py",
+    "line": 29,
+    "bases": []
+  },
+  {
+    "name": "headlines_text",
+    "kind": "function",
+    "module": "onto_market.connectors.news",
+    "file": "src/onto_market/connectors/news.py",
+    "line": 29,
+    "bases": []
+  },
+  {
+    "name": "PolymarketConnector",
+    "kind": "class",
+    "module": "onto_market.connectors.polymarket",
+    "file": "src/onto_market/connectors/polymarket.py",
+    "line": 66,
+    "bases": []
+  },
+  {
+    "name": "PolymarketConnector.__init__",
+    "kind": "method",
+    "module": "onto_market.connectors.polymarket",
+    "file": "src/onto_market/connectors/polymarket.py",
+    "line": 74,
+    "bases": []
+  },
+  {
+    "name": "PolymarketConnector.wallet_address",
+    "kind": "method",
+    "module": "onto_market.connectors.polymarket",
+    "file": "src/onto_market/connectors/polymarket.py",
+    "line": 181,
+    "bases": []
+  },
+  {
+    "name": "wallet_address",
+    "kind": "function",
+    "module": "onto_market.connectors.polymarket",
+    "file": "src/onto_market/connectors/polymarket.py",
+    "line": 181,
+    "bases": []
+  },
+  {
+    "name": "PolymarketConnector.get_market",
+    "kind": "method",
+    "module": "onto_market.connectors.polymarket",
+    "file": "src/onto_market/connectors/polymarket.py",
+    "line": 187,
+    "bases": []
+  },
+  {
+    "name": "get_market",
+    "kind": "function",
+    "module": "onto_market.connectors.polymarket",
+    "file": "src/onto_market/connectors/polymarket.py",
+    "line": 187,
+    "bases": []
+  },
+  {
+    "name": "PolymarketConnector.get_events",
+    "kind": "method",
+    "module": "onto_market.connectors.polymarket",
+    "file": "src/onto_market/connectors/polymarket.py",
+    "line": 197,
+    "bases": []
+  },
+  {
+    "name": "get_events",
+    "kind": "function",
+    "module": "onto_market.connectors.polymarket",
+    "file": "src/onto_market/connectors/polymarket.py",
+    "line": 197,
+    "bases": []
+  },
+  {
+    "name": "PolymarketConnector.get_tradeable_events",
+    "kind": "method",
+    "module": "onto_market.connectors.polymarket",
+    "file": "src/onto_market/connectors/polymarket.py",
+    "line": 211,
+    "bases": []
+  },
+  {
+    "name": "get_tradeable_events",
+    "kind": "function",
+    "module": "onto_market.connectors.polymarket",
+    "file": "src/onto_market/connectors/polymarket.py",
+    "line": 211,
+    "bases": []
+  },
+  {
+    "name": "PolymarketConnector.get_orderbook",
+    "kind": "method",
+    "module": "onto_market.connectors.polymarket",
+    "file": "src/onto_market/connectors/polymarket.py",
+    "line": 217,
+    "bases": []
+  },
+  {
+    "name": "get_orderbook",
+    "kind": "function",
+    "module": "onto_market.connectors.polymarket",
+    "file": "src/onto_market/connectors/polymarket.py",
+    "line": 217,
+    "bases": []
+  },
+  {
+    "name": "PolymarketConnector.get_orderbook_price",
+    "kind": "method",
+    "module": "onto_market.connectors.polymarket",
+    "file": "src/onto_market/connectors/polymarket.py",
+    "line": 228,
+    "bases": []
+  },
+  {
+    "name": "get_orderbook_price",
+    "kind": "function",
+    "module": "onto_market.connectors.polymarket",
+    "file": "src/onto_market/connectors/polymarket.py",
+    "line": 228,
+    "bases": []
+  },
+  {
+    "name": "PolymarketConnector.get_usdc_balance",
+    "kind": "method",
+    "module": "onto_market.connectors.polymarket",
+    "file": "src/onto_market/connectors/polymarket.py",
+    "line": 233,
+    "bases": []
+  },
+  {
+    "name": "get_usdc_balance",
+    "kind": "function",
+    "module": "onto_market.connectors.polymarket",
+    "file": "src/onto_market/connectors/polymarket.py",
+    "line": 233,
+    "bases": []
+  },
+  {
+    "name": "PolymarketConnector.build_order",
+    "kind": "method",
+    "module": "onto_market.connectors.polymarket",
+    "file": "src/onto_market/connectors/polymarket.py",
+    "line": 241,
+    "bases": []
+  },
+  {
+    "name": "build_order",
+    "kind": "function",
+    "module": "onto_market.connectors.polymarket",
+    "file": "src/onto_market/connectors/polymarket.py",
+    "line": 241,
+    "bases": []
+  },
+  {
+    "name": "PolymarketConnector.execute_market_order",
+    "kind": "method",
+    "module": "onto_market.connectors.polymarket",
+    "file": "src/onto_market/connectors/polymarket.py",
+    "line": 277,
+    "bases": []
+  },
+  {
+    "name": "execute_market_order",
+    "kind": "function",
+    "module": "onto_market.connectors.polymarket",
+    "file": "src/onto_market/connectors/polymarket.py",
+    "line": 277,
+    "bases": []
+  },
+  {
+    "name": "SearchConnector",
+    "kind": "class",
+    "module": "onto_market.connectors.search",
+    "file": "src/onto_market/connectors/search.py",
+    "line": 10,
+    "bases": []
+  },
+  {
+    "name": "SearchConnector.__init__",
+    "kind": "method",
+    "module": "onto_market.connectors.search",
+    "file": "src/onto_market/connectors/search.py",
+    "line": 11,
+    "bases": []
+  },
+  {
+    "name": "SearchConnector.search",
+    "kind": "method",
+    "module": "onto_market.connectors.search",
+    "file": "src/onto_market/connectors/search.py",
+    "line": 24,
+    "bases": []
+  },
+  {
+    "name": "search",
+    "kind": "function",
+    "module": "onto_market.connectors.search",
+    "file": "src/onto_market/connectors/search.py",
+    "line": 24,
+    "bases": []
+  },
+  {
+    "name": "SearchConnector.search_text",
+    "kind": "method",
+    "module": "onto_market.connectors.search",
+    "file": "src/onto_market/connectors/search.py",
+    "line": 29,
+    "bases": []
+  },
+  {
+    "name": "search_text",
+    "kind": "function",
+    "module": "onto_market.connectors.search",
+    "file": "src/onto_market/connectors/search.py",
+    "line": 29,
+    "bases": []
+  },
+  {
+    "name": "AppContext",
+    "kind": "dataclass",
+    "module": "onto_market.context",
+    "file": "src/onto_market/context.py",
+    "line": 21,
+    "bases": []
+  },
+  {
+    "name": "AppContext.get_memory_manager",
+    "kind": "method",
+    "module": "onto_market.context",
+    "file": "src/onto_market/context.py",
+    "line": 38,
+    "bases": []
+  },
+  {
+    "name": "get_memory_manager",
+    "kind": "function",
+    "module": "onto_market.context",
+    "file": "src/onto_market/context.py",
+    "line": 38,
+    "bases": []
+  },
+  {
+    "name": "AppContext.get_gamma",
+    "kind": "method",
+    "module": "onto_market.context",
+    "file": "src/onto_market/context.py",
+    "line": 44,
+    "bases": []
+  },
+  {
+    "name": "get_gamma",
+    "kind": "function",
+    "module": "onto_market.context",
+    "file": "src/onto_market/context.py",
+    "line": 44,
+    "bases": []
+  },
+  {
+    "name": "AppContext.get_polymarket",
+    "kind": "method",
+    "module": "onto_market.context",
+    "file": "src/onto_market/context.py",
+    "line": 50,
+    "bases": []
+  },
+  {
+    "name": "get_polymarket",
+    "kind": "function",
+    "module": "onto_market.context",
+    "file": "src/onto_market/context.py",
+    "line": 50,
+    "bases": []
+  },
+  {
+    "name": "AppContext.get_llm",
+    "kind": "method",
+    "module": "onto_market.context",
+    "file": "src/onto_market/context.py",
+    "line": 56,
+    "bases": []
+  },
+  {
+    "name": "get_llm",
+    "kind": "function",
+    "module": "onto_market.context",
+    "file": "src/onto_market/context.py",
+    "line": 56,
+    "bases": []
+  },
+  {
+    "name": "AppContext.reset",
+    "kind": "method",
+    "module": "onto_market.context",
+    "file": "src/onto_market/context.py",
+    "line": 62,
+    "bases": []
+  },
+  {
+    "name": "reset",
+    "kind": "function",
+    "module": "onto_market.context",
+    "file": "src/onto_market/context.py",
+    "line": 62,
+    "bases": []
+  },
+  {
+    "name": "get_context",
+    "kind": "function",
+    "module": "onto_market.context",
+    "file": "src/onto_market/context.py",
+    "line": 72,
+    "bases": []
+  },
+  {
+    "name": "set_context",
+    "kind": "function",
+    "module": "onto_market.context",
+    "file": "src/onto_market/context.py",
+    "line": 79,
+    "bases": []
+  },
+  {
+    "name": "reset_context",
+    "kind": "function",
+    "module": "onto_market.context",
+    "file": "src/onto_market/context.py",
+    "line": 84,
+    "bases": []
+  },
+  {
+    "name": "AgentProtocol",
+    "kind": "class",
+    "module": "onto_market.core.agent_base",
+    "file": "src/onto_market/core/agent_base.py",
+    "line": 11,
+    "bases": [
+      "Protocol"
+    ]
+  },
+  {
+    "name": "AgentProtocol.compile",
+    "kind": "method",
+    "module": "onto_market.core.agent_base",
+    "file": "src/onto_market/core/agent_base.py",
+    "line": 14,
+    "bases": []
+  },
+  {
+    "name": "compile",
+    "kind": "function",
+    "module": "onto_market.core.agent_base",
+    "file": "src/onto_market/core/agent_base.py",
+    "line": 14,
+    "bases": []
+  },
+  {
+    "name": "AgentProtocol.invoke",
+    "kind": "method",
+    "module": "onto_market.core.agent_base",
+    "file": "src/onto_market/core/agent_base.py",
+    "line": 17,
+    "bases": []
+  },
+  {
+    "name": "invoke",
+    "kind": "function",
+    "module": "onto_market.core.agent_base",
+    "file": "src/onto_market/core/agent_base.py",
+    "line": 17,
+    "bases": []
+  },
+  {
+    "name": "BaseAgent",
+    "kind": "class",
+    "module": "onto_market.core.agent_base",
+    "file": "src/onto_market/core/agent_base.py",
+    "line": 21,
+    "bases": [
+      "ABC"
+    ]
+  },
+  {
+    "name": "BaseAgent.__init__",
+    "kind": "method",
+    "module": "onto_market.core.agent_base",
+    "file": "src/onto_market/core/agent_base.py",
+    "line": 24,
+    "bases": []
+  },
+  {
+    "name": "BaseAgent.build_graph",
+    "kind": "method",
+    "module": "onto_market.core.agent_base",
+    "file": "src/onto_market/core/agent_base.py",
+    "line": 29,
+    "bases": []
+  },
+  {
+    "name": "build_graph",
+    "kind": "function",
+    "module": "onto_market.core.agent_base",
+    "file": "src/onto_market/core/agent_base.py",
+    "line": 29,
+    "bases": []
+  },
+  {
+    "name": "BaseAgent.compile",
+    "kind": "method",
+    "module": "onto_market.core.agent_base",
+    "file": "src/onto_market/core/agent_base.py",
+    "line": 33,
+    "bases": []
+  },
+  {
+    "name": "compile",
+    "kind": "function",
+    "module": "onto_market.core.agent_base",
+    "file": "src/onto_market/core/agent_base.py",
+    "line": 33,
+    "bases": []
+  },
+  {
+    "name": "register_graph",
+    "kind": "function",
+    "module": "onto_market.core.graph",
+    "file": "src/onto_market/core/graph.py",
+    "line": 9,
+    "bases": []
+  },
+  {
+    "name": "decorator",
+    "kind": "function",
+    "module": "onto_market.core.graph",
+    "file": "src/onto_market/core/graph.py",
+    "line": 11,
+    "bases": []
+  },
+  {
+    "name": "get_graph",
+    "kind": "function",
+    "module": "onto_market.core.graph",
+    "file": "src/onto_market/core/graph.py",
+    "line": 17,
+    "bases": []
+  },
+  {
+    "name": "list_graphs",
+    "kind": "function",
+    "module": "onto_market.core.graph",
+    "file": "src/onto_market/core/graph.py",
+    "line": 24,
+    "bases": []
+  },
+  {
+    "name": "get_xai_client",
+    "kind": "function",
+    "module": "onto_market.core.llm_router",
+    "file": "src/onto_market/core/llm_router.py",
+    "line": 34,
+    "bases": []
+  },
+  {
+    "name": "llm_completion",
+    "kind": "function",
+    "module": "onto_market.core.llm_router",
+    "file": "src/onto_market/core/llm_router.py",
+    "line": 56,
+    "bases": []
+  },
+  {
+    "name": "llm_json",
+    "kind": "function",
+    "module": "onto_market.core.llm_router",
+    "file": "src/onto_market/core/llm_router.py",
+    "line": 98,
+    "bases": []
+  },
+  {
+    "name": "AgentState",
+    "kind": "class",
+    "module": "onto_market.core.state",
+    "file": "src/onto_market/core/state.py",
+    "line": 8,
+    "bases": [
+      "TypedDict"
+    ]
+  },
+  {
+    "name": "should_skip",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools._common",
+    "file": "src/onto_market/devtools/repo_tools/_common.py",
+    "line": 35,
+    "bases": []
+  },
+  {
+    "name": "find_python_files",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools._common",
+    "file": "src/onto_market/devtools/repo_tools/_common.py",
+    "line": 39,
+    "bases": []
+  },
+  {
+    "name": "module_name",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools._common",
+    "file": "src/onto_market/devtools/repo_tools/_common.py",
+    "line": 49,
+    "bases": []
+  },
+  {
+    "name": "parse_imports",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools._common",
+    "file": "src/onto_market/devtools/repo_tools/_common.py",
+    "line": 66,
+    "bases": []
+  },
+  {
+    "name": "resolve_repo_root",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools._paths",
+    "file": "src/onto_market/devtools/repo_tools/_paths.py",
+    "line": 16,
+    "bases": []
+  },
+  {
+    "name": "resolve_output_path",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools._paths",
+    "file": "src/onto_market/devtools/repo_tools/_paths.py",
+    "line": 30,
+    "bases": []
+  },
+  {
+    "name": "Violation",
+    "kind": "class",
+    "module": "onto_market.devtools.repo_tools.architecture_drift",
+    "file": "src/onto_market/devtools/repo_tools/architecture_drift.py",
+    "line": 108,
+    "bases": []
+  },
+  {
+    "name": "ArchitectureDriftSnapshot",
+    "kind": "dataclass",
+    "module": "onto_market.devtools.repo_tools.architecture_drift",
+    "file": "src/onto_market/devtools/repo_tools/architecture_drift.py",
+    "line": 117,
+    "bases": []
+  },
+  {
+    "name": "analyze_from_graph",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.architecture_drift",
+    "file": "src/onto_market/devtools/repo_tools/architecture_drift.py",
+    "line": 127,
+    "bases": []
+  },
+  {
+    "name": "analyze",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.architecture_drift",
+    "file": "src/onto_market/devtools/repo_tools/architecture_drift.py",
+    "line": 171,
+    "bases": []
+  },
+  {
+    "name": "render_markdown",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.architecture_drift",
+    "file": "src/onto_market/devtools/repo_tools/architecture_drift.py",
+    "line": 191,
+    "bases": []
+  },
+  {
+    "name": "write_report",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.architecture_drift",
+    "file": "src/onto_market/devtools/repo_tools/architecture_drift.py",
+    "line": 226,
+    "bases": []
+  },
+  {
+    "name": "run",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.architecture_drift",
+    "file": "src/onto_market/devtools/repo_tools/architecture_drift.py",
+    "line": 260,
+    "bases": []
+  },
+  {
+    "name": "build_parser",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.architecture_drift",
+    "file": "src/onto_market/devtools/repo_tools/architecture_drift.py",
+    "line": 273,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.architecture_drift",
+    "file": "src/onto_market/devtools/repo_tools/architecture_drift.py",
+    "line": 282,
+    "bases": []
+  },
+  {
+    "name": "BoundaryMatrixSnapshot",
+    "kind": "dataclass",
+    "module": "onto_market.devtools.repo_tools.boundary_matrix",
+    "file": "src/onto_market/devtools/repo_tools/boundary_matrix.py",
+    "line": 62,
+    "bases": []
+  },
+  {
+    "name": "analyze_from_graph",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.boundary_matrix",
+    "file": "src/onto_market/devtools/repo_tools/boundary_matrix.py",
+    "line": 70,
+    "bases": []
+  },
+  {
+    "name": "analyze",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.boundary_matrix",
+    "file": "src/onto_market/devtools/repo_tools/boundary_matrix.py",
+    "line": 101,
+    "bases": []
+  },
+  {
+    "name": "render_markdown",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.boundary_matrix",
+    "file": "src/onto_market/devtools/repo_tools/boundary_matrix.py",
+    "line": 107,
+    "bases": []
+  },
+  {
+    "name": "write_report",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.boundary_matrix",
+    "file": "src/onto_market/devtools/repo_tools/boundary_matrix.py",
+    "line": 135,
+    "bases": []
+  },
+  {
+    "name": "run",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.boundary_matrix",
+    "file": "src/onto_market/devtools/repo_tools/boundary_matrix.py",
+    "line": 159,
+    "bases": []
+  },
+  {
+    "name": "build_parser",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.boundary_matrix",
+    "file": "src/onto_market/devtools/repo_tools/boundary_matrix.py",
+    "line": 167,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.boundary_matrix",
+    "file": "src/onto_market/devtools/repo_tools/boundary_matrix.py",
+    "line": 176,
+    "bases": []
+  },
+  {
+    "name": "run",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.cartography",
+    "file": "src/onto_market/devtools/repo_tools/cartography.py",
+    "line": 58,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.cartography",
+    "file": "src/onto_market/devtools/repo_tools/cartography.py",
+    "line": 105,
+    "bases": []
+  },
+  {
+    "name": "should_skip",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.census",
+    "file": "src/onto_market/devtools/repo_tools/census.py",
+    "line": 54,
+    "bases": []
+  },
+  {
+    "name": "top_level_category",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.census",
+    "file": "src/onto_market/devtools/repo_tools/census.py",
+    "line": 58,
+    "bases": []
+  },
+  {
+    "name": "build_report",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.census",
+    "file": "src/onto_market/devtools/repo_tools/census.py",
+    "line": 89,
+    "bases": []
+  },
+  {
+    "name": "render_markdown",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.census",
+    "file": "src/onto_market/devtools/repo_tools/census.py",
+    "line": 143,
+    "bases": []
+  },
+  {
+    "name": "write_report",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.census",
+    "file": "src/onto_market/devtools/repo_tools/census.py",
+    "line": 184,
+    "bases": []
+  },
+  {
+    "name": "run",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.census",
+    "file": "src/onto_market/devtools/repo_tools/census.py",
+    "line": 202,
+    "bases": []
+  },
+  {
+    "name": "build_parser",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.census",
+    "file": "src/onto_market/devtools/repo_tools/census.py",
+    "line": 210,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.census",
+    "file": "src/onto_market/devtools/repo_tools/census.py",
+    "line": 222,
+    "bases": []
+  },
+  {
+    "name": "ConfigRef",
+    "kind": "dataclass",
+    "module": "onto_market.devtools.repo_tools.config_surface",
+    "file": "src/onto_market/devtools/repo_tools/config_surface.py",
+    "line": 29,
+    "bases": []
+  },
+  {
+    "name": "run",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.config_surface",
+    "file": "src/onto_market/devtools/repo_tools/config_surface.py",
+    "line": 99,
+    "bases": []
+  },
+  {
+    "name": "write_report",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.config_surface",
+    "file": "src/onto_market/devtools/repo_tools/config_surface.py",
+    "line": 110,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.config_surface",
+    "file": "src/onto_market/devtools/repo_tools/config_surface.py",
+    "line": 151,
+    "bases": []
+  },
+  {
+    "name": "CycleSnapshot",
+    "kind": "dataclass",
+    "module": "onto_market.devtools.repo_tools.cycle_detector",
+    "file": "src/onto_market/devtools/repo_tools/cycle_detector.py",
+    "line": 31,
+    "bases": []
+  },
+  {
+    "name": "analyze_from_graph",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.cycle_detector",
+    "file": "src/onto_market/devtools/repo_tools/cycle_detector.py",
+    "line": 46,
+    "bases": []
+  },
+  {
+    "name": "analyze",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.cycle_detector",
+    "file": "src/onto_market/devtools/repo_tools/cycle_detector.py",
+    "line": 69,
+    "bases": []
+  },
+  {
+    "name": "render_markdown",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.cycle_detector",
+    "file": "src/onto_market/devtools/repo_tools/cycle_detector.py",
+    "line": 90,
+    "bases": []
+  },
+  {
+    "name": "write_report",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.cycle_detector",
+    "file": "src/onto_market/devtools/repo_tools/cycle_detector.py",
+    "line": 117,
+    "bases": []
+  },
+  {
+    "name": "run",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.cycle_detector",
+    "file": "src/onto_market/devtools/repo_tools/cycle_detector.py",
+    "line": 141,
+    "bases": []
+  },
+  {
+    "name": "build_parser",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.cycle_detector",
+    "file": "src/onto_market/devtools/repo_tools/cycle_detector.py",
+    "line": 154,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.cycle_detector",
+    "file": "src/onto_market/devtools/repo_tools/cycle_detector.py",
+    "line": 163,
+    "bases": []
+  },
+  {
+    "name": "DeadFile",
+    "kind": "dataclass",
+    "module": "onto_market.devtools.repo_tools.dead_weight",
+    "file": "src/onto_market/devtools/repo_tools/dead_weight.py",
+    "line": 40,
+    "bases": []
+  },
+  {
+    "name": "run",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.dead_weight",
+    "file": "src/onto_market/devtools/repo_tools/dead_weight.py",
+    "line": 75,
+    "bases": []
+  },
+  {
+    "name": "write_report",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.dead_weight",
+    "file": "src/onto_market/devtools/repo_tools/dead_weight.py",
+    "line": 102,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.dead_weight",
+    "file": "src/onto_market/devtools/repo_tools/dead_weight.py",
+    "line": 155,
+    "bases": []
+  },
+  {
+    "name": "Entrypoint",
+    "kind": "dataclass",
+    "module": "onto_market.devtools.repo_tools.entrypoint_map",
+    "file": "src/onto_market/devtools/repo_tools/entrypoint_map.py",
+    "line": 32,
+    "bases": []
+  },
+  {
+    "name": "run",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.entrypoint_map",
+    "file": "src/onto_market/devtools/repo_tools/entrypoint_map.py",
+    "line": 119,
+    "bases": []
+  },
+  {
+    "name": "write_report",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.entrypoint_map",
+    "file": "src/onto_market/devtools/repo_tools/entrypoint_map.py",
+    "line": 149,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.entrypoint_map",
+    "file": "src/onto_market/devtools/repo_tools/entrypoint_map.py",
+    "line": 179,
+    "bases": []
+  },
+  {
+    "name": "build_graph",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.import_graph",
+    "file": "src/onto_market/devtools/repo_tools/import_graph.py",
+    "line": 121,
+    "bases": []
+  },
+  {
+    "name": "ImportGraphSnapshot",
+    "kind": "dataclass",
+    "module": "onto_market.devtools.repo_tools.import_graph",
+    "file": "src/onto_market/devtools/repo_tools/import_graph.py",
+    "line": 156,
+    "bases": []
+  },
+  {
+    "name": "analyze",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.import_graph",
+    "file": "src/onto_market/devtools/repo_tools/import_graph.py",
+    "line": 167,
+    "bases": []
+  },
+  {
+    "name": "render_markdown",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.import_graph",
+    "file": "src/onto_market/devtools/repo_tools/import_graph.py",
+    "line": 194,
+    "bases": []
+  },
+  {
+    "name": "write_report",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.import_graph",
+    "file": "src/onto_market/devtools/repo_tools/import_graph.py",
+    "line": 227,
+    "bases": []
+  },
+  {
+    "name": "run",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.import_graph",
+    "file": "src/onto_market/devtools/repo_tools/import_graph.py",
+    "line": 254,
+    "bases": []
+  },
+  {
+    "name": "build_parser",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.import_graph",
+    "file": "src/onto_market/devtools/repo_tools/import_graph.py",
+    "line": 267,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.import_graph",
+    "file": "src/onto_market/devtools/repo_tools/import_graph.py",
+    "line": 276,
+    "bases": []
+  },
+  {
+    "name": "audit",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.ontology_audit",
+    "file": "src/onto_market/devtools/repo_tools/ontology_audit.py",
+    "line": 54,
+    "bases": []
+  },
+  {
+    "name": "build_parser",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.ontology_audit",
+    "file": "src/onto_market/devtools/repo_tools/ontology_audit.py",
+    "line": 263,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.ontology_audit",
+    "file": "src/onto_market/devtools/repo_tools/ontology_audit.py",
+    "line": 283,
+    "bases": []
+  },
+  {
+    "name": "generate",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.repo_map",
+    "file": "src/onto_market/devtools/repo_tools/repo_map.py",
+    "line": 311,
+    "bases": []
+  },
+  {
+    "name": "build_parser",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.repo_map",
+    "file": "src/onto_market/devtools/repo_tools/repo_map.py",
+    "line": 416,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.repo_map",
+    "file": "src/onto_market/devtools/repo_tools/repo_map.py",
+    "line": 424,
+    "bases": []
+  },
+  {
+    "name": "Symbol",
+    "kind": "dataclass",
+    "module": "onto_market.devtools.repo_tools.symbol_index",
+    "file": "src/onto_market/devtools/repo_tools/symbol_index.py",
+    "line": 21,
+    "bases": []
+  },
+  {
+    "name": "run",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.symbol_index",
+    "file": "src/onto_market/devtools/repo_tools/symbol_index.py",
+    "line": 97,
+    "bases": []
+  },
+  {
+    "name": "write_report",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.symbol_index",
+    "file": "src/onto_market/devtools/repo_tools/symbol_index.py",
+    "line": 105,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.symbol_index",
+    "file": "src/onto_market/devtools/repo_tools/symbol_index.py",
+    "line": 136,
+    "bases": []
+  },
+  {
+    "name": "run",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.symbol_xref",
+    "file": "src/onto_market/devtools/repo_tools/symbol_xref.py",
+    "line": 56,
+    "bases": []
+  },
+  {
+    "name": "write_report",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.symbol_xref",
+    "file": "src/onto_market/devtools/repo_tools/symbol_xref.py",
+    "line": 90,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.symbol_xref",
+    "file": "src/onto_market/devtools/repo_tools/symbol_xref.py",
+    "line": 120,
+    "bases": []
+  },
+  {
+    "name": "build_map",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.test_map",
+    "file": "src/onto_market/devtools/repo_tools/test_map.py",
+    "line": 41,
+    "bases": []
+  },
+  {
+    "name": "write_report",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.test_map",
+    "file": "src/onto_market/devtools/repo_tools/test_map.py",
+    "line": 78,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "onto_market.devtools.repo_tools.test_map",
+    "file": "src/onto_market/devtools/repo_tools/test_map.py",
+    "line": 121,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "onto_market.main",
+    "file": "src/onto_market/main.py",
+    "line": 22,
+    "bases": []
+  },
+  {
+    "name": "MemoryManager",
+    "kind": "class",
+    "module": "onto_market.memory.manager",
+    "file": "src/onto_market/memory/manager.py",
+    "line": 12,
+    "bases": []
+  },
+  {
+    "name": "MemoryManager.__init__",
+    "kind": "method",
+    "module": "onto_market.memory.manager",
+    "file": "src/onto_market/memory/manager.py",
+    "line": 13,
+    "bases": []
+  },
+  {
+    "name": "MemoryManager.upsert_market",
+    "kind": "method",
+    "module": "onto_market.memory.manager",
+    "file": "src/onto_market/memory/manager.py",
+    "line": 18,
+    "bases": []
+  },
+  {
+    "name": "upsert_market",
+    "kind": "function",
+    "module": "onto_market.memory.manager",
+    "file": "src/onto_market/memory/manager.py",
+    "line": 18,
+    "bases": []
+  },
+  {
+    "name": "MemoryManager.search_markets",
+    "kind": "method",
+    "module": "onto_market.memory.manager",
+    "file": "src/onto_market/memory/manager.py",
+    "line": 41,
+    "bases": []
+  },
+  {
+    "name": "search_markets",
+    "kind": "function",
+    "module": "onto_market.memory.manager",
+    "file": "src/onto_market/memory/manager.py",
+    "line": 41,
+    "bases": []
+  },
+  {
+    "name": "MemoryManager.store_research",
+    "kind": "method",
+    "module": "onto_market.memory.manager",
+    "file": "src/onto_market/memory/manager.py",
+    "line": 54,
+    "bases": []
+  },
+  {
+    "name": "store_research",
+    "kind": "function",
+    "module": "onto_market.memory.manager",
+    "file": "src/onto_market/memory/manager.py",
+    "line": 54,
+    "bases": []
+  },
+  {
+    "name": "MemoryManager.get_research",
+    "kind": "method",
+    "module": "onto_market.memory.manager",
+    "file": "src/onto_market/memory/manager.py",
+    "line": 60,
+    "bases": []
+  },
+  {
+    "name": "get_research",
+    "kind": "function",
+    "module": "onto_market.memory.manager",
+    "file": "src/onto_market/memory/manager.py",
+    "line": 60,
+    "bases": []
+  },
+  {
+    "name": "MemoryManager.store_analytics",
+    "kind": "method",
+    "module": "onto_market.memory.manager",
+    "file": "src/onto_market/memory/manager.py",
+    "line": 68,
+    "bases": []
+  },
+  {
+    "name": "store_analytics",
+    "kind": "function",
+    "module": "onto_market.memory.manager",
+    "file": "src/onto_market/memory/manager.py",
+    "line": 68,
+    "bases": []
+  },
+  {
+    "name": "ZepEntityReader",
+    "kind": "class",
+    "module": "onto_market.memory.zep_reader",
+    "file": "src/onto_market/memory/zep_reader.py",
+    "line": 8,
+    "bases": []
+  },
+  {
+    "name": "ZepEntityReader.__init__",
+    "kind": "method",
+    "module": "onto_market.memory.zep_reader",
+    "file": "src/onto_market/memory/zep_reader.py",
+    "line": 11,
+    "bases": []
+  },
+  {
+    "name": "ZepEntityReader.get_facts",
+    "kind": "method",
+    "module": "onto_market.memory.zep_reader",
+    "file": "src/onto_market/memory/zep_reader.py",
+    "line": 17,
+    "bases": []
+  },
+  {
+    "name": "get_facts",
+    "kind": "function",
+    "module": "onto_market.memory.zep_reader",
+    "file": "src/onto_market/memory/zep_reader.py",
+    "line": 17,
+    "bases": []
+  },
+  {
+    "name": "ZepEntityReader.store_fact",
+    "kind": "method",
+    "module": "onto_market.memory.zep_reader",
+    "file": "src/onto_market/memory/zep_reader.py",
+    "line": 24,
+    "bases": []
+  },
+  {
+    "name": "store_fact",
+    "kind": "function",
+    "module": "onto_market.memory.zep_reader",
+    "file": "src/onto_market/memory/zep_reader.py",
+    "line": 24,
+    "bases": []
+  },
+  {
+    "name": "Triple",
+    "kind": "dataclass",
+    "module": "onto_market.ontology.graph",
+    "file": "src/onto_market/ontology/graph.py",
+    "line": 39,
+    "bases": []
+  },
+  {
+    "name": "OntologyGraph",
+    "kind": "class",
+    "module": "onto_market.ontology.graph",
+    "file": "src/onto_market/ontology/graph.py",
+    "line": 53,
+    "bases": []
+  },
+  {
+    "name": "OntologyGraph.__init__",
+    "kind": "method",
+    "module": "onto_market.ontology.graph",
+    "file": "src/onto_market/ontology/graph.py",
+    "line": 64,
+    "bases": []
+  },
+  {
+    "name": "OntologyGraph.add_triple",
+    "kind": "method",
+    "module": "onto_market.ontology.graph",
+    "file": "src/onto_market/ontology/graph.py",
+    "line": 71,
+    "bases": []
+  },
+  {
+    "name": "add_triple",
+    "kind": "function",
+    "module": "onto_market.ontology.graph",
+    "file": "src/onto_market/ontology/graph.py",
+    "line": 71,
+    "bases": []
+  },
+  {
+    "name": "OntologyGraph.add_triples",
+    "kind": "method",
+    "module": "onto_market.ontology.graph",
+    "file": "src/onto_market/ontology/graph.py",
+    "line": 103,
+    "bases": []
+  },
+  {
+    "name": "add_triples",
+    "kind": "function",
+    "module": "onto_market.ontology.graph",
+    "file": "src/onto_market/ontology/graph.py",
+    "line": 103,
+    "bases": []
+  },
+  {
+    "name": "OntologyGraph.prune",
+    "kind": "method",
+    "module": "onto_market.ontology.graph",
+    "file": "src/onto_market/ontology/graph.py",
+    "line": 109,
+    "bases": []
+  },
+  {
+    "name": "prune",
+    "kind": "function",
+    "module": "onto_market.ontology.graph",
+    "file": "src/onto_market/ontology/graph.py",
+    "line": 109,
+    "bases": []
+  },
+  {
+    "name": "OntologyGraph.context_for",
+    "kind": "method",
+    "module": "onto_market.ontology.graph",
+    "file": "src/onto_market/ontology/graph.py",
+    "line": 125,
+    "bases": []
+  },
+  {
+    "name": "context_for",
+    "kind": "function",
+    "module": "onto_market.ontology.graph",
+    "file": "src/onto_market/ontology/graph.py",
+    "line": 125,
+    "bases": []
+  },
+  {
+    "name": "OntologyGraph.get_entity",
+    "kind": "method",
+    "module": "onto_market.ontology.graph",
+    "file": "src/onto_market/ontology/graph.py",
+    "line": 165,
+    "bases": []
+  },
+  {
+    "name": "get_entity",
+    "kind": "function",
+    "module": "onto_market.ontology.graph",
+    "file": "src/onto_market/ontology/graph.py",
+    "line": 165,
+    "bases": []
+  },
+  {
+    "name": "OntologyGraph.stats",
+    "kind": "method",
+    "module": "onto_market.ontology.graph",
+    "file": "src/onto_market/ontology/graph.py",
+    "line": 171,
+    "bases": []
+  },
+  {
+    "name": "stats",
+    "kind": "function",
+    "module": "onto_market.ontology.graph",
+    "file": "src/onto_market/ontology/graph.py",
+    "line": 171,
+    "bases": []
+  },
+  {
+    "name": "calculate_edge",
+    "kind": "function",
+    "module": "onto_market.polymarket_agents.utils.analytics",
+    "file": "src/onto_market/polymarket_agents/utils/analytics.py",
+    "line": 4,
+    "bases": []
+  },
+  {
+    "name": "kelly_fraction",
+    "kind": "function",
+    "module": "onto_market.polymarket_agents.utils.analytics",
+    "file": "src/onto_market/polymarket_agents/utils/analytics.py",
+    "line": 9,
+    "bases": []
+  },
+  {
+    "name": "expected_value",
+    "kind": "function",
+    "module": "onto_market.polymarket_agents.utils.analytics",
+    "file": "src/onto_market/polymarket_agents/utils/analytics.py",
+    "line": 20,
+    "bases": []
+  },
+  {
+    "name": "score_market",
+    "kind": "function",
+    "module": "onto_market.polymarket_agents.utils.analytics",
+    "file": "src/onto_market/polymarket_agents/utils/analytics.py",
+    "line": 27,
+    "bases": []
+  },
+  {
+    "name": "Database",
+    "kind": "class",
+    "module": "onto_market.polymarket_agents.utils.database",
+    "file": "src/onto_market/polymarket_agents/utils/database.py",
+    "line": 8,
+    "bases": []
+  },
+  {
+    "name": "Database.__init__",
+    "kind": "method",
+    "module": "onto_market.polymarket_agents.utils.database",
+    "file": "src/onto_market/polymarket_agents/utils/database.py",
+    "line": 9,
+    "bases": []
+  },
+  {
+    "name": "Database.conn",
+    "kind": "method",
+    "module": "onto_market.polymarket_agents.utils.database",
+    "file": "src/onto_market/polymarket_agents/utils/database.py",
+    "line": 52,
+    "bases": []
+  },
+  {
+    "name": "conn",
+    "kind": "function",
+    "module": "onto_market.polymarket_agents.utils.database",
+    "file": "src/onto_market/polymarket_agents/utils/database.py",
+    "line": 52,
+    "bases": []
+  },
+  {
+    "name": "Database.execute",
+    "kind": "method",
+    "module": "onto_market.polymarket_agents.utils.database",
+    "file": "src/onto_market/polymarket_agents/utils/database.py",
+    "line": 61,
+    "bases": []
+  },
+  {
+    "name": "execute",
+    "kind": "function",
+    "module": "onto_market.polymarket_agents.utils.database",
+    "file": "src/onto_market/polymarket_agents/utils/database.py",
+    "line": 61,
+    "bases": []
+  },
+  {
+    "name": "Database.execute_one",
+    "kind": "method",
+    "module": "onto_market.polymarket_agents.utils.database",
+    "file": "src/onto_market/polymarket_agents/utils/database.py",
+    "line": 66,
+    "bases": []
+  },
+  {
+    "name": "execute_one",
+    "kind": "function",
+    "module": "onto_market.polymarket_agents.utils.database",
+    "file": "src/onto_market/polymarket_agents/utils/database.py",
+    "line": 66,
+    "bases": []
+  },
+  {
+    "name": "Market",
+    "kind": "dataclass",
+    "module": "onto_market.polymarket_agents.utils.objects",
+    "file": "src/onto_market/polymarket_agents/utils/objects.py",
+    "line": 7,
+    "bases": []
+  },
+  {
+    "name": "Market.implied_probability",
+    "kind": "method",
+    "module": "onto_market.polymarket_agents.utils.objects",
+    "file": "src/onto_market/polymarket_agents/utils/objects.py",
+    "line": 25,
+    "bases": []
+  },
+  {
+    "name": "implied_probability",
+    "kind": "function",
+    "module": "onto_market.polymarket_agents.utils.objects",
+    "file": "src/onto_market/polymarket_agents/utils/objects.py",
+    "line": 25,
+    "bases": []
+  },
+  {
+    "name": "Market.yes_token_id",
+    "kind": "method",
+    "module": "onto_market.polymarket_agents.utils.objects",
+    "file": "src/onto_market/polymarket_agents/utils/objects.py",
+    "line": 30,
+    "bases": []
+  },
+  {
+    "name": "yes_token_id",
+    "kind": "function",
+    "module": "onto_market.polymarket_agents.utils.objects",
+    "file": "src/onto_market/polymarket_agents/utils/objects.py",
+    "line": 30,
+    "bases": []
+  },
+  {
+    "name": "Market.no_token_id",
+    "kind": "method",
+    "module": "onto_market.polymarket_agents.utils.objects",
+    "file": "src/onto_market/polymarket_agents/utils/objects.py",
+    "line": 34,
+    "bases": []
+  },
+  {
+    "name": "no_token_id",
+    "kind": "function",
+    "module": "onto_market.polymarket_agents.utils.objects",
+    "file": "src/onto_market/polymarket_agents/utils/objects.py",
+    "line": 34,
+    "bases": []
+  },
+  {
+    "name": "ResearchNote",
+    "kind": "dataclass",
+    "module": "onto_market.polymarket_agents.utils.objects",
+    "file": "src/onto_market/polymarket_agents/utils/objects.py",
+    "line": 39,
+    "bases": []
+  },
+  {
+    "name": "Archetype",
+    "kind": "enum",
+    "module": "onto_market.swarm.archetypes",
+    "file": "src/onto_market/swarm/archetypes.py",
+    "line": 17,
+    "bases": [
+      "str",
+      "Enum"
+    ]
+  },
+  {
+    "name": "ArchetypeConfig",
+    "kind": "dataclass",
+    "module": "onto_market.swarm.archetypes",
+    "file": "src/onto_market/swarm/archetypes.py",
+    "line": 27,
+    "bases": []
+  },
+  {
+    "name": "ArchetypeConfig.sample_bias",
+    "kind": "method",
+    "module": "onto_market.swarm.archetypes",
+    "file": "src/onto_market/swarm/archetypes.py",
+    "line": 35,
+    "bases": []
+  },
+  {
+    "name": "sample_bias",
+    "kind": "function",
+    "module": "onto_market.swarm.archetypes",
+    "file": "src/onto_market/swarm/archetypes.py",
+    "line": 35,
+    "bases": []
+  },
+  {
+    "name": "ArchetypeConfig.sample_confidence",
+    "kind": "method",
+    "module": "onto_market.swarm.archetypes",
+    "file": "src/onto_market/swarm/archetypes.py",
+    "line": 38,
+    "bases": []
+  },
+  {
+    "name": "sample_confidence",
+    "kind": "function",
+    "module": "onto_market.swarm.archetypes",
+    "file": "src/onto_market/swarm/archetypes.py",
+    "line": 38,
+    "bases": []
+  },
+  {
+    "name": "SwarmAgent",
+    "kind": "dataclass",
+    "module": "onto_market.swarm.archetypes",
+    "file": "src/onto_market/swarm/archetypes.py",
+    "line": 95,
+    "bases": []
+  },
+  {
+    "name": "SwarmAgent.from_config",
+    "kind": "method",
+    "module": "onto_market.swarm.archetypes",
+    "file": "src/onto_market/swarm/archetypes.py",
+    "line": 105,
+    "bases": []
+  },
+  {
+    "name": "from_config",
+    "kind": "function",
+    "module": "onto_market.swarm.archetypes",
+    "file": "src/onto_market/swarm/archetypes.py",
+    "line": 105,
+    "bases": []
+  },
+  {
+    "name": "SwarmAgent.seed_estimate",
+    "kind": "method",
+    "module": "onto_market.swarm.archetypes",
+    "file": "src/onto_market/swarm/archetypes.py",
+    "line": 114,
+    "bases": []
+  },
+  {
+    "name": "seed_estimate",
+    "kind": "function",
+    "module": "onto_market.swarm.archetypes",
+    "file": "src/onto_market/swarm/archetypes.py",
+    "line": 114,
+    "bases": []
+  },
+  {
+    "name": "SwarmAgent.update_from_neighbors",
+    "kind": "method",
+    "module": "onto_market.swarm.archetypes",
+    "file": "src/onto_market/swarm/archetypes.py",
+    "line": 119,
+    "bases": []
+  },
+  {
+    "name": "update_from_neighbors",
+    "kind": "function",
+    "module": "onto_market.swarm.archetypes",
+    "file": "src/onto_market/swarm/archetypes.py",
+    "line": 119,
+    "bases": []
+  },
+  {
+    "name": "spawn_agents",
+    "kind": "function",
+    "module": "onto_market.swarm.archetypes",
+    "file": "src/onto_market/swarm/archetypes.py",
+    "line": 132,
+    "bases": []
+  },
+  {
+    "name": "build_network",
+    "kind": "function",
+    "module": "onto_market.swarm.dynamics",
+    "file": "src/onto_market/swarm/dynamics.py",
+    "line": 20,
+    "bases": []
+  },
+  {
+    "name": "propagate_influence",
+    "kind": "function",
+    "module": "onto_market.swarm.dynamics",
+    "file": "src/onto_market/swarm/dynamics.py",
+    "line": 33,
+    "bases": []
+  },
+  {
+    "name": "check_convergence",
+    "kind": "function",
+    "module": "onto_market.swarm.dynamics",
+    "file": "src/onto_market/swarm/dynamics.py",
+    "line": 65,
+    "bases": []
+  },
+  {
+    "name": "run_dynamics",
+    "kind": "function",
+    "module": "onto_market.swarm.dynamics",
+    "file": "src/onto_market/swarm/dynamics.py",
+    "line": 74,
+    "bases": []
+  },
+  {
+    "name": "OracleResult",
+    "kind": "dataclass",
+    "module": "onto_market.swarm.oracle",
+    "file": "src/onto_market/swarm/oracle.py",
+    "line": 31,
+    "bases": []
+  },
+  {
+    "name": "SocialSentimentOracle",
+    "kind": "class",
+    "module": "onto_market.swarm.oracle",
+    "file": "src/onto_market/swarm/oracle.py",
+    "line": 41,
+    "bases": []
+  },
+  {
+    "name": "SocialSentimentOracle.__init__",
+    "kind": "method",
+    "module": "onto_market.swarm.oracle",
+    "file": "src/onto_market/swarm/oracle.py",
+    "line": 51,
+    "bases": []
+  },
+  {
+    "name": "SocialSentimentOracle.estimate",
+    "kind": "method",
+    "module": "onto_market.swarm.oracle",
+    "file": "src/onto_market/swarm/oracle.py",
+    "line": 68,
+    "bases": []
+  },
+  {
+    "name": "estimate",
+    "kind": "function",
+    "module": "onto_market.swarm.oracle",
+    "file": "src/onto_market/swarm/oracle.py",
+    "line": 68,
+    "bases": []
+  },
+  {
+    "name": "TradeExecutor",
+    "kind": "class",
+    "module": "onto_market.trading.executor",
+    "file": "src/onto_market/trading/executor.py",
+    "line": 20,
+    "bases": []
+  },
+  {
+    "name": "TradeExecutor.__init__",
+    "kind": "method",
+    "module": "onto_market.trading.executor",
+    "file": "src/onto_market/trading/executor.py",
+    "line": 29,
+    "bases": []
+  },
+  {
+    "name": "TradeExecutor.filter_events",
+    "kind": "method",
+    "module": "onto_market.trading.executor",
+    "file": "src/onto_market/trading/executor.py",
+    "line": 39,
+    "bases": []
+  },
+  {
+    "name": "filter_events",
+    "kind": "function",
+    "module": "onto_market.trading.executor",
+    "file": "src/onto_market/trading/executor.py",
+    "line": 39,
+    "bases": []
+  },
+  {
+    "name": "TradeExecutor.superforecast",
+    "kind": "method",
+    "module": "onto_market.trading.executor",
+    "file": "src/onto_market/trading/executor.py",
+    "line": 70,
+    "bases": []
+  },
+  {
+    "name": "superforecast",
+    "kind": "function",
+    "module": "onto_market.trading.executor",
+    "file": "src/onto_market/trading/executor.py",
+    "line": 70,
+    "bases": []
+  },
+  {
+    "name": "TradeExecutor.size_trade",
+    "kind": "method",
+    "module": "onto_market.trading.executor",
+    "file": "src/onto_market/trading/executor.py",
+    "line": 112,
+    "bases": []
+  },
+  {
+    "name": "size_trade",
+    "kind": "function",
+    "module": "onto_market.trading.executor",
+    "file": "src/onto_market/trading/executor.py",
+    "line": 112,
+    "bases": []
+  },
+  {
+    "name": "Trader",
+    "kind": "class",
+    "module": "onto_market.trading.trader",
+    "file": "src/onto_market/trading/trader.py",
+    "line": 33,
+    "bases": []
+  },
+  {
+    "name": "Trader.__init__",
+    "kind": "method",
+    "module": "onto_market.trading.trader",
+    "file": "src/onto_market/trading/trader.py",
+    "line": 44,
+    "bases": []
+  },
+  {
+    "name": "Trader.one_best_trade",
+    "kind": "method",
+    "module": "onto_market.trading.trader",
+    "file": "src/onto_market/trading/trader.py",
+    "line": 59,
+    "bases": []
+  },
+  {
+    "name": "one_best_trade",
+    "kind": "function",
+    "module": "onto_market.trading.trader",
+    "file": "src/onto_market/trading/trader.py",
+    "line": 59,
+    "bases": []
+  },
+  {
+    "name": "parse_txt",
+    "kind": "function",
+    "module": "onto_market.utils.file_parser",
+    "file": "src/onto_market/utils/file_parser.py",
+    "line": 11,
+    "bases": []
+  },
+  {
+    "name": "parse_csv",
+    "kind": "function",
+    "module": "onto_market.utils.file_parser",
+    "file": "src/onto_market/utils/file_parser.py",
+    "line": 20,
+    "bases": []
+  },
+  {
+    "name": "parse_file",
+    "kind": "function",
+    "module": "onto_market.utils.file_parser",
+    "file": "src/onto_market/utils/file_parser.py",
+    "line": 30,
+    "bases": []
+  },
+  {
+    "name": "LLMClient",
+    "kind": "class",
+    "module": "onto_market.utils.llm_client",
+    "file": "src/onto_market/utils/llm_client.py",
+    "line": 11,
+    "bases": []
+  },
+  {
+    "name": "LLMClient.__init__",
+    "kind": "method",
+    "module": "onto_market.utils.llm_client",
+    "file": "src/onto_market/utils/llm_client.py",
+    "line": 12,
+    "bases": []
+  },
+  {
+    "name": "LLMClient.chat",
+    "kind": "method",
+    "module": "onto_market.utils.llm_client",
+    "file": "src/onto_market/utils/llm_client.py",
+    "line": 16,
+    "bases": []
+  },
+  {
+    "name": "chat",
+    "kind": "function",
+    "module": "onto_market.utils.llm_client",
+    "file": "src/onto_market/utils/llm_client.py",
+    "line": 16,
+    "bases": []
+  },
+  {
+    "name": "LLMClient.chat_json",
+    "kind": "method",
+    "module": "onto_market.utils.llm_client",
+    "file": "src/onto_market/utils/llm_client.py",
+    "line": 23,
+    "bases": []
+  },
+  {
+    "name": "chat_json",
+    "kind": "function",
+    "module": "onto_market.utils.llm_client",
+    "file": "src/onto_market/utils/llm_client.py",
+    "line": 23,
+    "bases": []
+  },
+  {
+    "name": "LLMClient.strip_think_tags",
+    "kind": "method",
+    "module": "onto_market.utils.llm_client",
+    "file": "src/onto_market/utils/llm_client.py",
+    "line": 30,
+    "bases": []
+  },
+  {
+    "name": "strip_think_tags",
+    "kind": "function",
+    "module": "onto_market.utils.llm_client",
+    "file": "src/onto_market/utils/llm_client.py",
+    "line": 30,
+    "bases": []
+  },
+  {
+    "name": "LLMClient.system",
+    "kind": "method",
+    "module": "onto_market.utils.llm_client",
+    "file": "src/onto_market/utils/llm_client.py",
+    "line": 34,
+    "bases": []
+  },
+  {
+    "name": "system",
+    "kind": "function",
+    "module": "onto_market.utils.llm_client",
+    "file": "src/onto_market/utils/llm_client.py",
+    "line": 34,
+    "bases": []
+  },
+  {
+    "name": "LLMClient.user",
+    "kind": "method",
+    "module": "onto_market.utils.llm_client",
+    "file": "src/onto_market/utils/llm_client.py",
+    "line": 37,
+    "bases": []
+  },
+  {
+    "name": "user",
+    "kind": "function",
+    "module": "onto_market.utils.llm_client",
+    "file": "src/onto_market/utils/llm_client.py",
+    "line": 37,
+    "bases": []
+  },
+  {
+    "name": "setup_logger",
+    "kind": "function",
+    "module": "onto_market.utils.logger",
+    "file": "src/onto_market/utils/logger.py",
+    "line": 10,
+    "bases": []
+  },
+  {
+    "name": "get_logger",
+    "kind": "function",
+    "module": "onto_market.utils.logger",
+    "file": "src/onto_market/utils/logger.py",
+    "line": 40,
+    "bases": []
+  },
+  {
+    "name": "retry_with_backoff",
+    "kind": "function",
+    "module": "onto_market.utils.retry",
+    "file": "src/onto_market/utils/retry.py",
+    "line": 17,
+    "bases": []
+  },
+  {
+    "name": "RetryableAPIClient",
+    "kind": "class",
+    "module": "onto_market.utils.retry",
+    "file": "src/onto_market/utils/retry.py",
+    "line": 32,
+    "bases": []
+  },
+  {
+    "name": "RetryableAPIClient.__init__",
+    "kind": "method",
+    "module": "onto_market.utils.retry",
+    "file": "src/onto_market/utils/retry.py",
+    "line": 35,
+    "bases": []
+  },
+  {
+    "name": "run",
+    "kind": "function",
+    "module": "scripts._bootstrap",
+    "file": "scripts/_bootstrap.py",
+    "line": 16,
+    "bases": []
+  },
+  {
+    "name": "analyze",
+    "kind": "function",
+    "module": "scripts.cli",
+    "file": "scripts/cli.py",
+    "line": 23,
+    "bases": []
+  },
+  {
+    "name": "scan",
+    "kind": "function",
+    "module": "scripts.cli",
+    "file": "scripts/cli.py",
+    "line": 62,
+    "bases": []
+  },
+  {
+    "name": "trade",
+    "kind": "function",
+    "module": "scripts.cli",
+    "file": "scripts/cli.py",
+    "line": 99,
+    "bases": []
+  },
+  {
+    "name": "swarm",
+    "kind": "function",
+    "module": "scripts.cli",
+    "file": "scripts/cli.py",
+    "line": 135,
+    "bases": []
+  },
+  {
+    "name": "build_parser",
+    "kind": "function",
+    "module": "scripts.import_graph",
+    "file": "scripts/import_graph.py",
+    "line": 32,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "scripts.import_graph",
+    "file": "scripts/import_graph.py",
+    "line": 55,
+    "bases": []
+  },
+  {
+    "name": "main",
+    "kind": "function",
+    "module": "scripts.refresh_markets",
+    "file": "scripts/refresh_markets.py",
+    "line": 17,
+    "bases": []
+  },
+  {
+    "name": "sample_market",
+    "kind": "function",
+    "module": "tests.conftest",
+    "file": "tests/conftest.py",
+    "line": 8,
+    "bases": []
+  },
+  {
+    "name": "db_path",
+    "kind": "function",
+    "module": "tests.conftest",
+    "file": "tests/conftest.py",
+    "line": 21,
+    "bases": []
+  },
+  {
+    "name": "test_edge_positive",
+    "kind": "function",
+    "module": "tests.test_analytics",
+    "file": "tests/test_analytics.py",
+    "line": 11,
+    "bases": []
+  },
+  {
+    "name": "test_edge_negative",
+    "kind": "function",
+    "module": "tests.test_analytics",
+    "file": "tests/test_analytics.py",
+    "line": 15,
+    "bases": []
+  },
+  {
+    "name": "test_expected_value",
+    "kind": "function",
+    "module": "tests.test_analytics",
+    "file": "tests/test_analytics.py",
+    "line": 19,
+    "bases": []
+  },
+  {
+    "name": "test_kelly_zero_when_no_edge",
+    "kind": "function",
+    "module": "tests.test_analytics",
+    "file": "tests/test_analytics.py",
+    "line": 24,
+    "bases": []
+  },
+  {
+    "name": "test_score_market_bet",
+    "kind": "function",
+    "module": "tests.test_analytics",
+    "file": "tests/test_analytics.py",
+    "line": 28,
+    "bases": []
+  },
+  {
+    "name": "test_score_market_pass",
+    "kind": "function",
+    "module": "tests.test_analytics",
+    "file": "tests/test_analytics.py",
+    "line": 34,
+    "bases": []
+  },
+  {
+    "name": "test_score_market_watch_low_volume",
+    "kind": "function",
+    "module": "tests.test_analytics",
+    "file": "tests/test_analytics.py",
+    "line": 39,
+    "bases": []
+  },
+  {
+    "name": "TestLiveOrderPath",
+    "kind": "class",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 20,
+    "bases": []
+  },
+  {
+    "name": "TestLiveOrderPath.test_build_order_live_raises_without_clob_client",
+    "kind": "method",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 21,
+    "bases": []
+  },
+  {
+    "name": "test_build_order_live_raises_without_clob_client",
+    "kind": "function",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 21,
+    "bases": []
+  },
+  {
+    "name": "TestLiveOrderPath.test_market_order_live_raises_without_clob_client",
+    "kind": "method",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 33,
+    "bases": []
+  },
+  {
+    "name": "test_market_order_live_raises_without_clob_client",
+    "kind": "function",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 33,
+    "bases": []
+  },
+  {
+    "name": "TestLiveOrderPath.test_get_orderbook_raises_without_clob_client",
+    "kind": "method",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 38,
+    "bases": []
+  },
+  {
+    "name": "test_get_orderbook_raises_without_clob_client",
+    "kind": "function",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 38,
+    "bases": []
+  },
+  {
+    "name": "TestLiveOrderPath.test_get_usdc_balance_raises_without_web3",
+    "kind": "method",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 43,
+    "bases": []
+  },
+  {
+    "name": "test_get_usdc_balance_raises_without_web3",
+    "kind": "function",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 43,
+    "bases": []
+  },
+  {
+    "name": "TestLiveOrderPath.test_full_trade_pipeline_live_mode",
+    "kind": "method",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 48,
+    "bases": []
+  },
+  {
+    "name": "test_full_trade_pipeline_live_mode",
+    "kind": "function",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 48,
+    "bases": []
+  },
+  {
+    "name": "TestEventIdFallback",
+    "kind": "class",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 96,
+    "bases": []
+  },
+  {
+    "name": "TestEventIdFallback.test_fallback_triggered_when_per_id_returns_none",
+    "kind": "method",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 97,
+    "bases": []
+  },
+  {
+    "name": "test_fallback_triggered_when_per_id_returns_none",
+    "kind": "function",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 97,
+    "bases": []
+  },
+  {
+    "name": "TestEventIdFallback.test_no_fallback_when_per_id_succeeds",
+    "kind": "method",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 122,
+    "bases": []
+  },
+  {
+    "name": "test_no_fallback_when_per_id_succeeds",
+    "kind": "function",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 122,
+    "bases": []
+  },
+  {
+    "name": "TestEventIdFallback.test_fallback_skipped_when_event_has_no_id",
+    "kind": "method",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 132,
+    "bases": []
+  },
+  {
+    "name": "test_fallback_skipped_when_event_has_no_id",
+    "kind": "function",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 132,
+    "bases": []
+  },
+  {
+    "name": "TestEventIdFallback.test_fallback_failure_is_logged_not_raised",
+    "kind": "method",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 143,
+    "bases": []
+  },
+  {
+    "name": "test_fallback_failure_is_logged_not_raised",
+    "kind": "function",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 143,
+    "bases": []
+  },
+  {
+    "name": "TestLLMProviderRouting",
+    "kind": "class",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 156,
+    "bases": []
+  },
+  {
+    "name": "TestLLMProviderRouting.test_grok_uses_xai_client",
+    "kind": "method",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 157,
+    "bases": []
+  },
+  {
+    "name": "test_grok_uses_xai_client",
+    "kind": "function",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 157,
+    "bases": []
+  },
+  {
+    "name": "TestLLMProviderRouting.test_grok_disables_tools_for_json",
+    "kind": "method",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 174,
+    "bases": []
+  },
+  {
+    "name": "test_grok_disables_tools_for_json",
+    "kind": "function",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 174,
+    "bases": []
+  },
+  {
+    "name": "TestLLMProviderRouting.test_non_grok_providers_use_litellm",
+    "kind": "method",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 197,
+    "bases": []
+  },
+  {
+    "name": "test_non_grok_providers_use_litellm",
+    "kind": "function",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 197,
+    "bases": []
+  },
+  {
+    "name": "TestLLMProviderRouting.test_unknown_provider_raises",
+    "kind": "method",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 217,
+    "bases": []
+  },
+  {
+    "name": "test_unknown_provider_raises",
+    "kind": "function",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 217,
+    "bases": []
+  },
+  {
+    "name": "TestLLMProviderRouting.test_litellm_model_map_is_complete",
+    "kind": "method",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 223,
+    "bases": []
+  },
+  {
+    "name": "test_litellm_model_map_is_complete",
+    "kind": "function",
+    "module": "tests.test_integration",
+    "file": "tests/test_integration.py",
+    "line": 223,
+    "bases": []
+  },
+  {
+    "name": "test_upsert_and_search",
+    "kind": "function",
+    "module": "tests.test_memory",
+    "file": "tests/test_memory.py",
+    "line": 6,
+    "bases": []
+  },
+  {
+    "name": "test_store_and_get_research",
+    "kind": "function",
+    "module": "tests.test_memory",
+    "file": "tests/test_memory.py",
+    "line": 13,
+    "bases": []
+  },
+  {
+    "name": "test_store_analytics",
+    "kind": "function",
+    "module": "tests.test_memory",
+    "file": "tests/test_memory.py",
+    "line": 21,
+    "bases": []
+  },
+  {
+    "name": "TestNormalizeMarket",
+    "kind": "class",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 14,
+    "bases": []
+  },
+  {
+    "name": "TestNormalizeMarket.test_db_row_with_json_strings",
+    "kind": "method",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 15,
+    "bases": []
+  },
+  {
+    "name": "test_db_row_with_json_strings",
+    "kind": "function",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 15,
+    "bases": []
+  },
+  {
+    "name": "TestNormalizeMarket.test_live_market_already_has_implied",
+    "kind": "method",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 28,
+    "bases": []
+  },
+  {
+    "name": "test_live_market_already_has_implied",
+    "kind": "function",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 28,
+    "bases": []
+  },
+  {
+    "name": "TestNormalizeMarket.test_missing_prices_defaults_to_half",
+    "kind": "method",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 39,
+    "bases": []
+  },
+  {
+    "name": "test_missing_prices_defaults_to_half",
+    "kind": "function",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 39,
+    "bases": []
+  },
+  {
+    "name": "TestNormalizeMarket.test_malformed_json_string_falls_back",
+    "kind": "method",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 45,
+    "bases": []
+  },
+  {
+    "name": "test_malformed_json_string_falls_back",
+    "kind": "function",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 45,
+    "bases": []
+  },
+  {
+    "name": "TestNormalizeMarket.test_empty_string_token_ids",
+    "kind": "method",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 56,
+    "bases": []
+  },
+  {
+    "name": "test_empty_string_token_ids",
+    "kind": "function",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 56,
+    "bases": []
+  },
+  {
+    "name": "TestMarketFromObj",
+    "kind": "class",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 62,
+    "bases": []
+  },
+  {
+    "name": "TestMarketFromObj.test_converts_market_object",
+    "kind": "method",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 63,
+    "bases": []
+  },
+  {
+    "name": "test_converts_market_object",
+    "kind": "function",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 63,
+    "bases": []
+  },
+  {
+    "name": "TestScoreMarketMatch",
+    "kind": "class",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 80,
+    "bases": []
+  },
+  {
+    "name": "TestScoreMarketMatch.test_full_overlap_beats_volume",
+    "kind": "method",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 81,
+    "bases": []
+  },
+  {
+    "name": "test_full_overlap_beats_volume",
+    "kind": "function",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 81,
+    "bases": []
+  },
+  {
+    "name": "TestScoreMarketMatch.test_zero_overlap_gets_volume_only",
+    "kind": "method",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 87,
+    "bases": []
+  },
+  {
+    "name": "test_zero_overlap_gets_volume_only",
+    "kind": "function",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 87,
+    "bases": []
+  },
+  {
+    "name": "TestScoreMarketMatch.test_case_insensitive",
+    "kind": "method",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 92,
+    "bases": []
+  },
+  {
+    "name": "test_case_insensitive",
+    "kind": "function",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 92,
+    "bases": []
+  },
+  {
+    "name": "TestScoreMarketMatch.test_empty_tokens",
+    "kind": "method",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 97,
+    "bases": []
+  },
+  {
+    "name": "test_empty_tokens",
+    "kind": "function",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 97,
+    "bases": []
+  },
+  {
+    "name": "TestStopwords",
+    "kind": "class",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 102,
+    "bases": []
+  },
+  {
+    "name": "TestStopwords.test_common_words_filtered",
+    "kind": "method",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 103,
+    "bases": []
+  },
+  {
+    "name": "test_common_words_filtered",
+    "kind": "function",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 103,
+    "bases": []
+  },
+  {
+    "name": "TestStopwords.test_meaningful_tokens_not_filtered",
+    "kind": "method",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 110,
+    "bases": []
+  },
+  {
+    "name": "test_meaningful_tokens_not_filtered",
+    "kind": "function",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 110,
+    "bases": []
+  },
+  {
+    "name": "TestSearchMarketsIntegration",
+    "kind": "class",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 117,
+    "bases": []
+  },
+  {
+    "name": "TestSearchMarketsIntegration.test_gamma_search_returns_market_objects",
+    "kind": "method",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 120,
+    "bases": []
+  },
+  {
+    "name": "test_gamma_search_returns_market_objects",
+    "kind": "function",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 120,
+    "bases": []
+  },
+  {
+    "name": "TestSearchMarketsIntegration.test_gamma_search_empty_results",
+    "kind": "method",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 155,
+    "bases": []
+  },
+  {
+    "name": "test_gamma_search_empty_results",
+    "kind": "function",
+    "module": "tests.test_planning_agent",
+    "file": "tests/test_planning_agent.py",
+    "line": 155,
+    "bases": []
+  },
+  {
+    "name": "test_repo_census_builds_and_writes_reports",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 28,
+    "bases": []
+  },
+  {
+    "name": "test_repo_map_generates_markdown",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 53,
+    "bases": []
+  },
+  {
+    "name": "test_import_graph_discovers_edge",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 91,
+    "bases": []
+  },
+  {
+    "name": "test_import_graph_relative_import",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 108,
+    "bases": []
+  },
+  {
+    "name": "test_import_graph_no_self_loops",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 121,
+    "bases": []
+  },
+  {
+    "name": "test_import_graph_snapshot_counts",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 134,
+    "bases": []
+  },
+  {
+    "name": "test_import_graph_write_reports",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 151,
+    "bases": []
+  },
+  {
+    "name": "test_boundary_matrix_counts_cross_domain_edges",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 168,
+    "bases": []
+  },
+  {
+    "name": "test_boundary_matrix_ignores_intra_domain",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 187,
+    "bases": []
+  },
+  {
+    "name": "test_cycle_detector_finds_cycle",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 207,
+    "bases": []
+  },
+  {
+    "name": "test_cycle_detector_dag_has_no_cycles",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 219,
+    "bases": []
+  },
+  {
+    "name": "test_cycle_detector_write_reports",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 229,
+    "bases": []
+  },
+  {
+    "name": "test_architecture_drift_catches_violation",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 244,
+    "bases": []
+  },
+  {
+    "name": "test_architecture_drift_allows_legal_import",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 254,
+    "bases": []
+  },
+  {
+    "name": "test_architecture_drift_connectors_cannot_import_swarm",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 263,
+    "bases": []
+  },
+  {
+    "name": "test_architecture_drift_write_reports",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 275,
+    "bases": []
+  },
+  {
+    "name": "test_import_graph_on_real_repo",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 292,
+    "bases": []
+  },
+  {
+    "name": "test_boundary_matrix_on_real_repo",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 303,
+    "bases": []
+  },
+  {
+    "name": "test_cycle_detector_on_real_repo",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 310,
+    "bases": []
+  },
+  {
+    "name": "test_architecture_drift_on_real_repo",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 317,
+    "bases": []
+  },
+  {
+    "name": "test_ontology_audit_runs_on_simple_graph",
+    "kind": "function",
+    "module": "tests.test_repo_tools",
+    "file": "tests/test_repo_tools.py",
+    "line": 324,
+    "bases": []
+  },
+  {
+    "name": "TestArchetypes",
+    "kind": "class",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 15,
+    "bases": []
+  },
+  {
+    "name": "TestArchetypes.test_all_archetypes_registered",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 16,
+    "bases": []
+  },
+  {
+    "name": "test_all_archetypes_registered",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 16,
+    "bases": []
+  },
+  {
+    "name": "TestArchetypes.test_fractions_sum_to_one",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 20,
+    "bases": []
+  },
+  {
+    "name": "test_fractions_sum_to_one",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 20,
+    "bases": []
+  },
+  {
+    "name": "TestArchetypes.test_spawn_correct_count",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 24,
+    "bases": []
+  },
+  {
+    "name": "test_spawn_correct_count",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 24,
+    "bases": []
+  },
+  {
+    "name": "TestArchetypes.test_spawn_large_swarm",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 28,
+    "bases": []
+  },
+  {
+    "name": "test_spawn_large_swarm",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 28,
+    "bases": []
+  },
+  {
+    "name": "TestArchetypes.test_unique_ids",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 32,
+    "bases": []
+  },
+  {
+    "name": "test_unique_ids",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 32,
+    "bases": []
+  },
+  {
+    "name": "TestArchetypes.test_agent_from_config",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 37,
+    "bases": []
+  },
+  {
+    "name": "test_agent_from_config",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 37,
+    "bases": []
+  },
+  {
+    "name": "TestArchetypes.test_seed_estimate_clamped",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 43,
+    "bases": []
+  },
+  {
+    "name": "test_seed_estimate_clamped",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 43,
+    "bases": []
+  },
+  {
+    "name": "TestArchetypes.test_contrarian_has_negative_alpha",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 49,
+    "bases": []
+  },
+  {
+    "name": "test_contrarian_has_negative_alpha",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 49,
+    "bases": []
+  },
+  {
+    "name": "TestArchetypes.test_archetype_diversity",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 53,
+    "bases": []
+  },
+  {
+    "name": "test_archetype_diversity",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 53,
+    "bases": []
+  },
+  {
+    "name": "TestDynamics",
+    "kind": "class",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 59,
+    "bases": []
+  },
+  {
+    "name": "TestDynamics.test_build_network_correct_size",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 60,
+    "bases": []
+  },
+  {
+    "name": "test_build_network_correct_size",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 60,
+    "bases": []
+  },
+  {
+    "name": "TestDynamics.test_build_network_small",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 64,
+    "bases": []
+  },
+  {
+    "name": "test_build_network_small",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 64,
+    "bases": []
+  },
+  {
+    "name": "TestDynamics.test_propagate_preserves_bounds",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 69,
+    "bases": []
+  },
+  {
+    "name": "test_propagate_preserves_bounds",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 69,
+    "bases": []
+  },
+  {
+    "name": "TestDynamics.test_convergence_uniform_swarm",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 80,
+    "bases": []
+  },
+  {
+    "name": "test_convergence_uniform_swarm",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 80,
+    "bases": []
+  },
+  {
+    "name": "TestDynamics.test_no_convergence_diverse",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 86,
+    "bases": []
+  },
+  {
+    "name": "test_no_convergence_diverse",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 86,
+    "bases": []
+  },
+  {
+    "name": "TestDynamics.test_run_dynamics_converges",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 92,
+    "bases": []
+  },
+  {
+    "name": "test_run_dynamics_converges",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 92,
+    "bases": []
+  },
+  {
+    "name": "TestDynamics.test_run_dynamics_zero_rounds",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 101,
+    "bases": []
+  },
+  {
+    "name": "test_run_dynamics_zero_rounds",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 101,
+    "bases": []
+  },
+  {
+    "name": "TestOracle",
+    "kind": "class",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 110,
+    "bases": []
+  },
+  {
+    "name": "TestOracle.test_oracle_returns_result",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 111,
+    "bases": []
+  },
+  {
+    "name": "test_oracle_returns_result",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 111,
+    "bases": []
+  },
+  {
+    "name": "TestOracle.test_oracle_consensus_in_range",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 116,
+    "bases": []
+  },
+  {
+    "name": "test_oracle_consensus_in_range",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 116,
+    "bases": []
+  },
+  {
+    "name": "TestOracle.test_oracle_confidence_in_range",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 121,
+    "bases": []
+  },
+  {
+    "name": "test_oracle_confidence_in_range",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 121,
+    "bases": []
+  },
+  {
+    "name": "TestOracle.test_oracle_dissent_in_range",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 126,
+    "bases": []
+  },
+  {
+    "name": "test_oracle_dissent_in_range",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 126,
+    "bases": []
+  },
+  {
+    "name": "TestOracle.test_oracle_swarm_size_respected",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 131,
+    "bases": []
+  },
+  {
+    "name": "test_oracle_swarm_size_respected",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 131,
+    "bases": []
+  },
+  {
+    "name": "TestOracle.test_oracle_consensus_near_base",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 136,
+    "bases": []
+  },
+  {
+    "name": "test_oracle_consensus_near_base",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 136,
+    "bases": []
+  },
+  {
+    "name": "TestOracle.test_oracle_high_base_prob",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 142,
+    "bases": []
+  },
+  {
+    "name": "test_oracle_high_base_prob",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 142,
+    "bases": []
+  },
+  {
+    "name": "TestOracle.test_oracle_low_base_prob",
+    "kind": "method",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 147,
+    "bases": []
+  },
+  {
+    "name": "test_oracle_low_base_prob",
+    "kind": "function",
+    "module": "tests.test_swarm",
+    "file": "tests/test_swarm.py",
+    "line": 147,
+    "bases": []
+  },
+  {
+    "name": "TestPolymarketConnector",
+    "kind": "class",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 10,
+    "bases": []
+  },
+  {
+    "name": "TestPolymarketConnector.test_safe_mode_default",
+    "kind": "method",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 11,
+    "bases": []
+  },
+  {
+    "name": "test_safe_mode_default",
+    "kind": "function",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 11,
+    "bases": []
+  },
+  {
+    "name": "TestPolymarketConnector.test_safe_mode_explicit",
+    "kind": "method",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 16,
+    "bases": []
+  },
+  {
+    "name": "test_safe_mode_explicit",
+    "kind": "function",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 16,
+    "bases": []
+  },
+  {
+    "name": "TestPolymarketConnector.test_build_order_dry_run",
+    "kind": "method",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 20,
+    "bases": []
+  },
+  {
+    "name": "test_build_order_dry_run",
+    "kind": "function",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 20,
+    "bases": []
+  },
+  {
+    "name": "TestPolymarketConnector.test_build_order_has_timestamp",
+    "kind": "method",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 34,
+    "bases": []
+  },
+  {
+    "name": "test_build_order_has_timestamp",
+    "kind": "function",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 34,
+    "bases": []
+  },
+  {
+    "name": "TestPolymarketConnector.test_execute_market_order_dry_run",
+    "kind": "method",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 43,
+    "bases": []
+  },
+  {
+    "name": "test_execute_market_order_dry_run",
+    "kind": "function",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 43,
+    "bases": []
+  },
+  {
+    "name": "TestPolymarketConnector.test_no_wallet_graceful",
+    "kind": "method",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 53,
+    "bases": []
+  },
+  {
+    "name": "test_no_wallet_graceful",
+    "kind": "function",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 53,
+    "bases": []
+  },
+  {
+    "name": "TestPolymarketConnector.test_map_market",
+    "kind": "method",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 58,
+    "bases": []
+  },
+  {
+    "name": "test_map_market",
+    "kind": "function",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 58,
+    "bases": []
+  },
+  {
+    "name": "TestPolymarketConnector.test_map_event",
+    "kind": "method",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 78,
+    "bases": []
+  },
+  {
+    "name": "test_map_event",
+    "kind": "function",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 78,
+    "bases": []
+  },
+  {
+    "name": "TestTradeExecutor",
+    "kind": "class",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 100,
+    "bases": []
+  },
+  {
+    "name": "TestTradeExecutor.test_superforecast_returns_dict",
+    "kind": "method",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 101,
+    "bases": []
+  },
+  {
+    "name": "test_superforecast_returns_dict",
+    "kind": "function",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 101,
+    "bases": []
+  },
+  {
+    "name": "TestTradeExecutor.test_superforecast_clamps_probability",
+    "kind": "method",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 120,
+    "bases": []
+  },
+  {
+    "name": "test_superforecast_clamps_probability",
+    "kind": "function",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 120,
+    "bases": []
+  },
+  {
+    "name": "TestTradeExecutor.test_size_trade_half_kelly",
+    "kind": "method",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 130,
+    "bases": []
+  },
+  {
+    "name": "test_size_trade_half_kelly",
+    "kind": "function",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 130,
+    "bases": []
+  },
+  {
+    "name": "TestTradeExecutor.test_size_trade_max_cap",
+    "kind": "method",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 138,
+    "bases": []
+  },
+  {
+    "name": "test_size_trade_max_cap",
+    "kind": "function",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 138,
+    "bases": []
+  },
+  {
+    "name": "TestTradeExecutor.test_filter_events_fallback",
+    "kind": "method",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 146,
+    "bases": []
+  },
+  {
+    "name": "test_filter_events_fallback",
+    "kind": "function",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 146,
+    "bases": []
+  },
+  {
+    "name": "TestTrader",
+    "kind": "class",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 159,
+    "bases": []
+  },
+  {
+    "name": "TestTrader.test_one_best_trade_no_events",
+    "kind": "method",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 160,
+    "bases": []
+  },
+  {
+    "name": "test_one_best_trade_no_events",
+    "kind": "function",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 160,
+    "bases": []
+  },
+  {
+    "name": "TestTrader.test_one_best_trade_no_markets",
+    "kind": "method",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 168,
+    "bases": []
+  },
+  {
+    "name": "test_one_best_trade_no_markets",
+    "kind": "function",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 168,
+    "bases": []
+  },
+  {
+    "name": "TestTrader.test_events_to_markets_uses_get_market_by_id",
+    "kind": "method",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 186,
+    "bases": []
+  },
+  {
+    "name": "test_events_to_markets_uses_get_market_by_id",
+    "kind": "function",
+    "module": "tests.test_trading",
+    "file": "tests/test_trading.py",
+    "line": 186,
+    "bases": []
+  }
+]

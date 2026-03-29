@@ -996,3 +996,161 @@
 2026-03-28 18:05:09  INFO      onto_market.trading.trader  Filtered to 1 events
 2026-03-28 18:05:09  INFO      onto_market.trading.trader  Step 3: Mapping events to markets
 2026-03-28 18:05:09  INFO      onto_market.trading.trader  Found 0 markets from filtered events
+2026-03-28 18:35:36  INFO      onto_market.ml_research.dataset  fetch_resolved: stored 1 resolved markets (total 1)
+2026-03-28 18:35:36  INFO      onto_market.ml_research.dataset  fetch_resolved: finished — 1 resolved markets in DB
+2026-03-28 18:35:39  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 (brier=0.180000)
+2026-03-28 18:35:39  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 (brier=0.200000)
+2026-03-28 18:35:39  INFO      onto_market.ml_research.artifacts  artifacts: saved v002 (brier=0.150000)
+2026-03-28 18:35:39  INFO      onto_market.ml_research.artifacts  artifacts: promoted v001
+2026-03-28 18:35:39  INFO      onto_market.ml_research.artifacts  artifacts: promoted v002
+2026-03-28 18:35:39  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 (brier=0.200000)
+2026-03-28 18:35:39  INFO      onto_market.ml_research.artifacts  artifacts: saved v002 (brier=0.100000)
+2026-03-28 18:35:39  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 (brier=0.180000)
+2026-03-28 18:35:47  INFO      onto_market.ml_research.dataset  fetch_resolved: stored 1 resolved markets (total 1)
+2026-03-28 18:35:47  INFO      onto_market.ml_research.dataset  fetch_resolved: finished — 1 resolved markets in DB
+2026-03-28 18:35:48  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 (brier=0.180000)
+2026-03-28 18:35:48  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 (brier=0.200000)
+2026-03-28 18:35:48  INFO      onto_market.ml_research.artifacts  artifacts: saved v002 (brier=0.150000)
+2026-03-28 18:35:48  INFO      onto_market.ml_research.artifacts  artifacts: promoted v001
+2026-03-28 18:35:48  INFO      onto_market.ml_research.artifacts  artifacts: promoted v002
+2026-03-28 18:35:48  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 (brier=0.200000)
+2026-03-28 18:35:48  INFO      onto_market.ml_research.artifacts  artifacts: saved v002 (brier=0.100000)
+2026-03-28 18:35:48  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 (brier=0.180000)
+2026-03-28 18:37:51  INFO      onto_market.trading.trader  Step 1: Discovering tradeable events
+2026-03-28 18:37:51  INFO      onto_market.trading.trader  Found 1 tradeable events
+2026-03-28 18:37:51  INFO      onto_market.trading.trader  Step 2: LLM-filtering events
+2026-03-28 18:37:51  INFO      onto_market.trading.executor  Filtered 1 -> 1 events via LLM
+2026-03-28 18:37:51  INFO      onto_market.trading.trader  Filtered to 1 events
+2026-03-28 18:37:51  INFO      onto_market.trading.trader  Step 3: Mapping events to markets
+2026-03-28 18:37:51  INFO      onto_market.trading.trader  Found 1 markets from filtered events
+2026-03-28 18:37:51  INFO      onto_market.trading.trader  Step 4: Superforecasting 1 markets
+2026-03-28 18:37:51  INFO      onto_market.trading.trader  Step 5: Executing best trade (edge=12.00%)
+2026-03-28 18:37:51  INFO      onto_market.trading.executor  Trade sizing: edge=12.00% kelly=30.00% half_kelly=15.00% balance=$200.00 -> size=$10.00
+2026-03-28 18:37:51  INFO      onto_market.trading.trader  Trade result: YES Will BTC hit $100k? | edge=12.0% | size=$10.00 | dry_run=False
+2026-03-28 18:37:51  WARNING   onto_market.trading.trader  event_id fallback failed for event=3: timeout
+2026-03-28 18:37:51  INFO      onto_market.ml_research.dataset  fetch_resolved: stored 1 resolved markets (total 1)
+2026-03-28 18:37:51  INFO      onto_market.ml_research.dataset  fetch_resolved: finished — 1 resolved markets in DB
+2026-03-28 18:37:52  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 (brier=0.180000)
+2026-03-28 18:37:52  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 (brier=0.200000)
+2026-03-28 18:37:52  INFO      onto_market.ml_research.artifacts  artifacts: saved v002 (brier=0.150000)
+2026-03-28 18:37:52  INFO      onto_market.ml_research.artifacts  artifacts: promoted v001
+2026-03-28 18:37:52  INFO      onto_market.ml_research.artifacts  artifacts: promoted v002
+2026-03-28 18:37:52  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 (brier=0.200000)
+2026-03-28 18:37:52  INFO      onto_market.ml_research.artifacts  artifacts: saved v002 (brier=0.100000)
+2026-03-28 18:37:52  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 (brier=0.180000)
+2026-03-28 18:38:00  INFO      onto_market.connectors.gamma  Gamma search 'bitcoin 100k' returned 1 markets
+2026-03-28 18:38:00  INFO      onto_market.connectors.gamma  Gamma search 'nonexistent query xyz' returned 0 markets
+2026-03-28 18:38:00  INFO      onto_market.swarm.dynamics  Swarm reached max rounds (20) without convergence (std=0.1846)
+2026-03-28 18:38:00  INFO      onto_market.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0730)
+2026-03-28 18:38:00  INFO      onto_market.swarm.oracle  Oracle result: consensus=0.612 confidence=0.635 dissent=0.0% (mean=0.607 std=0.0730 rounds=3)
+2026-03-28 18:38:00  INFO      onto_market.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0681)
+2026-03-28 18:38:00  INFO      onto_market.swarm.oracle  Oracle result: consensus=0.502 confidence=0.660 dissent=0.5% (mean=0.500 std=0.0681 rounds=3)
+2026-03-28 18:38:00  INFO      onto_market.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0737)
+2026-03-28 18:38:00  INFO      onto_market.swarm.oracle  Oracle result: consensus=0.704 confidence=0.631 dissent=1.0% (mean=0.699 std=0.0737 rounds=3)
+2026-03-28 18:38:00  INFO      onto_market.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0734)
+2026-03-28 18:38:00  INFO      onto_market.swarm.oracle  Oracle result: consensus=0.502 confidence=0.633 dissent=1.5% (mean=0.496 std=0.0734 rounds=3)
+2026-03-28 18:38:00  INFO      onto_market.swarm.dynamics  Swarm reached max rounds (2) without convergence (std=0.0767)
+2026-03-28 18:38:00  INFO      onto_market.swarm.oracle  Oracle result: consensus=0.494 confidence=0.616 dissent=0.0% (mean=0.501 std=0.0767 rounds=2)
+2026-03-28 18:38:00  INFO      onto_market.swarm.dynamics  Swarm reached max rounds (5) without convergence (std=0.1039)
+2026-03-28 18:38:00  INFO      onto_market.swarm.oracle  Oracle result: consensus=0.705 confidence=0.481 dissent=4.8% (mean=0.702 std=0.1039 rounds=5)
+2026-03-28 18:38:00  INFO      onto_market.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0490)
+2026-03-28 18:38:00  INFO      onto_market.swarm.oracle  Oracle result: consensus=0.934 confidence=0.755 dissent=0.5% (mean=0.932 std=0.0490 rounds=3)
+2026-03-28 18:38:00  INFO      onto_market.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0599)
+2026-03-28 18:38:00  INFO      onto_market.swarm.oracle  Oracle result: consensus=0.104 confidence=0.701 dissent=0.0% (mean=0.106 std=0.0599 rounds=3)
+2026-03-28 18:38:00  INFO      onto_market.connectors.polymarket  DRY RUN order: BUY test_token_123... @ 0.6500 (size=10.00)
+2026-03-28 18:38:00  INFO      onto_market.connectors.polymarket  DRY RUN order: BUY abc... @ 0.5000 (size=5.00)
+2026-03-28 18:38:00  INFO      onto_market.connectors.polymarket  DRY RUN market order: BUY token=test_token_456... amount=25.00
+2026-03-28 18:38:00  INFO      onto_market.trading.executor  Trade sizing: edge=5.00% kelly=10.00% half_kelly=5.00% balance=$1000.00 -> size=$50.00
+2026-03-28 18:38:00  INFO      onto_market.trading.executor  Trade sizing: edge=10.00% kelly=50.00% half_kelly=25.00% balance=$10000.00 -> size=$500.00
+2026-03-28 18:38:00  WARNING   onto_market.trading.executor  Event filtering failed, returning top 5: API error
+2026-03-28 18:38:00  INFO      onto_market.trading.trader  Step 1: Discovering tradeable events
+2026-03-28 18:38:00  INFO      onto_market.trading.trader  Found 0 tradeable events
+2026-03-28 18:38:00  INFO      onto_market.trading.trader  Step 1: Discovering tradeable events
+2026-03-28 18:38:00  INFO      onto_market.trading.trader  Found 1 tradeable events
+2026-03-28 18:38:00  INFO      onto_market.trading.trader  Step 2: LLM-filtering events
+2026-03-28 18:38:00  INFO      onto_market.trading.executor  Filtered 1 -> 1 events via LLM
+2026-03-28 18:38:00  INFO      onto_market.trading.trader  Filtered to 1 events
+2026-03-28 18:38:00  INFO      onto_market.trading.trader  Step 3: Mapping events to markets
+2026-03-28 18:38:00  INFO      onto_market.trading.trader  Found 0 markets from filtered events
+2026-03-28 18:43:49  INFO      onto_market.ml_research.dataset  fetch_resolved: stored 1 resolved markets (total 1)
+2026-03-28 18:43:49  INFO      onto_market.ml_research.dataset  fetch_resolved: finished — 1 resolved markets in DB
+2026-03-28 18:43:49  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 (brier=0.180000)
+2026-03-28 18:43:49  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 (brier=0.200000)
+2026-03-28 18:43:49  INFO      onto_market.ml_research.artifacts  artifacts: saved v002 (brier=0.150000)
+2026-03-28 18:43:49  INFO      onto_market.ml_research.artifacts  artifacts: promoted v001
+2026-03-28 18:43:49  INFO      onto_market.ml_research.artifacts  artifacts: promoted v002
+2026-03-28 18:43:49  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 (brier=0.200000)
+2026-03-28 18:43:49  INFO      onto_market.ml_research.artifacts  artifacts: saved v002 (brier=0.100000)
+2026-03-28 18:43:49  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 (brier=0.180000)
+2026-03-28 18:43:53  WARNING   onto_market.ml_research.inference  ml_research.inference: artifact metadata missing feature_names
+2026-03-28 18:43:53  WARNING   onto_market.ml_research.inference  ml_research.inference: clamped ML_PRIOR_WEIGHT 2.000 -> 1.000
+2026-03-28 18:43:53  INFO      onto_market.ml_research.inference  ml_research.inference: blended llm=0.800 model=0.200 weight=100.0% -> 0.200
+2026-03-28 18:43:53  INFO      onto_market.connectors.gamma  Gamma search 'bitcoin 100k' returned 1 markets
+2026-03-28 18:43:53  INFO      onto_market.connectors.gamma  Gamma search 'nonexistent query xyz' returned 0 markets
+2026-03-28 18:43:53  INFO      onto_market.agents.planning_agent  probability_node: calling LLM (grok-4)
+2026-03-28 18:43:53  INFO      onto_market.agents.planning_agent  probability_node: estimated=0.740  implied=0.600
+2026-03-28 18:43:53  INFO      onto_market.agents.planning_agent  probability_node: calling LLM (grok-4)
+2026-03-28 18:43:53  INFO      onto_market.agents.planning_agent  probability_node: estimated=0.725  implied=0.600
+2026-03-28 18:44:00  INFO      onto_market.trading.trader  Step 1: Discovering tradeable events
+2026-03-28 18:44:00  INFO      onto_market.trading.trader  Found 1 tradeable events
+2026-03-28 18:44:00  INFO      onto_market.trading.trader  Step 2: LLM-filtering events
+2026-03-28 18:44:00  INFO      onto_market.trading.executor  Filtered 1 -> 1 events via LLM
+2026-03-28 18:44:00  INFO      onto_market.trading.trader  Filtered to 1 events
+2026-03-28 18:44:00  INFO      onto_market.trading.trader  Step 3: Mapping events to markets
+2026-03-28 18:44:00  INFO      onto_market.trading.trader  Found 1 markets from filtered events
+2026-03-28 18:44:00  INFO      onto_market.trading.trader  Step 4: Superforecasting 1 markets
+2026-03-28 18:44:00  INFO      onto_market.trading.trader  Step 5: Executing best trade (edge=12.00%)
+2026-03-28 18:44:00  INFO      onto_market.trading.executor  Trade sizing: edge=12.00% kelly=30.00% half_kelly=15.00% balance=$200.00 -> size=$10.00
+2026-03-28 18:44:00  INFO      onto_market.trading.trader  Trade result: YES Will BTC hit $100k? | edge=12.0% | size=$10.00 | dry_run=False
+2026-03-28 18:44:00  WARNING   onto_market.trading.trader  event_id fallback failed for event=3: timeout
+2026-03-28 18:44:00  INFO      onto_market.ml_research.dataset  fetch_resolved: stored 1 resolved markets (total 1)
+2026-03-28 18:44:00  INFO      onto_market.ml_research.dataset  fetch_resolved: finished — 1 resolved markets in DB
+2026-03-28 18:44:01  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 (brier=0.180000)
+2026-03-28 18:44:01  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 (brier=0.200000)
+2026-03-28 18:44:01  INFO      onto_market.ml_research.artifacts  artifacts: saved v002 (brier=0.150000)
+2026-03-28 18:44:01  INFO      onto_market.ml_research.artifacts  artifacts: promoted v001
+2026-03-28 18:44:01  INFO      onto_market.ml_research.artifacts  artifacts: promoted v002
+2026-03-28 18:44:01  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 (brier=0.200000)
+2026-03-28 18:44:01  INFO      onto_market.ml_research.artifacts  artifacts: saved v002 (brier=0.100000)
+2026-03-28 18:44:01  INFO      onto_market.ml_research.artifacts  artifacts: saved v001 (brier=0.180000)
+2026-03-28 18:44:04  WARNING   onto_market.ml_research.inference  ml_research.inference: artifact metadata missing feature_names
+2026-03-28 18:44:04  WARNING   onto_market.ml_research.inference  ml_research.inference: clamped ML_PRIOR_WEIGHT 2.000 -> 1.000
+2026-03-28 18:44:04  INFO      onto_market.ml_research.inference  ml_research.inference: blended llm=0.800 model=0.200 weight=100.0% -> 0.200
+2026-03-28 18:44:04  INFO      onto_market.connectors.gamma  Gamma search 'bitcoin 100k' returned 1 markets
+2026-03-28 18:44:04  INFO      onto_market.connectors.gamma  Gamma search 'nonexistent query xyz' returned 0 markets
+2026-03-28 18:44:04  INFO      onto_market.agents.planning_agent  probability_node: calling LLM (grok-4)
+2026-03-28 18:44:04  INFO      onto_market.agents.planning_agent  probability_node: estimated=0.740  implied=0.600
+2026-03-28 18:44:04  INFO      onto_market.agents.planning_agent  probability_node: calling LLM (grok-4)
+2026-03-28 18:44:04  INFO      onto_market.agents.planning_agent  probability_node: estimated=0.725  implied=0.600
+2026-03-28 18:44:05  INFO      onto_market.swarm.dynamics  Swarm reached max rounds (20) without convergence (std=0.1693)
+2026-03-28 18:44:05  INFO      onto_market.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0754)
+2026-03-28 18:44:05  INFO      onto_market.swarm.oracle  Oracle result: consensus=0.599 confidence=0.623 dissent=1.0% (mean=0.598 std=0.0754 rounds=3)
+2026-03-28 18:44:05  INFO      onto_market.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0758)
+2026-03-28 18:44:05  INFO      onto_market.swarm.oracle  Oracle result: consensus=0.508 confidence=0.621 dissent=1.5% (mean=0.505 std=0.0758 rounds=3)
+2026-03-28 18:44:05  INFO      onto_market.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0635)
+2026-03-28 18:44:05  INFO      onto_market.swarm.oracle  Oracle result: consensus=0.708 confidence=0.682 dissent=0.5% (mean=0.698 std=0.0635 rounds=3)
+2026-03-28 18:44:05  INFO      onto_market.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0769)
+2026-03-28 18:44:05  INFO      onto_market.swarm.oracle  Oracle result: consensus=0.503 confidence=0.615 dissent=1.5% (mean=0.500 std=0.0769 rounds=3)
+2026-03-28 18:44:05  INFO      onto_market.swarm.dynamics  Swarm reached max rounds (2) without convergence (std=0.0714)
+2026-03-28 18:44:05  INFO      onto_market.swarm.oracle  Oracle result: consensus=0.495 confidence=0.643 dissent=0.0% (mean=0.501 std=0.0714 rounds=2)
+2026-03-28 18:44:05  INFO      onto_market.swarm.dynamics  Swarm reached max rounds (5) without convergence (std=0.1067)
+2026-03-28 18:44:05  INFO      onto_market.swarm.oracle  Oracle result: consensus=0.697 confidence=0.466 dissent=6.6% (mean=0.696 std=0.1067 rounds=5)
+2026-03-28 18:44:05  INFO      onto_market.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0500)
+2026-03-28 18:44:05  INFO      onto_market.swarm.oracle  Oracle result: consensus=0.932 confidence=0.750 dissent=0.5% (mean=0.929 std=0.0500 rounds=3)
+2026-03-28 18:44:05  INFO      onto_market.swarm.dynamics  Swarm reached max rounds (3) without convergence (std=0.0626)
+2026-03-28 18:44:05  INFO      onto_market.swarm.oracle  Oracle result: consensus=0.090 confidence=0.687 dissent=1.5% (mean=0.102 std=0.0626 rounds=3)
+2026-03-28 18:44:05  INFO      onto_market.connectors.polymarket  DRY RUN order: BUY test_token_123... @ 0.6500 (size=10.00)
+2026-03-28 18:44:05  INFO      onto_market.connectors.polymarket  DRY RUN order: BUY abc... @ 0.5000 (size=5.00)
+2026-03-28 18:44:05  INFO      onto_market.connectors.polymarket  DRY RUN market order: BUY token=test_token_456... amount=25.00
+2026-03-28 18:44:05  INFO      onto_market.trading.executor  Trade sizing: edge=5.00% kelly=10.00% half_kelly=5.00% balance=$1000.00 -> size=$50.00
+2026-03-28 18:44:05  INFO      onto_market.trading.executor  Trade sizing: edge=10.00% kelly=50.00% half_kelly=25.00% balance=$10000.00 -> size=$500.00
+2026-03-28 18:44:05  WARNING   onto_market.trading.executor  Event filtering failed, returning top 5: API error
+2026-03-28 18:44:05  INFO      onto_market.trading.trader  Step 1: Discovering tradeable events
+2026-03-28 18:44:05  INFO      onto_market.trading.trader  Found 0 tradeable events
+2026-03-28 18:44:05  INFO      onto_market.trading.trader  Step 1: Discovering tradeable events
+2026-03-28 18:44:05  INFO      onto_market.trading.trader  Found 1 tradeable events
+2026-03-28 18:44:05  INFO      onto_market.trading.trader  Step 2: LLM-filtering events
+2026-03-28 18:44:05  INFO      onto_market.trading.executor  Filtered 1 -> 1 events via LLM
+2026-03-28 18:44:05  INFO      onto_market.trading.trader  Filtered to 1 events
+2026-03-28 18:44:05  INFO      onto_market.trading.trader  Step 3: Mapping events to markets
+2026-03-28 18:44:05  INFO      onto_market.trading.trader  Found 0 markets from filtered events
