@@ -20,14 +20,20 @@ class Database:
                     description TEXT,
                     category TEXT,
                     outcome_prices TEXT,
-                    clob_token_ids TEXT,          -- ← ADD THIS LINE
+                    clob_token_ids TEXT,
                     volume REAL,
                     liquidity REAL,
                     active INTEGER,
                     end_date TEXT,
-                    last_updated TEXT
+                    last_updated TEXT,
+                    tags TEXT
                 )
             """)
+            # Migrate existing DBs that lack the tags column
+            try:
+                db.execute("ALTER TABLE markets ADD COLUMN tags TEXT")
+            except sqlite3.OperationalError:
+                pass  # column already exists
             db.execute("""
                 CREATE TABLE IF NOT EXISTS research (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,

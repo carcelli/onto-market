@@ -20,8 +20,9 @@ class MemoryManager:
             """
             INSERT OR REPLACE INTO markets
             (id, question, description, category, outcome_prices,
-             clob_token_ids, volume, liquidity, active, end_date, last_updated)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+             clob_token_ids, volume, liquidity, active, end_date,
+             last_updated, tags)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
                 market.id,
@@ -29,14 +30,15 @@ class MemoryManager:
                 market.description,
                 market.category,
                 json.dumps(market.outcome_prices),
-                json.dumps(market.clob_token_ids),   # ← NEW
+                json.dumps(market.clob_token_ids),
                 market.volume,
                 market.liquidity,
                 int(market.active),
                 market.end_date,
                 market.last_updated.isoformat(),
-                ),
-            )
+                json.dumps(market.tags),
+            ),
+        )
 
     def search_markets(self, query: str, category: str | None = None) -> list[dict]:
         if category:

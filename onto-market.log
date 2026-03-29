@@ -1583,3 +1583,127 @@ stderr: Traceback (most recent call last):
 2026-03-28 21:53:06  INFO      onto_market.ml_research.runner  runner [torch]: researcher LLM = local
 2026-03-28 21:53:13  INFO      onto_market.ml_research.runner  runner [torch]: baseline brier = 0.000725
 2026-03-28 21:53:13  INFO      onto_market.ml_research.runner  runner [torch]: === iteration 1/200 (best=0.000725) ===
+2026-03-28 22:17:15  INFO      onto_market.ontology.enricher  enricher.from_market_metadata: extracted 15 triples from 3 markets
+2026-03-28 22:17:15  INFO      onto_market.ontology.enricher  enricher.from_market_pairs: extracted 2 correlation triples
+2026-03-28 22:17:15  INFO      onto_market.ontology.enricher  enricher.from_ml_features: extracted 6 triples from ML metadata
+2026-03-28 22:17:15  INFO      onto_market.ontology.enricher  enricher.from_market_metadata: extracted 15 triples from 3 markets
+2026-03-28 22:17:15  INFO      onto_market.ontology.enricher  enricher.from_market_pairs: extracted 2 correlation triples
+2026-03-28 22:17:15  INFO      onto_market.ontology.enricher  enricher.from_ml_features: extracted 6 triples from ML metadata
+2026-03-28 22:17:15  INFO      onto_market.ontology.enricher  enricher.enrich_from_all_sources: ingested 23 total triples — {'market_metadata': 15, 'market_pairs': 2, 'ml_features': 6}
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_market_metadata: extracted 442 triples from 100 markets
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_market_pairs: extracted 0 correlation triples
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_ml_features: extracted 7 triples from ML metadata
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.decompose_hub_entities: decomposed 51 hub nodes into 338 triples
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.enrich_from_all_sources: ingested 787 total triples — {'market_metadata': 442, 'market_pairs': 0, 'ml_features': 7, 'decomposition': 338}
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: milwaukee bucks win the 2026 n → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: israel take military action in → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: elon musk post 20-39 tweets fr → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: tennessee volunteers vs. iowa  → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: chicago bulls win the 2026 nba → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: michigan state spartans vs. co → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: clippers vs. pacers → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: st. john's red storm vs. duke → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: hawks vs. celtics → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: counter-strike: team falcons v → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: illinois fighting illini vs. h → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: knicks vs. hornets → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: nebraska cornhuskers vs. iowa  → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: texas longhorns vs. purdue boi → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: pelicans vs. pistons → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: chelsea win the 2025–26 englis → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: louisville cardinals vs. michi → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: missouri tigers vs. miami hurr → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: liverpool fc win on 2026-03-18 → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: fed increase interest rates by → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: fed decrease interest rates by → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: chelsea fc win on 2026-03-17? → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: magic vs. hawks → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: brentford win the 2025–26 engl → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: michael b. jordan win best act → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: bugonia win best picture at th → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: osasuna win the 2025–26 la lig → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: kings vs. clippers → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: iran close the strait of hormu → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: arsenal fc win on 2026-03-11? → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: timberwolves vs. lakers → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: celtics vs. spurs → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: brighton win the 2025–26 engli → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: crystal palace win the 2025–26 → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate michelle bowman → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate barron trump as → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate scott bessent a → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate larry lindsey a → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate philip jefferso → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate stephen miran a → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate ron paul as the → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate larry kudlow as → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate jerome powell a → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate arthur laffer a → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate howard lutnick  → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate janet yellen as → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate rick rieder as  → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate david zervos as → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate marc sumerlin a → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate bill pulte as t → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate david malpass a → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate no one before 2 → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate kevin hassett a → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate christopher wal → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate himself as the  → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate judy shelton as → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump nominate kevin warsh as  → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: next strike iran on february 2 → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: next strike iran on february 2 → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: james talarico be the democrat → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: pelicans vs. lakers → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: pistons vs. cavaliers → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: nvidia be the largest company  → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: liverpool fc win on 2026-03-03 → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: khamenei out as supreme leader → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: khamenei out as supreme leader → 2 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: israel or the us target an → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: clippers vs. warriors → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: x iran ceasefire by march 2? → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: nuggets vs. jazz → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: rockets vs. wizards → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: celtics vs. bucks → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: real madrid cf win on 2026-03- → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: next strike iran on february 2 → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: cavaliers vs. nets → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: timberwolves vs. nuggets → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: tottenham win the 2025–26 engl → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: leeds win the 2025–26 english  → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: arsenal fc win on 2026-03-01? → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: fulham fc win on 2026-03-01? → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: manchester united fc win on 20 → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: elche win the 2025–26 la liga? → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: russia x ukraine ceasefire by  → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: ethereum reach $4,400 in febru → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: ethereum reach $5,000 in febru → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: trump deport 250,000-500,000 p → 1 triples (resolved_yes=True)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: bitcoin dip to $35,000 in febr → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: bitcoin dip to $40,000 in febr → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: bitcoin dip to $45,000 in febr → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: bitcoin dip to $50,000 in febr → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: bitcoin dip to $55,000 in febr → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: bitcoin dip to $60,000 in febr → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: bitcoin reach $75,000 in febru → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: bitcoin reach $80,000 in febru → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: bitcoin reach $85,000 in febru → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: bitcoin reach $90,000 in febru → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: bitcoin reach $95,000 in febru → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: bitcoin reach $100,000 in febr → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: bitcoin reach $105,000 in febr → 1 triples (resolved_yes=False)
+2026-03-28 22:17:24  INFO      onto_market.ontology.enricher  enricher.from_resolved_outcome: bitcoin reach $115,000 in febr → 1 triples (resolved_yes=False)
+2026-03-29 01:12:56  INFO      onto_market.ml_research.runner  runner [sklearn]: researcher LLM = default
+2026-03-29 01:13:06  INFO      onto_market.ml_research.runner  runner [sklearn]: baseline brier = 0.000284
+2026-03-29 01:13:06  INFO      onto_market.ml_research.runner  runner [sklearn]: === iteration 1/5 (best=0.000284) ===
+2026-03-29 01:14:00  INFO      onto_market.ml_research.runner  runner: rejected 0.113859 >= 0.000284
+2026-03-29 01:14:00  INFO      onto_market.ml_research.runner  runner [sklearn]: === iteration 2/5 (best=0.000284) ===
+2026-03-29 01:15:00  INFO      onto_market.ml_research.runner  runner: rejected 0.106957 >= 0.000284
+2026-03-29 01:15:00  INFO      onto_market.ml_research.runner  runner [sklearn]: === iteration 3/5 (best=0.000284) ===
+2026-03-29 01:15:39  INFO      onto_market.ml_research.runner  runner: rejected 0.135403 >= 0.000284
+2026-03-29 01:15:39  INFO      onto_market.ml_research.runner  runner [sklearn]: === iteration 4/5 (best=0.000284) ===
+2026-03-29 01:16:30  INFO      onto_market.ml_research.runner  runner: rejected 0.008270 >= 0.000284
+2026-03-29 01:16:30  INFO      onto_market.ml_research.runner  runner [sklearn]: === iteration 5/5 (best=0.000284) ===
+2026-03-29 01:17:14  INFO      onto_market.ml_research.runner  runner: rejected 0.161746 >= 0.000284

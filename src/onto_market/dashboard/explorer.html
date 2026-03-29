@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>onto-market · Ontology Explorer</title>
+<style>
+  :root {
+    --bg: #0e0e10; --bg2: #1a1a1f; --bg3: #25252b;
+    --fg: #e4e4e7; --fg2: #a1a1aa; --fg3: #71717a;
+    --border: #2e2e35; --accent: #7F77DD; --radius: 8px;
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--fg); font-family: var(--font); overflow-x: hidden; }
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+  /* ── Header ─────────────────────────────────────────────────── */
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 24px; border-bottom: 1px solid var(--border);
+  }
+  .header h1 { font-size: 16px; font-weight: 600; letter-spacing: -0.02em; }
+  .header h1 span { color: var(--accent); }
+  .header-meta { display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--fg3); }
+  .pulse { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: pulse 2s ease-in-out infinite; }
+  .pulse.stale { background: #eab308; animation: none; }
+  @keyframes pulse { 0%,100%{ opacity: 1; } 50%{ opacity: 0.4; } }
+
+  /* ── Stats bar ──────────────────────────────────────────────── */
+  .stats { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; padding: 16px 24px 0; }
+  @media (max-width: 800px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+  .stat { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; }
+  .stat-label { font-size: 11px; color: var(--fg3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+  .stat-value { font-size: 22px; font-weight: 600; color: var(--fg); }
+  .stat-value.accent { color: var(--accent); }
+
+  /* ── Legend / filter pills ──────────────────────────────────── */
+  .legend { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 24px; }
+  .pill {
+    font-size: 12px; padding: 4px 12px; border-radius: 14px; cursor: pointer;
+    user-select: none; border: 1px solid; transition: opacity 0.2s, transform 0.1s;
+    font-weight: 500;
+  }
+  .pill:hover { transform: scale(1.04); }
+  .pill.off { opacity: 0.2; }
+
+  /* ── Graph canvas ───────────────────────────────────────────── */
+  .graph-wrap { position: relative; padding: 0 24px; }
+  svg { display: block; width: 100%; background: var(--bg); border-radius: var(--radius); }
+  svg text { font-family: var(--font); }
+  .n-circ { cursor: pointer; transition: r 0.15s; }
+  .n-label { pointer-events: none; font-size: 11px; fill: var(--fg); }
+  .n-label.hub { font-weight: 600; font-size: 12px; }
+  .e-line { fill: none; stroke-linecap: round; transition: opacity 0.3s; }
+  .e-label { font-size: 9.5px; fill: var(--fg3); pointer-events: none; transition: opacity 0.3s; }
+
+  /* ── Tooltip ────────────────────────────────────────────────── */
+  .tip {
+    position: absolute; background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 10px 14px; font-size: 12px;
+    pointer-events: none; opacity: 0; transition: opacity 0.15s; z-index: 10;
+    max-width: 300px; box-shadow: 0 8px 24px rgba(0,0,0,.5);
+  }
+  .tip b { font-weight: 600; }
+  .tip .row { color: var(--fg2); line-height: 1.7; }
+  .tip .pred-tag { font-weight: 500; }
+  .tip .src-badge {
+    display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 3px;
+    background: var(--bg3); color: var(--fg3); margin-left: 4px;
+  }
+  .tip .src-badge.planning { background: #7F77DD33; color: #7F77DD; }
+  .tip .src-badge.metadata { background: #1D9E7533; color: #1D9E75; }
+  .tip .src-badge.ml { background: #E24B4A33; color: #E24B4A; }
+  .tip .src-badge.resolution { background: #BA751733; color: #BA7517; }
+  .tip .src-badge.pairs { background: #378ADD33; color: #378ADD; }
+
+  /* ── Controls ───────────────────────────────────────────────── */
+  .controls {
+    display: flex; align-items: center; gap: 14px; padding: 12px 24px 20px;
+    font-size: 13px; color: var(--fg2); flex-wrap: wrap;
+  }
+  .controls label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+  .controls input[type="range"] { width: 90px; accent-color: var(--accent); }
+  .controls input[type="checkbox"] { accent-color: var(--accent); }
+  .btn {
+    background: var(--bg3); border: 1px solid var(--border); color: var(--fg);
+    padding: 5px 14px; border-radius: 6px; cursor: pointer; font-size: 13px;
+    font-family: var(--font); transition: background 0.15s;
+  }
+  .btn:hover { background: var(--border); }
+  .search-box {
+    background: var(--bg2); border: 1px solid var(--border); color: var(--fg);
+    padding: 5px 12px; border-radius: 6px; font-size: 13px; font-family: var(--font);
+    outline: none; width: 180px; transition: border-color 0.15s;
+  }
+  .search-box:focus { border-color: var(--accent); }
+  .search-box::placeholder { color: var(--fg3); }
+
+  /* ── Empty state ────────────────────────────────────────────── */
+  .empty-state {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    height: 400px; color: var(--fg3); gap: 12px;
+  }
+  .empty-state p { font-size: 14px; }
+  .empty-state code { background: var(--bg2); padding: 4px 10px; border-radius: 4px; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1><span>onto-market</span> · Ontology Explorer</h1>
+  <div class="header-meta">
+    <span id="last-update">loading…</span>
+    <div class="pulse" id="pulse"></div>
+    <span id="refresh-label">auto-refresh: 5s</span>
+  </div>
+</div>
+
+<div class="stats" id="stats-bar">
+  <div class="stat"><div class="stat-label">Nodes</div><div class="stat-value" id="s-nodes">—</div></div>
+  <div class="stat"><div class="stat-label">Edges</div><div class="stat-value" id="s-edges">—</div></div>
+  <div class="stat"><div class="stat-label">Components</div><div class="stat-value" id="s-comps">—</div></div>
+  <div class="stat"><div class="stat-label">Mean Conf.</div><div class="stat-value accent" id="s-conf">—</div></div>
+  <div class="stat"><div class="stat-label">Hub Node</div><div class="stat-value" id="s-hub">—</div></div>
+  <div class="stat"><div class="stat-label">Predicates</div><div class="stat-value" id="s-preds">—</div></div>
+  <div class="stat"><div class="stat-label">Sources</div><div class="stat-value" id="s-sources">—</div></div>
+</div>
+
+<div class="legend" id="legend"></div>
+
+<div class="graph-wrap" id="graph-wrap">
+  <svg id="og" height="540"></svg>
+  <div class="tip" id="tip"></div>
+</div>
+
+<div class="controls">
+  <label>Repulsion <input type="range" id="charge-sl" min="50" max="500" value="200" step="10"></label>
+  <label><input type="checkbox" id="show-el" checked> Edge labels</label>
+  <input type="text" class="search-box" id="search" placeholder="Search nodes…">
+  <button class="btn" id="btn-reheat">Re-simulate</button>
+  <button class="btn" id="btn-export">Export PNG</button>
+  <label><input type="checkbox" id="auto-refresh" checked> Auto-refresh</label>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+(function() {
+  "use strict";
+
+  const PRED_COLORS = {
+    related_to:      '#7F77DD',
+    influences:      '#1D9E75',
+    contradicts:     '#E24B4A',
+    opposes:         '#D85A30',
+    correlates_with: '#378ADD',
+    predicts:        '#639922',
+    involves:        '#D4537E',
+    supports:        '#BA7517',
+    caused_by:       '#888780',
+  };
+  const COMP_COLORS = ['#7F77DD','#1D9E75','#D85A30','#378ADD','#D4537E','#BA7517','#639922','#E24B4A','#888780','#22d3ee','#f472b6','#a3e635'];
+
+  const API = window.location.origin + '/api/ontology';
+  let prevHash = '';
+  let sim, nodes, edges, eLabels, nodeG, edgeG, eLabelG, svg, W, H;
+  let graphData = null;
+  let predState = {};
+
+  // ── Data fetching ──────────────────────────────────────────────
+  async function fetchOntology() {
+    try {
+      const resp = await fetch(API);
+      if (!resp.ok) throw new Error(resp.status);
+      const raw = await resp.json();
+      const hash = JSON.stringify(raw);
+      if (hash === prevHash) return false;
+      prevHash = hash;
+      graphData = transformNX(raw);
+      return true;
+    } catch (e) {
+      console.warn('Fetch failed, trying local fallback…', e);
+      try {
+        const resp = await fetch('data/ontology.json');
+        if (!resp.ok) throw new Error(resp.status);
+        const raw = await resp.json();
+        const hash = JSON.stringify(raw);
+        if (hash === prevHash) return false;
+        prevHash = hash;
+        graphData = transformNX(raw);
+        return true;
+      } catch (_) {
+        return false;
+      }
+    }
+  }
+
+  function transformNX(raw) {
+    const rawEdges = raw.links || raw.edges || [];
+    const rawNodes = raw.nodes || [];
+
+    const degreeMap = {};
+    rawNodes.forEach(n => { degreeMap[n.id] = 0; });
+    rawEdges.forEach(e => {
+      const s = typeof e.source === 'object' ? e.source.id : e.source;
+      const t = typeof e.target === 'object' ? e.target.id : e.target;
+      degreeMap[s] = (degreeMap[s] || 0) + 1;
+      degreeMap[t] = (degreeMap[t] || 0) + 1;
+    });
+
+    const nds = rawNodes.map(n => ({
+      id: n.id,
+      deg: degreeMap[n.id] || 0,
+      sources: n.sources || [],
+      first_seen: n.first_seen,
+      last_seen: n.last_seen,
+    }));
+
+    const eds = rawEdges.map(e => ({
+      source: typeof e.source === 'object' ? e.source.id : e.source,
+      target: typeof e.target === 'object' ? e.target.id : e.target,
+      pred: e.predicate || 'related_to',
+      conf: e.confidence || 0.5,
+      timestamp: e.timestamp,
+    }));
+
+    // Connected components via BFS
+    const adj = {};
+    nds.forEach(n => { adj[n.id] = []; });
+    eds.forEach(e => {
+      if (adj[e.source]) adj[e.source].push(e.target);
+      if (adj[e.target]) adj[e.target].push(e.source);
+    });
+    const compMap = {};
+    let compId = 0;
+    const visited = new Set();
+    function bfs(start) {
+      const q = [start]; visited.add(start); compMap[start] = compId;
+      while (q.length) {
+        const n = q.shift();
+        (adj[n] || []).forEach(nb => {
+          if (!visited.has(nb)) { visited.add(nb); compMap[nb] = compId; q.push(nb); }
+        });
+      }
+      compId++;
+    }
+    nds.forEach(n => { if (!visited.has(n.id)) bfs(n.id); });
+
+    return { nodes: nds, edges: eds, compMap, compCount: compId };
+  }
+
+  // ── Stats ──────────────────────────────────────────────────────
+  function updateStats(g) {
+    document.getElementById('s-nodes').textContent = g.nodes.length;
+    document.getElementById('s-edges').textContent = g.edges.length;
+    document.getElementById('s-comps').textContent = g.compCount;
+
+    const meanConf = g.edges.length
+      ? (g.edges.reduce((s, e) => s + e.conf, 0) / g.edges.length).toFixed(2)
+      : '—';
+    document.getElementById('s-conf').textContent = meanConf;
+
+    const hub = g.nodes.reduce((best, n) => n.deg > best.deg ? n : best, { deg: -1 });
+    document.getElementById('s-hub').textContent = hub.id || '—';
+
+    const preds = new Set(g.edges.map(e => e.pred));
+    document.getElementById('s-preds').textContent = preds.size;
+
+    const allSources = new Set();
+    g.nodes.forEach(n => (n.sources || []).forEach(s => allSources.add(s)));
+    document.getElementById('s-sources').textContent = allSources.size || '—';
+
+    document.getElementById('last-update').textContent =
+      'updated ' + new Date().toLocaleTimeString();
+    document.getElementById('pulse').classList.remove('stale');
+  }
+
+  // ── Legend ──────────────────────────────────────────────────────
+  function buildLegend(g) {
+    const leg = document.getElementById('legend');
+    leg.innerHTML = '';
+    const preds = [...new Set(g.edges.map(e => e.pred))];
+    preds.forEach(p => {
+      predState[p] = predState[p] !== undefined ? predState[p] : true;
+      const pill = document.createElement('span');
+      pill.className = 'pill' + (predState[p] ? '' : ' off');
+      const c = PRED_COLORS[p] || '#888';
+      pill.style.background = c + '22';
+      pill.style.borderColor = c;
+      pill.style.color = c;
+      pill.textContent = p;
+      pill.onclick = () => {
+        predState[p] = !predState[p];
+        pill.classList.toggle('off', !predState[p]);
+        applyFilter();
+      };
+      leg.appendChild(pill);
+    });
+  }
+
+  // ── Rendering ──────────────────────────────────────────────────
+  function render(g) {
+    svg = d3.select('#og');
+    const wrap = document.getElementById('graph-wrap');
+    W = wrap.getBoundingClientRect().width - 48;
+    H = 540;
+    svg.attr('width', W).attr('height', H).attr('viewBox', `0 0 ${W} ${H}`);
+    svg.selectAll('*').remove();
+
+    if (!g.nodes.length) {
+      svg.append('text').attr('x', W/2).attr('y', H/2).attr('text-anchor', 'middle')
+        .attr('fill', '#71717a').attr('font-size', 14).text('No ontology data — run a planning_agent query to seed the graph.');
+      return;
+    }
+
+    // Arrow markers
+    const defs = svg.append('defs');
+    Object.entries(PRED_COLORS).forEach(([p, c]) => {
+      defs.append('marker').attr('id', 'a-' + p)
+        .attr('viewBox', '0 0 10 10').attr('refX', 22).attr('refY', 5)
+        .attr('markerWidth', 5).attr('markerHeight', 5).attr('orient', 'auto-start-reverse')
+        .append('path').attr('d', 'M2 1L8 5L2 9').attr('fill', c).attr('stroke', 'none');
+    });
+
+    // Deep-copy nodes/edges so d3 can mutate them
+    const simNodes = g.nodes.map(d => ({ ...d }));
+    const simEdges = g.edges.map(d => ({ ...d }));
+
+    sim = d3.forceSimulation(simNodes)
+      .force('link', d3.forceLink(simEdges).id(d => d.id).distance(80))
+      .force('charge', d3.forceManyBody().strength(-getCharge()))
+      .force('center', d3.forceCenter(W / 2, H / 2))
+      .force('collision', d3.forceCollide().radius(d => 10 + d.deg * 4))
+      .force('x', d3.forceX(W / 2).strength(0.04))
+      .force('y', d3.forceY(H / 2).strength(0.04));
+
+    edgeG = svg.append('g');
+    eLabelG = svg.append('g');
+    nodeG = svg.append('g');
+
+    edges = edgeG.selectAll('line').data(simEdges).join('line')
+      .attr('class', 'e-line')
+      .attr('stroke', d => PRED_COLORS[d.pred] || '#888')
+      .attr('stroke-width', d => 0.6 + d.conf * 2.2)
+      .attr('stroke-opacity', d => 0.3 + d.conf * 0.5)
+      .attr('marker-end', d => `url(#a-${d.pred})`);
+
+    eLabels = eLabelG.selectAll('text').data(simEdges).join('text')
+      .attr('class', 'e-label').text(d => d.pred);
+
+    const ns = d3.scaleLinear().domain([0, d3.max(simNodes, d => d.deg) || 1]).range([5, 14]);
+
+    nodes = nodeG.selectAll('g').data(simNodes).join('g')
+      .call(d3.drag()
+        .on('start', (ev, d) => { if (!ev.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+        .on('drag', (ev, d) => { d.fx = ev.x; d.fy = ev.y; })
+        .on('end', (ev, d) => { if (!ev.active) sim.alphaTarget(0); d.fx = null; d.fy = null; }));
+
+    nodes.append('circle').attr('class', 'n-circ')
+      .attr('r', d => ns(d.deg))
+      .attr('fill', d => COMP_COLORS[(g.compMap[d.id] || 0) % COMP_COLORS.length])
+      .attr('stroke', d => COMP_COLORS[(g.compMap[d.id] || 0) % COMP_COLORS.length] + '99')
+      .attr('stroke-width', d => d.deg >= 3 ? 2 : 0.5)
+      .on('mouseover', function(ev, d) { showTip(ev, d, g, ns); })
+      .on('mouseout', function(ev, d) { hideTip(d, ns); });
+
+    nodes.append('text').attr('class', d => 'n-label' + (d.deg >= 2 ? ' hub' : ''))
+      .attr('dx', d => ns(d.deg) + 4).attr('dy', 3).text(d => d.id);
+
+    sim.on('tick', () => {
+      edges
+        .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+        .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+      eLabels
+        .attr('x', d => (d.source.x + d.target.x) / 2)
+        .attr('y', d => (d.source.y + d.target.y) / 2 - 5);
+      nodes.attr('transform', d => `translate(${d.x},${d.y})`);
+    });
+
+    if (!document.getElementById('show-el').checked) {
+      eLabelG.style('display', 'none');
+    }
+    applyFilter();
+  }
+
+  // ── Tooltip ────────────────────────────────────────────────────
+  const tip = document.getElementById('tip');
+
+  function showTip(ev, d, g, ns) {
+    const oe = g.edges.filter(l => {
+      const sid = typeof l.source === 'object' ? l.source.id : l.source;
+      return sid === d.id;
+    });
+    const ie = g.edges.filter(l => {
+      const tid = typeof l.target === 'object' ? l.target.id : l.target;
+      return tid === d.id;
+    });
+
+    let h = `<b>${d.id}</b> <span class="row">(component ${(g.compMap[d.id] || 0) + 1}, degree ${d.deg})</span>`;
+    if (d.sources && d.sources.length) {
+      const SRC_CLASSES = {
+        planning_agent: 'planning', market_metadata: 'metadata',
+        ml_training: 'ml', resolution: 'resolution', market_pairs: 'pairs',
+      };
+      const badges = d.sources.map(s => {
+        const cls = SRC_CLASSES[s] || '';
+        return `<span class="src-badge ${cls}">${s}</span>`;
+      }).join('');
+      h += `<div class="row">sources: ${badges}</div>`;
+    }
+    oe.forEach(l => {
+      const tid = typeof l.target === 'object' ? l.target.id : l.target;
+      const c = PRED_COLORS[l.pred] || '#888';
+      h += `<div class="row">→ <span class="pred-tag" style="color:${c}">${l.pred}</span> → ${tid} (${l.conf})</div>`;
+    });
+    ie.forEach(l => {
+      const sid = typeof l.source === 'object' ? l.source.id : l.source;
+      const c = PRED_COLORS[l.pred] || '#888';
+      h += `<div class="row">← <span class="pred-tag" style="color:${c}">${l.pred}</span> ← ${sid} (${l.conf})</div>`;
+    });
+
+    tip.innerHTML = h;
+    tip.style.opacity = 1;
+    const rect = tip.parentElement.getBoundingClientRect();
+    tip.style.left = Math.min(ev.offsetX + 14, rect.width - 280) + 'px';
+    tip.style.top = (ev.offsetY - 10) + 'px';
+    d3.select(ev.target).transition().duration(100).attr('r', ns(d.deg) + 3);
+  }
+
+  function hideTip(d, ns) {
+    tip.style.opacity = 0;
+    const circle = nodeG.selectAll('circle').filter(n => n.id === d.id);
+    circle.transition().duration(100).attr('r', ns(d.deg));
+  }
+
+  // ── Filters & controls ─────────────────────────────────────────
+  function applyFilter() {
+    if (!edges) return;
+    edges.attr('stroke-opacity', d => predState[d.pred] ? (0.3 + d.conf * 0.5) : 0.03);
+    eLabels.attr('opacity', d => predState[d.pred] ? 1 : 0.05);
+  }
+
+  function getCharge() {
+    return +document.getElementById('charge-sl').value;
+  }
+
+  document.getElementById('charge-sl').oninput = function() {
+    if (sim) { sim.force('charge').strength(-this.value); sim.alpha(0.4).restart(); }
+  };
+
+  document.getElementById('show-el').onchange = function() {
+    if (eLabelG) eLabelG.style('display', this.checked ? null : 'none');
+  };
+
+  document.getElementById('btn-reheat').onclick = function() {
+    if (sim) sim.alpha(1).restart();
+  };
+
+  document.getElementById('btn-export').onclick = function() {
+    const svgEl = document.getElementById('og');
+    const serializer = new XMLSerializer();
+    let svgStr = serializer.serializeToString(svgEl);
+    svgStr = svgStr.replace(/font-family:[^;"]+/g, "font-family: sans-serif");
+
+    const canvas = document.createElement('canvas');
+    canvas.width = W * 2; canvas.height = H * 2;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#0e0e10';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    const img = new Image();
+    img.onload = () => {
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      const a = document.createElement('a');
+      a.download = `ontology-${new Date().toISOString().slice(0,10)}.png`;
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+    };
+    img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgStr)));
+  };
+
+  // Search / highlight
+  document.getElementById('search').oninput = function() {
+    const q = this.value.toLowerCase().trim();
+    if (!nodeG) return;
+    nodeG.selectAll('circle').attr('opacity', d =>
+      !q || d.id.toLowerCase().includes(q) ? 1 : 0.15
+    );
+    nodeG.selectAll('text').attr('opacity', d =>
+      !q || d.id.toLowerCase().includes(q) ? 1 : 0.1
+    );
+  };
+
+  // ── Auto-refresh loop ──────────────────────────────────────────
+  const POLL_MS = 5000;
+
+  async function tick() {
+    const changed = await fetchOntology();
+    if (changed && graphData) {
+      updateStats(graphData);
+      buildLegend(graphData);
+      render(graphData);
+    }
+  }
+
+  async function loop() {
+    await tick();
+    setInterval(async () => {
+      if (document.getElementById('auto-refresh').checked) {
+        const changed = await fetchOntology();
+        if (changed && graphData) {
+          updateStats(graphData);
+          buildLegend(graphData);
+          render(graphData);
+        } else {
+          document.getElementById('pulse').classList.add('stale');
+        }
+      }
+    }, POLL_MS);
+  }
+
+  window.addEventListener('resize', () => { if (graphData) render(graphData); });
+
+  loop();
+})();
+</script>
+</body>
+</html>

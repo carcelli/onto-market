@@ -16,3 +16,6 @@ onto_market.egg-info/
 *.log
 data/memory.db
 data/ml_artifacts/
+
+# Root-level scratch visualizations (canonical source: src/onto_market/dashboard/)
+onto_market_ontology_explorer.html

@@ -36,6 +36,20 @@ from onto_market.ml_research.artifacts import (
 from onto_market.utils.llm_client import LLMClient
 from onto_market.utils.logger import get_logger
 
+# Lazy import to avoid circular deps — ontology enrichment is optional
+_enricher = None
+
+
+def _get_enricher():
+    global _enricher
+    if _enricher is None:
+        try:
+            from onto_market.ontology import enricher as _mod
+            _enricher = _mod
+        except Exception:
+            pass
+    return _enricher
+
 logger = get_logger(__name__)
 
 _HERE = Path(__file__).resolve().parent
@@ -371,6 +385,28 @@ def run_experiment_loop(
                     "iteration": i, "version": version, "brier": new_brier,
                     "kept": True, **extras,
                 })
+
+                # Feed ML feature importance into the ontology graph
+                enricher = _get_enricher()
+                if enricher is not None:
+                    try:
+                        full_meta = get_metadata(version, artifact_dir)
+                        if full_meta:
+                            full_meta["brier"] = new_brier
+                            from onto_market.ontology.graph import OntologyGraph
+                            onto = OntologyGraph()
+                            ml_triples = enricher.from_ml_features(full_meta)
+                            if ml_triples:
+                                onto.add_triples(ml_triples, persist=True)
+                                logger.info(
+                                    "runner: fed %d ML triples into ontology "
+                                    "(graph now %d nodes, %d edges)",
+                                    len(ml_triples),
+                                    onto.g.number_of_nodes(),
+                                    onto.g.number_of_edges(),
+                                )
+                    except Exception as exc:
+                        logger.debug("runner: ontology enrichment skipped: %s", exc)
             else:
                 _restore_train(backup, mode)
                 history.append({

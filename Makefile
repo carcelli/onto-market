@@ -69,6 +69,11 @@ memory:  ## Run memory_agent (QUERY="..." make memory)
 plan:  ## Run planning_agent (QUERY="..." make plan)
 	$(PYTHON) -m onto_market.agents.planning_agent "$(QUERY)"
 
+.PHONY: explorer
+explorer:  ## Launch the live ontology explorer (http://localhost:8765)
+	$(call log,Launching ontology explorer at http://localhost:8765)
+	$(PYTHON) -m onto_market.dashboard.serve
+
 # ── Quality gates ─────────────────────────────────────────────────────────────
 
 .PHONY: test
@@ -112,6 +117,19 @@ ontology-audit:  ## Analyze ontology graph (PageRank, components, centrality)
 ontology-prune:  ## Audit + prune low-confidence ontology edges (destructive)
 	$(call log,Auditing and pruning ontology graph)
 	$(PYTHON) scripts/audit_ontology.py --prune
+
+.PHONY: enrich-ontology
+enrich-ontology:  ## Batch-enrich ontology from all data sources (no LLM cost)
+	$(call log,Enriching ontology from markets + ML + resolved outcomes)
+	$(PYTHON) scripts/enrich_ontology.py
+
+.PHONY: backfill-metadata
+backfill-metadata:  ## Backfill tags/categories from Gamma API, then enrich ontology
+	$(call log,Backfilling market metadata from Gamma API)
+	$(PYTHON) scripts/backfill_metadata.py
+	$(call log,Re-enriching ontology with backfilled metadata)
+	$(PYTHON) scripts/enrich_ontology.py
+	@printf "$(GREEN)✔ backfill + enrichment complete$(RESET)\n"
 
 # ── Repo Cartography ──────────────────────────────────────────────────────────
 

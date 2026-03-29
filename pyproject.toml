@@ -59,6 +59,7 @@ repo-cycles = "onto_market.devtools.repo_tools.cycle_detector:main"
 repo-dead-weight = "onto_market.devtools.repo_tools.dead_weight:main"
 repo-arch-drift = "onto_market.devtools.repo_tools.architecture_drift:main"
 repo-cartography = "onto_market.devtools.repo_tools.cartography:main"
+onto-explorer = "onto_market.dashboard.serve:main"
 
 [build-system]
 requires = ["setuptools>=68", "wheel"]
