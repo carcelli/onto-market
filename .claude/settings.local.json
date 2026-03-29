@@ -33,7 +33,8 @@
       "Bash(xargs -0 sed -i 's/src\\\\.utils\\\\./onto_market.utils./g')",
       "Bash(xargs -0 sed -i 's/src\\\\.context/onto_market.context/g')",
       "Bash(pip install:*)",
-      "Bash(grep -r gpt-oss /home/orson-dev/projects/onto-market --include=*.py --include=*.md --include=*.toml)"
+      "Bash(grep -r gpt-oss /home/orson-dev/projects/onto-market --include=*.py --include=*.md --include=*.toml)",
+      "Bash(ollama ps:*)"
     ]
   }
 }

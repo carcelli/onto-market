@@ -1567,3 +1567,19 @@
 2026-03-28 21:30:50  WARNING   onto_market.ml_research.inference  ml_research.inference: artifact metadata missing feature_names
 2026-03-28 21:30:50  WARNING   onto_market.ml_research.inference  ml_research.inference: clamped ML_PRIOR_WEIGHT 2.000 -> 1.000
 2026-03-28 21:30:50  INFO      onto_market.ml_research.inference  ml_research.inference: blended llm=0.800 model=0.200 weight=100.0% -> 0.200
+2026-03-28 21:38:20  INFO      onto_market.ml_research.runner  runner [torch]: researcher LLM = local
+2026-03-28 21:38:25  INFO      onto_market.ml_research.runner  runner [torch]: baseline brier = 0.000469
+2026-03-28 21:38:25  INFO      onto_market.ml_research.runner  runner [torch]: === iteration 1/10 (best=0.000469) ===
+2026-03-28 21:46:29  WARNING   onto_market.ml_research.runner  runner: torch_train.py exited 1
+stderr: Traceback (most recent call last):
+  File "/home/orson-dev/projects/onto-market/src/onto_market/ml_research/torch_train.py", line 207, in <module>
+    model, score = train(sys.argv[1] if len(sys.argv) > 1 else None)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/orson-dev/projects/onto-market/src/onto_market/ml_research/torch_train.py", line 101, in train
+    X_train, y_train, X_val, y_val, feature_names = extract_matrix(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 21:46:29  WARNING   onto_market.ml_research.runner  runner: proposed file failed (crash), reverting
+2026-03-28 21:46:29  INFO      onto_market.ml_research.runner  runner [torch]: === iteration 2/200 (best=0.000262) ===
+2026-03-28 21:53:06  INFO      onto_market.ml_research.runner  runner [torch]: researcher LLM = local
+2026-03-28 21:53:13  INFO      onto_market.ml_research.runner  runner [torch]: baseline brier = 0.000725
+2026-03-28 21:53:13  INFO      onto_market.ml_research.runner  runner [torch]: === iteration 1/200 (best=0.000725) ===
