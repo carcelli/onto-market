@@ -14,6 +14,7 @@ Triple schema
   source    : agent or connector that produced this fact
 """
 import json
+import threading
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -64,6 +65,7 @@ class OntologyGraph:
     def __init__(self, persist_path: str = "data/ontology.json"):
         self.g: nx.DiGraph = nx.DiGraph()
         self.persist_path = Path(persist_path)
+        self._lock = threading.Lock()
         self._load()
 
     # ── write ──────────────────────────────────────────────────────────────
@@ -180,9 +182,11 @@ class OntologyGraph:
 
     def _save(self) -> None:
         self.persist_path.parent.mkdir(parents=True, exist_ok=True)
-        # node_link_data is the canonical nx JSON format
         data = nx.node_link_data(self.g, edges="links")
-        self.persist_path.write_text(json.dumps(data, default=str), encoding="utf-8")
+        tmp = self.persist_path.with_suffix(".tmp")
+        with self._lock:
+            tmp.write_text(json.dumps(data, default=str), encoding="utf-8")
+            tmp.replace(self.persist_path)
 
     def _load(self) -> None:
         if not self.persist_path.exists():

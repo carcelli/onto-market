@@ -36,27 +36,29 @@ Together they create “ontological” market intelligence: a structured, simula
 - 📈 **Edge Scoring & Backtesting** – Confidence metrics + historical performance tracking  
 - 🔌 **Pluggable Agents** – Easily add custom strategies or new data sources  
 
-## Quick Start (in your existing environment)
+## Quick Start
 
 ```bash
-conda activate market-dev
+conda activate onto-market
 
 git clone https://github.com/carcelli/onto-market.git
 cd onto-market
 
-# Install Python dependencies (Polymarket Agents + Grok integration)
-pip install -r requirements.txt
+# Install in editable mode with dev extras
+pip install -e ".[dev]"
 
-# MiroFish (Node + Python backend) – one-time setup
+# Configure environment
 cp .env.example .env
-# Edit .env with:
-#   XAI_API_KEY=your_new_key
-#   POLYGON_WALLET_PRIVATE_KEY=...
-#   LLM_BASE_URL=https://api.x.ai/v1
-#   LLM_MODEL_NAME=grok-4
+# Edit .env with your keys (at minimum: XAI_API_KEY)
 
-npm run setup:all          # (if you want the MiroFish UI)
-npm run dev                # or docker compose up -d
+# Seed local market database
+make refresh   # or: python scripts/refresh_markets.py --max-events 500
+
+# Run the planning agent
+python -m onto_market.main "Will Bitcoin hit $100k?"
+
+# Verify everything works
+make dryrun    # topology check + tests + mypy
 ```
 
 ## Developer Tooling

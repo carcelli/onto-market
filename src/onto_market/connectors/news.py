@@ -1,5 +1,6 @@
 """News API connector for market sentiment context."""
 import os
+from typing import Any
 
 from onto_market.utils.logger import get_logger
 from onto_market.utils.retry import retry_with_backoff
@@ -19,7 +20,7 @@ class NewsConnector:
         import requests
         resp = requests.get(
             "https://newsapi.org/v2/everything",
-            params={"q": query, "pageSize": page_size, "sortBy": "publishedAt"},
+            params={"q": query, "pageSize": str(page_size), "sortBy": "publishedAt"},
             headers={"X-Api-Key": self.api_key},
             timeout=15,
         )

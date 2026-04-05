@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 *.pyo
 .pytest_cache/
+.mypy_cache/
 .vscode/
 .idea/
 .DS_Store
@@ -12,10 +13,18 @@ node_modules/
 onto-market/
 onto_market.egg-info/
 *.egg-info/
+src/*.egg-info/
 .venv/
 *.log
 data/memory.db
 data/ml_artifacts/
+
+# Stale root-level packages (canonical source: src/onto_market/)
+/agents/
+/config/
+/core/
+/ontology/
+/src/devtools/
 
 # Root-level scratch visualizations (canonical source: src/onto_market/dashboard/)
 onto_market_ontology_explorer.html

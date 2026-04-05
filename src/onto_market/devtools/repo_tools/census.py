@@ -4,7 +4,7 @@ import argparse
 import json
 from collections import Counter, defaultdict
 from pathlib import Path
-from typing import Sequence
+from typing import Any, Sequence
 
 from ._paths import resolve_output_path, resolve_repo_root
 
@@ -140,7 +140,7 @@ def build_report(root: str | Path | None = None) -> dict[str, object]:
     }
 
 
-def render_markdown(report: dict[str, object]) -> str:
+def render_markdown(report: dict[str, Any]) -> str:
     lines: list[str] = []
     lines.append("# Repo Census\n")
     lines.append(f"- Repo root: `{report['repo_root']}`")

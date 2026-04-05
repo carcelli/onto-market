@@ -81,10 +81,10 @@ class PolymarketConnector:
         self.polygon_rpc = config.POLYGON_RPC_URL
 
         self.w3: Web3 | None = None
-        self.account = None
-        self.client = None
-        self.usdc_contract = None
-        self.ctf_contract = None
+        self.account: Any = None
+        self.client: Any = None
+        self.usdc_contract: Any = None
+        self.ctf_contract: Any = None
 
         if self.private_key:
             self._init_web3()
@@ -99,7 +99,7 @@ class PolymarketConnector:
             self.w3.middleware_onion.inject(ExtraDataToPOAMiddleware, layer=0)
         except ImportError:
             try:
-                from web3.middleware import geth_poa_middleware
+                from web3.middleware import geth_poa_middleware  # type: ignore[attr-defined]
                 self.w3.middleware_onion.inject(geth_poa_middleware, layer=0)
             except ImportError:
                 logger.debug("POA middleware unavailable, skipping")

@@ -4,7 +4,7 @@ import argparse
 import json
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Sequence
+from typing import Any, Sequence
 
 from ._paths import resolve_output_path, resolve_repo_root
 
@@ -176,7 +176,7 @@ def _walk(directory: Path, prefix: str = "", rel_base: Path | None = None) -> li
     return lines
 
 
-def _ontology_stats(root: Path) -> dict[str, object]:
+def _ontology_stats(root: Path) -> dict[str, Any]:
     ontology_path = root / "data" / "ontology.json"
     if not ontology_path.exists():
         return {"nodes": 0, "edges": 0, "top_entities": []}
@@ -193,7 +193,7 @@ def _ontology_stats(root: Path) -> dict[str, object]:
         return {"nodes": -1, "edges": -1, "error": str(exc)}
 
 
-def _db_stats(root: Path) -> dict[str, object]:
+def _db_stats(root: Path) -> dict[str, Any]:
     db_path = root / "data" / "memory.db"
     if not db_path.exists():
         return {"size_kb": 0, "exists": False}
@@ -372,9 +372,9 @@ onto-market/
 |--------|-------|
 | Nodes | {ontology['nodes']} |
 | Edges | {ontology['edges']} |
-| Top entities | {', '.join(ontology.get('top_entities', [])) or '(empty)'} |
+| Top entities | {', '.join(str(e) for e in ontology.get('top_entities', [])) or '(empty)'} |
 | Path | `data/ontology.json` |
-| Thread-safe | No — add file locking before concurrent agents |
+| Thread-safe | Yes — `threading.Lock` + atomic write |
 
 > Grows every `planning_agent` run via `ontology_node` → `ontology/graph.py`.
 

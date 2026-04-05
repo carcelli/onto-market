@@ -79,6 +79,11 @@ class TinyForecaster(nn.Module):
     the autoresearch loop proposes.
     """
 
+    _onto_market_feature_names: list[str]
+    _onto_market_category_map: dict[str, int]
+    _onto_market_vocab: list[str]
+    _onto_market_hyperparams: dict[str, Any]
+
     def __init__(
         self,
         n_features: int,
@@ -132,6 +137,11 @@ class TinyTransformerForecaster(nn.Module):
     Each feature becomes a token via a learned embedding projection.
     A [CLS]-style readout token aggregates context for the final prediction.
     """
+
+    _onto_market_feature_names: list[str]
+    _onto_market_category_map: dict[str, int]
+    _onto_market_vocab: list[str]
+    _onto_market_hyperparams: dict[str, Any]
 
     def __init__(
         self,

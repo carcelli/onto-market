@@ -90,8 +90,12 @@ lint:  ## mypy type-check
 	$(call log,Running mypy)
 	$(PYTHON) -m mypy src/onto_market/ --ignore-missing-imports
 
+.PHONY: check-topology
+check-topology:  ## Verify no stale duplicate package trees
+	$(PYTHON) scripts/check_topology.py
+
 .PHONY: dryrun
-dryrun: test lint  ## Gate: run before every prod push (tests + lint)
+dryrun: check-topology test lint  ## Gate: run before every prod push (topology + tests + lint)
 	@printf "$(GREEN)✔ dryrun passed — safe to push$(RESET)\n"
 
 # ── Analysis ─────────────────────────────────────────────────────────────────

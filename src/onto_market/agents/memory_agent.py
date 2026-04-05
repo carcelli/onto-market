@@ -4,6 +4,7 @@ Memory Agent — DB-first, Gamma API enrichment on demand.
 Flow:  memory_node → enrichment_node → reasoning_node → decide_node
 """
 import sys
+from typing import Any
 
 from langchain_core.messages import HumanMessage
 from langgraph.graph import END, StateGraph
@@ -84,6 +85,7 @@ def decide_node(state: MemoryAgentState) -> dict:
     all_markets = state["memory_context"] + state["live_data"]
     high_volume = [m for m in all_markets if m.get("volume", 0) >= config.MIN_VOLUME]
 
+    decision: dict[str, Any] = {}
     if not high_volume:
         decision = {"action": "ANALYZE_ONLY", "reason": "No markets meet volume threshold"}
     else:

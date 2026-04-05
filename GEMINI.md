@@ -25,71 +25,83 @@ This file provides foundational context and instructional mandates for Gemini CL
 
 ```text
 .
-├── agents/             # LangGraph agent definitions (planning, memory)
-├── config/             # Configuration management (Pydantic-style)
-├── core/               # Core agent base classes and LLM routing
-├── scripts/            # Database seeding and maintenance scripts
-├── src/
-│   ├── polymarket_agents/ # Domain logic (crypto, nba), ML models, analytics
-│   ├── connectors/     # API wrappers (Gamma, News, Search, Polymarket)
-│   ├── memory/         # Memory managers (SQLite, Zep)
-│   └── utils/          # Shared utilities (logging, LLM client)
-├── tests/              # Pytest suite
-├── main.py             # CLI entry point
-└── langgraph.json      # LangGraph Cloud / Studio configuration
+├── src/onto_market/        # Single canonical package
+│   ├── agents/             # LangGraph agents (planning, memory, ontology)
+│   ├── config/             # Configuration management (env-driven)
+│   ├── connectors/         # API wrappers (Gamma, News, Search, Polymarket)
+│   ├── core/               # LLM routing, graph registry, agent base
+│   ├── dashboard/          # Ontology explorer (HTML + serve)
+│   ├── devtools/           # Repo cartography & health tools
+│   ├── memory/             # Memory managers (SQLite, Zep stub)
+│   ├── ml_research/        # ML training pipeline (sklearn + PyTorch)
+│   ├── ontology/           # OntologyGraph (NetworkX DiGraph, JSON-persisted)
+│   ├── polymarket_agents/  # Analytics (score_market, kelly, edge, EV)
+│   ├── swarm/              # Social Sentiment Oracle (5000 agents)
+│   ├── trading/            # SAFE_MODE executor, position sizing
+│   └── utils/              # LLM client, retry, structured logger
+├── scripts/                # Thin CLI wrappers and data scripts
+├── tests/                  # Pytest suite (~180 test functions)
+├── data/                   # SQLite DB + ontology JSON + ML artifacts
+└── langgraph.json          # LangGraph graph registry
 ```
 
 ## Setup and Commands
 
 ### Environment Setup
-Always use a Python 3.12 environment.
+Always use the `onto-market` conda environment with Python 3.12+.
 ```bash
+conda activate onto-market
 pip install -e ".[dev]"
+cp .env.example .env   # Fill in at minimum: XAI_API_KEY
 ```
 
 ### Running the System
 ```bash
 # General query via main entry point
-python main.py "Will Bitcoin hit $100k by end of 2025?"
+python -m onto_market.main "Will Bitcoin hit $100k by end of 2025?"
 
 # Run specific LangGraph agents directly
-python -m agents.planning_agent "Who will win the 2024 NBA Finals?"
-python -m agents.memory_agent "Find crypto-related markets"
+python -m onto_market.agents.planning_agent "Who will win the 2024 NBA Finals?"
+python -m onto_market.agents.memory_agent "Find crypto-related markets"
 ```
 
 ### Development & Maintenance
 ```bash
-# Run tests
-python -m pytest tests/
+# Full gate (topology + tests + mypy)
+make dryrun
 
-# Refresh market data from Gamma API
-python scripts/python/refresh_markets.py --max-events 500
+# Run tests
+make test
 
 # Type checking
-mypy .
+make lint
+
+# Refresh market data from Gamma API
+make refresh
 ```
 
 ## Development Conventions
 
 ### State Management
-Agents use `TypedDict` for state, often annotated with `add_messages` from `langgraph.graph.message`. See `agents/state.py`.
+Agents use `TypedDict` for state, annotated with `add_messages` from `langgraph.graph.message`. See `src/onto_market/agents/state.py`.
 
 ### Multi-LLM Routing
-Use `core/llm_router.py` or `src/utils/llm_client.py` to interact with models. The system defaults to `grok` (via LiteLLM `xai/grok-beta`) but is easily switchable via the `LLM_PROVIDER` environment variable.
+Use `src/onto_market/core/llm_router.py` or `src/onto_market/utils/llm_client.py` to interact with models. The system defaults to `grok` (xAI Responses API with native web/x search tools) but is switchable via the `LLM_PROVIDER` environment variable.
 
 ### Decision Thresholds
-Standard trading parameters are defined in `config/config.py`:
+Standard trading parameters are defined in `src/onto_market/config/config.py`:
 - `MIN_EDGE`: 3.0%
 - `MIN_VOLUME`: $5,000
 - `MIN_KELLY`: 1.0%
 
 ### Domain Plugins
-New domains (e.g., "politics") should be registered in the domain registry to automatically provide specialized scanning and reasoning tools to the agents.
+New domains (e.g., "politics") should be registered in the domain registry to automatically provide specialized scanning and reasoning tools to the agents (Phase 2).
 
 ## Required Environment Variables
-See `config/config.py` for full details.
-- `OPENAI_API_KEY`, `GOOGLE_API_KEY`, `ANTHROPIC_API_KEY`, `XAI_API_KEY` (as needed)
+See `.env.example` for the full list with defaults.
+- `XAI_API_KEY`: Grok/xAI (default LLM provider)
+- `OPENAI_API_KEY`, `GOOGLE_API_KEY`, `ANTHROPIC_API_KEY` (as needed)
 - `POLYGON_PRIVATE_KEY`: For live trading
 - `CLOB_API_KEY`, `CLOB_SECRET`, `CLOB_PASSPHRASE`: Polymarket CLOB access
 - `TAVILY_API_KEY`: For web research nodes
-- `ZEP_API_KEY`: For graph memory
+- `ZEP_API_KEY`: For graph memory (Phase 2)

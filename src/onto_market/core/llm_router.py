@@ -48,8 +48,11 @@ def get_ollama_client(base_url: str | None = None) -> OpenAI:
     )
 
 
+_Messages = list[dict[str, Any]]
+
+
 def _ollama_completion(
-    messages: list[dict[str, str]],
+    messages: _Messages,
     temperature: float,
     model: str | None = None,
     base_url: str | None = None,
@@ -59,31 +62,31 @@ def _ollama_completion(
     target_model = model or config.LOCAL_MODEL
     response = client.chat.completions.create(
         model=target_model,
-        messages=messages,
+        messages=messages,  # type: ignore[arg-type]
         temperature=temperature,
     )
     return response.choices[0].message.content or ""
 
 
 def _litellm_completion(
-    messages: list[dict[str, str]],
+    messages: _Messages,
     temperature: float,
     model: str,
 ) -> str:
     """Call litellm for non-xAI providers."""
     response = litellm.completion(
         model=model,
-        messages=messages,
+        messages=messages,  # type: ignore[arg-type]
         temperature=temperature,
     )
     return response.choices[0].message.content or ""
 
 
 def llm_completion(
-    messages: list[dict[str, str]],
+    messages: _Messages,
     temperature: float = 0.7,
     model: str | None = None,
-    tools: list[dict] | None = None,
+    tools: list[dict[str, Any]] | None = None,
     use_tools: bool = True,
     **kwargs: Any,
 ) -> str:
@@ -106,14 +109,14 @@ def llm_completion(
         )
         response = client.responses.create(
             model=target_model,
-            input=messages,
-            tools=active_tools,
+            input=messages,  # type: ignore[arg-type]
+            tools=active_tools,  # type: ignore[arg-type]
             temperature=temperature,
             **kwargs,
         )
         if hasattr(response, "output_text"):
-            return response.output_text
-        return response.choices[0].message.content or ""
+            return response.output_text  # type: ignore[return-value]
+        return response.choices[0].message.content or ""  # type: ignore[attr-defined,union-attr]
 
     # Non-xAI provider via LiteLLM
     litellm_model = model or _LITELLM_MODELS.get(provider)
@@ -126,7 +129,7 @@ def llm_completion(
 
 
 def llm_json(
-    messages: list[dict[str, str]],
+    messages: _Messages,
     temperature: float = 0.2,
     model: str | None = None,
 ) -> dict:

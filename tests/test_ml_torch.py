@@ -28,9 +28,9 @@ RESOLVED_ROWS = [
         "liquidity": 5000.0 + i * 500,
         "implied_prob_at_close": 0.3 + i * 0.03,
         "resolved_yes": 1 if i % 3 == 0 else 0,
-        "end_date": f"2025-0{min(i+1, 9)}-15T00:00:00Z",
-        "closed_time": f"2025-0{min(i+1, 9)}-10T00:00:00Z",
-        "fetched_at": "2025-06-01T00:00:00Z",
+        "end_date": f"2026-03-{min(i + 1, 28):02d}T00:00:00Z",
+        "closed_time": f"2026-03-{min(i + 1, 28):02d}T00:00:00Z",
+        "fetched_at": "2026-03-28T00:00:00Z",
     }
     for i in range(20)
 ]
@@ -162,7 +162,7 @@ class TestTorchTrain:
     def test_train_smoke(self, tmp_db: str):
         from onto_market.ml_research.torch_train import train
 
-        model, brier = train(db_path=tmp_db)
+        model, brier = train(db_path=tmp_db, max_age_days=0)
         assert model is not None
         assert 0.0 <= brier <= 1.0
 
@@ -179,7 +179,7 @@ class TestTorchTrain:
     def test_train_prints_contracts(self, tmp_db: str, capsys):
         from onto_market.ml_research.torch_train import train
 
-        train(db_path=tmp_db)
+        train(db_path=tmp_db, max_age_days=0)
         captured = capsys.readouterr()
         assert "brier:" in captured.out
         assert "training_seconds:" in captured.out
@@ -188,7 +188,7 @@ class TestTorchTrain:
     def test_train_model_has_metadata_attrs(self, tmp_db: str):
         from onto_market.ml_research.torch_train import train
 
-        model, _ = train(db_path=tmp_db)
+        model, _ = train(db_path=tmp_db, max_age_days=0)
         assert model is not None
         assert hasattr(model, "_onto_market_feature_names")
         assert hasattr(model, "_onto_market_category_map")
@@ -424,7 +424,7 @@ class TestRunnerMode:
     def test_default_timeouts(self):
         from onto_market.ml_research.runner import _DEFAULT_TIMEOUTS
 
-        assert _DEFAULT_TIMEOUTS["sklearn"] == 120
+        assert _DEFAULT_TIMEOUTS["sklearn"] == 300
         assert _DEFAULT_TIMEOUTS["torch"] == 300
 
     def test_is_oom(self):

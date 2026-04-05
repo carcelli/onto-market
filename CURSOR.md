@@ -27,34 +27,39 @@ memory → enrichment → reasoning → decide
 ```bash
 conda activate onto-market
 pip install -e ".[dev]"
-python scripts/refresh_markets.py --max-events 500
-python main.py "Will Bitcoin hit $100k?"
-make test
+cp .env.example .env        # fill in XAI_API_KEY at minimum
+make refresh                 # seed local DB from Gamma API
+python -m onto_market.main "Will Bitcoin hit $100k?"
+make dryrun                  # topology + tests + mypy
 ```
 
 ## What Works Today
 
 - Full end-to-end planning pipeline (query → BET/WATCH/PASS + edge, EV, Kelly fraction)
-- Ontology knowledge accumulation across runs
+- Ontology knowledge accumulation across runs (514 nodes, 886 edges)
+- Thread-safe ontology persistence (locked + atomic writes)
 - Swarm consensus with convergence detection
-- Multi-LLM routing (Grok, OpenAI, Gemini, Claude)
+- Multi-LLM routing (Grok, OpenAI, Gemini, Claude, local Ollama)
+- ML research pipeline (sklearn + PyTorch training, versioned artifacts)
 - SQLite memory persistence (markets, research, analytics)
 - Gamma API market discovery + Polymarket CLOB order building
 - Web research (Tavily) + news headlines (NewsAPI)
-- Comprehensive test suite (analytics, memory, swarm, trading, planning)
+- Ontology explorer dashboard
+- Comprehensive test suite (~180 tests) + mypy type checking
+- Repo cartography devtools (import graph, dead weight, symbol xref, etc.)
 
 ## What Doesn't Work Yet (Phase 2)
 
-- **Zep Cloud** graph memory — stub exists (`src/memory/zep_reader.py`), returns empty
+- **Zep Cloud** graph memory — stub exists (`src/onto_market/memory/zep_reader.py`), returns empty
 - **Domain registry** — pluggable crypto/NBA agents, not implemented
 - **Vue 3 dashboard** — not started
 
 ## Where to Focus Next
 
-1. **Unify packaging** — delete stale `requirements.txt`, fix pyproject.toml package discovery
+1. **Backtest swarm** — run planning_agent on 30-day resolved markets (swarm ON vs OFF), compute Brier delta
 2. **Separate analysis/execution** — decouple module-level singletons in planning_agent
-3. **Strengthen ontology** — file locking for thread safety, typed entity categories, PageRank audits
-4. **Backtest swarm** — historical resolution data, calibration tracking (Brier score)
+3. **PageRank on ontology** — surface high-influence entities, prune low-degree nodes
+4. **Swarm value validation** — prove ≥2% Brier improvement over LLM-only baseline
 
 ## See Also
 

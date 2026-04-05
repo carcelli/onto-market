@@ -45,6 +45,10 @@ MAX_VOCAB = 200              # vocab size if USE_VOCAB enabled
 class TinyForecaster(nn.Module):
     """Small MLP — gpt-oss-20b can freely edit architecture."""
 
+    _onto_market_feature_names: list[str]
+    _onto_market_category_map: dict[str, int]
+    _onto_market_vocab: list[str]
+
     def __init__(self, n_features: int):
         super().__init__()
         layers: list[nn.Module] = []
