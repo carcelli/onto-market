@@ -224,6 +224,37 @@ def render_markdown(snapshot: ImportGraphSnapshot) -> str:
     return "\n".join(lines)
 
 
+def _render_dot(snapshot: ImportGraphSnapshot) -> str:
+    lines = ['digraph ImportGraph {', '  rankdir="LR";']
+    all_nodes: set[str] = set()
+    for mod, deps in snapshot.adjacency.items():
+        all_nodes.add(mod)
+        for dep in deps:
+            all_nodes.add(dep)
+            lines.append(f'  "{mod}" -> "{dep}";')
+    # Declare isolated nodes (no edges)
+    for mod in sorted(all_nodes):
+        if not any(mod in edge for edge in lines[2:]):
+            lines.append(f'  "{mod}";')
+    lines.append("}")
+    return "\n".join(lines)
+
+
+def _render_mermaid(snapshot: ImportGraphSnapshot) -> str:
+    lines = ["graph LR"]
+    emitted_nodes: set[str] = set()
+    for mod, deps in sorted(snapshot.adjacency.items()):
+        for dep in deps:
+            lines.append(f'    "{mod}" --> "{dep}"')
+            emitted_nodes.add(mod)
+            emitted_nodes.add(dep)
+    # Declare isolated nodes
+    for mod in sorted(snapshot.adjacency.keys()):
+        if mod not in emitted_nodes:
+            lines.append(f'    "{mod}"')
+    return "\n".join(lines)
+
+
 def write_report(
     snapshot: ImportGraphSnapshot,
     root: str | Path | None = None,
@@ -235,6 +266,8 @@ def write_report(
 
     json_path = output_dir / "import_graph.json"
     md_path = output_dir / "import_graph.md"
+    dot_path = output_dir / "import_graph.dot"
+    mmd_path = output_dir / "import_graph.mmd"
 
     payload = {
         "root": str(snapshot.root),
@@ -248,6 +281,8 @@ def write_report(
     }
     json_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     md_path.write_text(render_markdown(snapshot), encoding="utf-8")
+    dot_path.write_text(_render_dot(snapshot), encoding="utf-8")
+    mmd_path.write_text(_render_mermaid(snapshot), encoding="utf-8")
     return json_path, md_path
 
 

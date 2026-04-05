@@ -1,13 +1,13 @@
 {
   "root": "/home/orson-dev/projects/onto-market",
-  "modules_scanned": 60,
-  "edges": 111,
+  "modules_scanned": 73,
+  "edges": 145,
   "cycles": 0,
-  "isolated": 11,
+  "isolated": 13,
   "top_importers": [
     [
       "onto_market.agents.planning_agent",
-      14
+      15
     ],
     [
       "onto_market.devtools.repo_tools.cartography",
@@ -18,12 +18,28 @@
       8
     ],
     [
+      "onto_market.ml_research.runner",
+      8
+    ],
+    [
+      "onto_market.ml_research.torch_train",
+      6
+    ],
+    [
       "onto_market.trading.trader",
       6
     ],
     [
+      "onto_market.ml_research.train",
+      5
+    ],
+    [
       "onto_market.swarm.oracle",
       5
+    ],
+    [
+      "onto_market.agents.ontology_agent",
+      4
     ],
     [
       "onto_market.connectors.polymarket",
@@ -34,41 +50,33 @@
       4
     ],
     [
-      "onto_market.trading.executor",
+      "onto_market.ml_research.dataset",
       4
-    ],
-    [
-      "onto_market.agents.ontology_agent",
-      3
-    ],
-    [
-      "onto_market.connectors.gamma",
-      3
-    ],
-    [
-      "onto_market.devtools.repo_tools.dead_weight",
-      3
-    ],
-    [
-      "onto_market.main",
-      3
     ]
   ],
   "top_imported": [
+    [
+      "onto_market.utils.logger",
+      17
+    ],
     [
       "onto_market.devtools.repo_tools._paths",
       15
     ],
     [
-      "onto_market.utils.logger",
-      12
-    ],
-    [
       "onto_market.config.config",
-      7
+      11
     ],
     [
       "onto_market.config",
+      10
+    ],
+    [
+      "onto_market.utils.llm_client",
+      7
+    ],
+    [
+      "onto_market.connectors.gamma",
       6
     ],
     [
@@ -76,15 +84,11 @@
       6
     ],
     [
-      "onto_market.utils.llm_client",
-      6
-    ],
-    [
-      "onto_market.connectors.gamma",
+      "onto_market.devtools.repo_tools.import_graph",
       5
     ],
     [
-      "onto_market.devtools.repo_tools.import_graph",
+      "onto_market.ontology.graph",
       5
     ],
     [
@@ -97,10 +101,6 @@
     ],
     [
       "onto_market.memory.manager",
-      3
-    ],
-    [
-      "onto_market.ontology.graph",
       3
     ]
   ],
@@ -118,6 +118,7 @@
       "onto_market.utils.logger"
     ],
     "onto_market.agents.ontology_agent": [
+      "onto_market.ontology.enricher",
       "onto_market.ontology.graph",
       "onto_market.utils.llm_client",
       "onto_market.utils.logger"
@@ -133,6 +134,7 @@
       "onto_market.connectors.search",
       "onto_market.core.graph",
       "onto_market.memory.manager",
+      "onto_market.ml_research.inference",
       "onto_market.polymarket_agents.utils.analytics",
       "onto_market.swarm.oracle",
       "onto_market.utils.llm_client",
@@ -179,6 +181,8 @@
       "onto_market.config.config"
     ],
     "onto_market.core.state": [],
+    "onto_market.dashboard": [],
+    "onto_market.dashboard.serve": [],
     "onto_market.devtools": [],
     "onto_market.devtools.repo_tools": [],
     "onto_market.devtools.repo_tools._common": [
@@ -264,7 +268,55 @@
       "onto_market.config",
       "onto_market.config.config"
     ],
+    "onto_market.ml_research": [],
+    "onto_market.ml_research.artifacts": [
+      "onto_market.ml_research.models",
+      "onto_market.utils.logger"
+    ],
+    "onto_market.ml_research.dataset": [
+      "onto_market.config",
+      "onto_market.config.config",
+      "onto_market.connectors.gamma",
+      "onto_market.utils.logger"
+    ],
+    "onto_market.ml_research.evaluate": [],
+    "onto_market.ml_research.features": [],
+    "onto_market.ml_research.inference": [
+      "onto_market.ml_research.artifacts",
+      "onto_market.ml_research.features",
+      "onto_market.utils.logger"
+    ],
+    "onto_market.ml_research.models": [],
+    "onto_market.ml_research.runner": [
+      "onto_market.ml_research.artifacts",
+      "onto_market.ml_research.torch_train",
+      "onto_market.ml_research.train",
+      "onto_market.ontology",
+      "onto_market.ontology.enricher",
+      "onto_market.ontology.graph",
+      "onto_market.utils.llm_client",
+      "onto_market.utils.logger"
+    ],
+    "onto_market.ml_research.torch_train": [
+      "onto_market.config",
+      "onto_market.config.config",
+      "onto_market.ml_research.dataset",
+      "onto_market.ml_research.evaluate",
+      "onto_market.ml_research.features",
+      "onto_market.ml_research.models"
+    ],
+    "onto_market.ml_research.train": [
+      "onto_market.config",
+      "onto_market.config.config",
+      "onto_market.ml_research.dataset",
+      "onto_market.ml_research.evaluate",
+      "onto_market.ml_research.features"
+    ],
     "onto_market.ontology": [],
+    "onto_market.ontology.enricher": [
+      "onto_market.ontology.graph",
+      "onto_market.utils.logger"
+    ],
     "onto_market.ontology.graph": [],
     "onto_market.polymarket_agents": [],
     "onto_market.polymarket_agents.utils": [],
@@ -308,6 +360,8 @@
     "onto_market.utils": [],
     "onto_market.utils.file_parser": [],
     "onto_market.utils.llm_client": [
+      "onto_market.config",
+      "onto_market.config.config",
       "onto_market.core.llm_router"
     ],
     "onto_market.utils.logger": [],

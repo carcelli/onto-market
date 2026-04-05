@@ -1,42 +1,42 @@
 # Import Graph Report
 
 - Repo root: `/home/orson-dev/projects/onto-market`
-- Modules scanned: **60**
-- Import edges: **111**
-- Isolated modules (no imports): **11**
+- Modules scanned: **73**
+- Import edges: **145**
+- Isolated modules (no imports): **13**
 - Cycles detected: **0**
 
 ## Top importers (highest out-degree)
 | Module | Imports |
 |--------|---------|
-| `onto_market.agents.planning_agent` | 14 |
+| `onto_market.agents.planning_agent` | 15 |
 | `onto_market.devtools.repo_tools.cartography` | 13 |
 | `onto_market.agents.memory_agent` | 8 |
+| `onto_market.ml_research.runner` | 8 |
+| `onto_market.ml_research.torch_train` | 6 |
 | `onto_market.trading.trader` | 6 |
+| `onto_market.ml_research.train` | 5 |
 | `onto_market.swarm.oracle` | 5 |
+| `onto_market.agents.ontology_agent` | 4 |
 | `onto_market.connectors.polymarket` | 4 |
 | `onto_market.context` | 4 |
-| `onto_market.trading.executor` | 4 |
-| `onto_market.agents.ontology_agent` | 3 |
-| `onto_market.connectors.gamma` | 3 |
-| `onto_market.devtools.repo_tools.dead_weight` | 3 |
-| `onto_market.main` | 3 |
+| `onto_market.ml_research.dataset` | 4 |
 
 ## Most imported (highest in-degree)
 | Module | Imported by |
 |--------|------------|
+| `onto_market.utils.logger` | 17 |
 | `onto_market.devtools.repo_tools._paths` | 15 |
-| `onto_market.utils.logger` | 12 |
-| `onto_market.config.config` | 7 |
-| `onto_market.config` | 6 |
+| `onto_market.config.config` | 11 |
+| `onto_market.config` | 10 |
+| `onto_market.utils.llm_client` | 7 |
+| `onto_market.connectors.gamma` | 6 |
 | `onto_market.devtools.repo_tools._common` | 6 |
-| `onto_market.utils.llm_client` | 6 |
-| `onto_market.connectors.gamma` | 5 |
 | `onto_market.devtools.repo_tools.import_graph` | 5 |
+| `onto_market.ontology.graph` | 5 |
 | `onto_market.connectors.polymarket` | 4 |
 | `onto_market.utils.retry` | 4 |
 | `onto_market.memory.manager` | 3 |
-| `onto_market.ontology.graph` | 3 |
 
 ## Adjacency list
 
@@ -51,6 +51,7 @@
 - `onto_market.utils.logger`
 
 ### `onto_market.agents.ontology_agent`
+- `onto_market.ontology.enricher`
 - `onto_market.ontology.graph`
 - `onto_market.utils.llm_client`
 - `onto_market.utils.logger`
@@ -66,6 +67,7 @@
 - `onto_market.connectors.search`
 - `onto_market.core.graph`
 - `onto_market.memory.manager`
+- `onto_market.ml_research.inference`
 - `onto_market.polymarket_agents.utils.analytics`
 - `onto_market.swarm.oracle`
 - `onto_market.utils.llm_client`
@@ -187,6 +189,50 @@
 - `onto_market.config`
 - `onto_market.config.config`
 
+### `onto_market.ml_research.artifacts`
+- `onto_market.ml_research.models`
+- `onto_market.utils.logger`
+
+### `onto_market.ml_research.dataset`
+- `onto_market.config`
+- `onto_market.config.config`
+- `onto_market.connectors.gamma`
+- `onto_market.utils.logger`
+
+### `onto_market.ml_research.inference`
+- `onto_market.ml_research.artifacts`
+- `onto_market.ml_research.features`
+- `onto_market.utils.logger`
+
+### `onto_market.ml_research.runner`
+- `onto_market.ml_research.artifacts`
+- `onto_market.ml_research.torch_train`
+- `onto_market.ml_research.train`
+- `onto_market.ontology`
+- `onto_market.ontology.enricher`
+- `onto_market.ontology.graph`
+- `onto_market.utils.llm_client`
+- `onto_market.utils.logger`
+
+### `onto_market.ml_research.torch_train`
+- `onto_market.config`
+- `onto_market.config.config`
+- `onto_market.ml_research.dataset`
+- `onto_market.ml_research.evaluate`
+- `onto_market.ml_research.features`
+- `onto_market.ml_research.models`
+
+### `onto_market.ml_research.train`
+- `onto_market.config`
+- `onto_market.config.config`
+- `onto_market.ml_research.dataset`
+- `onto_market.ml_research.evaluate`
+- `onto_market.ml_research.features`
+
+### `onto_market.ontology.enricher`
+- `onto_market.ontology.graph`
+- `onto_market.utils.logger`
+
 ### `onto_market.swarm`
 - `onto_market.swarm.archetypes`
 - `onto_market.swarm.oracle`
@@ -221,4 +267,6 @@
 - `onto_market.utils.logger`
 
 ### `onto_market.utils.llm_client`
+- `onto_market.config`
+- `onto_market.config.config`
 - `onto_market.core.llm_router`
